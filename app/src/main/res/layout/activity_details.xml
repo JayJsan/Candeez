@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.application.project2java.DetailsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundMainColor">
+
+        <!-- Main Item -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+        <!-- Item Image -->
+        <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ceiling_fan_test" />
+
+        <!-- Item Title -->
+        <TextView
+            android:id="@+id/item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_image"
+            android:text="Item Title"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <!-- Item Price -->
+            <TextView
+                android:id="@+id/item_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_image"
+                android:layout_toRightOf="@+id/item_title"
+                android:text="$10.00"
+                android:textColor="@android:color/holo_green_dark"
+                android:textSize="20sp" />
+
+        <!-- Item Description -->
+        <TextView
+            android:id="@+id/item_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_title"
+            android:layout_marginTop="8dp"
+            android:text="@string/lorem500"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+
+        <!-- Favourite Button -->
+        <Button
+            android:id="@+id/favourite_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_description"
+            android:layout_marginTop="16dp"
+            android:textAlignment="center"
+            android:text="fave"
+            android:textSize="16sp"/>
+
+        <!-- Add to Cart Button -->
+        <Button
+            android:id="@+id/add_to_cart_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_description"
+            android:layout_toRightOf="@+id/favourite_button"
+            android:layout_marginTop="16dp"
+            android:textAlignment="center"
+            android:text="cart"
+            android:textSize="16sp"/>
+
+
+        </RelativeLayout>
+        <!-- Related Items -->
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

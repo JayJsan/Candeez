@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Project2Java</string>
+    <string name="lorem500">Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit. Mauris non finibus arcu,
+        ut maximus velit. Aliquam a dapibus ante.
+        Nullam eros metus, cursus quis blandit in, pulvinar ut nunc.
+        Nulla facilisi. Nullam eget magna nunc.
+        Integer semper risus suscipit dui dictum tincidunt.
+        Integer dapibus mauris ut auctor tempor. Nulla at pulvinar diam.
+        Phasellus nisl massa, ultricies et dui nec, faucibus aliquam libero.
+        Nam lacinia consequat turpis, volutpat rhoncus ante malesuada quis. Nulla metus elit
+    </string>
 </resources>
