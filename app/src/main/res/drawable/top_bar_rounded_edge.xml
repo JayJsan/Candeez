@@ -9,7 +9,7 @@
             android:color="@color/md_theme_light_primaryFixedDim">
         </stroke>
         <corners
-            android:bottomLeftRadius="25dip"
-            android:bottomRightRadius="25dip">
+            android:bottomLeftRadius="35dip"
+            android:bottomRightRadius="35dip">
         </corners>
     </shape>

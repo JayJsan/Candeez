@@ -20,7 +20,7 @@
                 android:id="@+id/top_bar"
                 android:layout_width="match_parent"
                 android:layout_height="213dp"
-                android:background="@drawable/rounded_edge"
+                android:background="@drawable/top_bar_rounded_edge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
