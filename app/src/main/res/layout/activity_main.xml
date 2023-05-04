@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,173 +8,183 @@
     android:background="@color/md_theme_light_surfaceContainerLow"
     tools:context="com.application.project2java.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/top_bar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="213dp"
-        android:background="@drawable/rounded_edge"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/button3"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:layout_marginBottom="32dp"
-            android:background="#00FFFFFF"
-            android:fontFamily="sans-serif"
-            android:padding="0dp"
-            android:text="Type Something"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:textAlignment="textStart"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/md_theme_light_primaryFixed"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="26dp"
-            android:layout_marginTop="68dp"
-            android:text="Search Items"
-            android:textColor="@color/md_theme_light_onPrimary"
-            app:layout_constraintBottom_toTopOf="@+id/button3"
-            app:layout_constraintStart_toStartOf="@+id/button3"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/categories_layout"
-        android:layout_width="match_parent"
-        android:layout_height="222dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_bar">
-
-        <TextView
-            android:id="@+id/categories_heading"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Categories"
-            android:textColor="@color/md_theme_light_primary"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/see_all_categories_button"
-            app:layout_constraintHorizontal_bias="0.049"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical" >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/top_bar"
+                android:layout_width="match_parent"
+                android:layout_height="213dp"
+                android:background="@drawable/rounded_edge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/see_all_categories_button"
-            android:layout_width="67dp"
-            android:layout_height="29dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/md_theme_light_tertiaryContainer"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:padding="0dp"
-            android:text="See All"
-            android:textColor="@color/md_theme_light_onTertiaryContainer"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="@+id/categories_heading"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/categories_heading" />
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="#00FFFFFF"
+                    android:fontFamily="sans-serif"
+                    android:padding="0dp"
+                    android:text="Type Something"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/md_theme_light_primaryFixed"
+                    android:textSize="34sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="68dp"
+                    android:text="Search Items"
+                    android:textColor="@color/md_theme_light_onPrimary"
+                    app:layout_constraintBottom_toTopOf="@+id/button3"
+                    app:layout_constraintStart_toStartOf="@+id/button3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/best_selling_layout"
-        android:layout_width="match_parent"
-        android:layout_height="222dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categories_layout">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/categories_layout"
+                android:layout_width="match_parent"
+                android:layout_height="222dp"
+                android:layout_marginTop="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/top_bar">
 
-        <TextView
-            android:id="@+id/best_selling_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Best Selling"
-            android:textColor="@color/md_theme_light_primary"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/see_all_best_selling_button"
-            app:layout_constraintHorizontal_bias="0.049"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/categories_heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Categories"
+                    android:textColor="@color/md_theme_light_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/see_all_categories_button"
+                    app:layout_constraintHorizontal_bias="0.049"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/see_all_best_selling_button"
-            android:layout_width="67dp"
-            android:layout_height="29dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/md_theme_light_tertiaryContainer"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:padding="0dp"
-            android:text="See All"
-            android:textColor="@color/md_theme_light_onTertiaryContainer"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="@+id/best_selling_heading"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/best_selling_heading" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/see_all_categories_button"
+                    android:layout_width="67dp"
+                    android:layout_height="29dp"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/md_theme_light_tertiaryContainer"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
+                    android:text="See All"
+                    android:textColor="@color/md_theme_light_onTertiaryContainer"
+                    android:textSize="11sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/categories_heading"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/categories_heading" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="222dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/best_selling_layout">
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/most_viewed_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Most Viewed"
-            android:textColor="@color/md_theme_light_primary"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/see_all_most_viewed_button"
-            app:layout_constraintHorizontal_bias="0.049"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/best_selling_layout"
+                android:layout_width="match_parent"
+                android:layout_height="222dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categories_layout">
 
-        <Button
-            android:id="@+id/see_all_most_viewed_button"
-            android:layout_width="67dp"
-            android:layout_height="29dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/md_theme_light_tertiaryContainer"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:padding="0dp"
-            android:text="See All"
-            android:textColor="@color/md_theme_light_onTertiaryContainer"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView10"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/most_viewed_heading" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/best_selling_heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Best Selling"
+                    android:textColor="@color/md_theme_light_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/see_all_best_selling_button"
+                    app:layout_constraintHorizontal_bias="0.049"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/see_all_best_selling_button"
+                    android:layout_width="67dp"
+                    android:layout_height="29dp"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/md_theme_light_tertiaryContainer"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
+                    android:text="See All"
+                    android:textColor="@color/md_theme_light_onTertiaryContainer"
+                    android:textSize="11sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/best_selling_heading"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/best_selling_heading" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="222dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/best_selling_layout">
+
+                <TextView
+                    android:id="@+id/most_viewed_heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Most Viewed"
+                    android:textColor="@color/md_theme_light_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/see_all_most_viewed_button"
+                    app:layout_constraintHorizontal_bias="0.049"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/see_all_most_viewed_button"
+                    android:layout_width="67dp"
+                    android:layout_height="29dp"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/md_theme_light_tertiaryContainer"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
+                    android:text="See All"
+                    android:textColor="@color/md_theme_light_onTertiaryContainer"
+                    android:textSize="11sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/most_viewed_heading" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
