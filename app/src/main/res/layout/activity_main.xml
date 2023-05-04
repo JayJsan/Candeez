@@ -179,7 +179,7 @@
                     android:text="See All"
                     android:textColor="@color/md_theme_light_onTertiaryContainer"
                     android:textSize="11sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView10"
+                    app:layout_constraintBottom_toBottomOf="@+id/most_viewed_heading"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/most_viewed_heading" />
             </androidx.constraintlayout.widget.ConstraintLayout>
