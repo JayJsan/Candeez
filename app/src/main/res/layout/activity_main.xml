@@ -83,7 +83,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/see_all_categories_button"
                     android:layout_width="67dp"
                     android:layout_height="29dp"
@@ -125,7 +125,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/see_all_best_selling_button"
                     android:layout_width="67dp"
                     android:layout_height="29dp"
@@ -165,7 +165,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/see_all_most_viewed_button"
                     android:layout_width="67dp"
                     android:layout_height="29dp"
