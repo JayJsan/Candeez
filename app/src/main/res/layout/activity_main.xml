@@ -73,8 +73,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/categories_layout"
                 android:layout_width="match_parent"
-                android:layout_height="222dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
+                android:paddingVertical="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +118,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/best_selling_layout"
                 android:layout_width="match_parent"
-                android:layout_height="222dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/categories_layout">
@@ -141,7 +143,7 @@
                     android:layout_width="67dp"
                     android:layout_height="29dp"
                     android:layout_marginEnd="16dp"
-                    android:backgroundTint="@color/md_theme_light_tertiaryContainer"
+                    android:backgroundTint="@color/md_theme_light_secondaryContainer"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
                     android:minWidth="0dp"
@@ -153,11 +155,14 @@
                     app:layout_constraintBottom_toBottomOf="@+id/best_selling_heading"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/best_selling_heading" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/most_viewed_layout"
                 android:layout_width="match_parent"
-                android:layout_height="222dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/best_selling_layout">
@@ -181,7 +186,7 @@
                     android:layout_width="67dp"
                     android:layout_height="29dp"
                     android:layout_marginEnd="16dp"
-                    android:backgroundTint="@color/md_theme_light_tertiaryContainer"
+                    android:backgroundTint="@color/md_theme_light_secondaryContainer"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
                     android:minWidth="0dp"
