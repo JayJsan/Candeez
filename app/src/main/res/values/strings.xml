@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Project2Java</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="lorem500">Lorem ipsum dolor sit amet,
         consectetur adipiscing elit. Mauris non finibus arcu,
         ut maximus velit. Aliquam a dapibus ante.
