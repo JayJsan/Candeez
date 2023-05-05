@@ -18,29 +18,9 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setupBottomNavigationBar();
+        BottomNavigationUtils.setupBottomNavigationView(this);
+        BottomNavigationUtils.setCurrentItem(this);
     }
 
-    private void setupBottomNavigationBar() {
-        Navigation navigationFragment = (Navigation) getSupportFragmentManager().findFragmentById(R.id.navigation_fragment);
-
-        // Retrieve the BottomNavigationView from the Navigation fragment
-        BottomNavigationView bottomNavigationView = navigationFragment.getView().findViewById(R.id.bottom_navigation);
-
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            Class<?> destinationClass = null;
-            int itemId = item.getItemId();
-            if (itemId == R.id.home) {
-                destinationClass = MainActivity.class;
-            } else if (itemId == R.id.search) {
-                destinationClass = ListActivity.class;
-            }
-            if (destinationClass != null) {
-                startActivity(new Intent(this, destinationClass));
-                return true;
-            }
-            return false;
-        });
-    }
 
 }
