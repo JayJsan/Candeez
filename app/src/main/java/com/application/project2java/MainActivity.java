@@ -20,6 +20,7 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
         setupBottomNavigationBar();
     }
+
     private void setupBottomNavigationBar() {
         Navigation navigationFragment = (Navigation) getSupportFragmentManager().findFragmentById(R.id.navigation_fragment);
 
@@ -31,10 +32,10 @@ public class MainActivity extends FragmentActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Class<?> destinationClass = null;
             int itemId = item.getItemId();
-            if (itemId == R.id.home){
+            if (itemId == R.id.home) {
                 destinationClass = MainActivity.class;
-            } else if (itemId == R.id.search){
-                destinationClass = DetailsActivity.class;
+            } else if (itemId == R.id.search) {
+                destinationClass = ListActivity.class;
             }
             if (destinationClass != null) {
                 startActivity(new Intent(this, destinationClass));
