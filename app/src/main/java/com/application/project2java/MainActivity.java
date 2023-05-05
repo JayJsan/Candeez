@@ -27,8 +27,6 @@ public class MainActivity extends FragmentActivity {
         // Retrieve the BottomNavigationView from the Navigation fragment
         BottomNavigationView bottomNavigationView = navigationFragment.getView().findViewById(R.id.bottom_navigation);
 
-
-
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Class<?> destinationClass = null;
             int itemId = item.getItemId();
