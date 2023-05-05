@@ -1,7 +1,9 @@
 package com.application.project2java;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentContainerView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,7 +21,13 @@ public class MainActivity extends FragmentActivity {
         setupBottomNavigationBar();
     }
     private void setupBottomNavigationBar() {
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation_fragment);
+        Navigation navigationFragment = (Navigation) getSupportFragmentManager().findFragmentById(R.id.navigation_fragment);
+
+        // Retrieve the BottomNavigationView from the Navigation fragment
+        BottomNavigationView bottomNavigationView = navigationFragment.getView().findViewById(R.id.bottom_navigation);
+
+
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Class<?> destinationClass = null;
             int itemId = item.getItemId();

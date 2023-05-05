@@ -218,7 +218,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <androidx.fragment.app.FragmentContainerView
+    <fragment
         android:id="@+id/navigation_fragment"
         android:name="com.application.project2java.Navigation"
         android:layout_width="match_parent"
