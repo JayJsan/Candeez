@@ -9,6 +9,7 @@ import com.example.project2java.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class BottomNavigationUtils {
     private static final HashMap<Integer, Class<?>> destinationMap = new HashMap<>();
@@ -41,18 +42,16 @@ public class BottomNavigationUtils {
 
     private static void navigateToDestination(FragmentActivity activity, Class<?> destinationClass, int itemId) {
         Intent intent = new Intent(activity, destinationClass);
-        intent.putExtra("selectedItemId", itemId);
         activity.startActivity(intent);
     }
     public static void setCurrentItem(FragmentActivity activity) {
 
         BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
         if (bottomNavigationView == null) return;
-        int selectedItemId = activity.getIntent().getIntExtra("selectedItemId", R.id.home);
         int selectedItemIndex;
-        if (selectedItemId == R.id.home){
+        if (activity instanceof MainActivity){
             selectedItemIndex = 0;
-        } else if (selectedItemId == R.id.search){
+        } else if (activity instanceof ListActivity){
             selectedItemIndex = 1;
         } else {
             selectedItemIndex = 0;
