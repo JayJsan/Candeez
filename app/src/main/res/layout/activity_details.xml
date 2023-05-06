@@ -100,10 +100,6 @@
                             app:layout_constraintStart_toStartOf="@+id/item_image"
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
-                            <!-- Item Title -->
-
-                            <!-- Item Price -->
-                            <!-- Item Description -->
 
                             <TextView
                                 android:id="@+id/item_title"
