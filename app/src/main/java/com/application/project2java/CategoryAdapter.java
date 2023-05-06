@@ -6,9 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
@@ -16,7 +16,7 @@ import com.example.project2java.R;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
+        private final CardView cardView;
 
         public ViewHolder(View v) {
             super(v);
@@ -27,11 +27,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
                 }
             });
-            textView = (TextView) v.findViewById(R.id.textView);
+            cardView = (CardView) v.findViewById(R.id.category_list_item);
         }
 
-        public TextView getTextView() {
-            return textView;
+        public CardView getCardView() {
+            return cardView;
         }
     }
     @NonNull
@@ -44,11 +44,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
-
+        Log.d("TEST", "Element " + holder.getAdapterPosition() + " clicked.");
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 6;
     }
 }
