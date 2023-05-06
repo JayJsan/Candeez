@@ -136,18 +136,12 @@
                     android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="@+id/categories_heading"
                     app:layout_constraintTop_toBottomOf="@+id/see_all_categories_button">
-
-                    <LinearLayout
+                    <fragment
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:name="com.application.project2java.CategoryRecyclerView"
 
-                        <include layout="@layout/category_list_item" />
-
-                        <include layout="@layout/category_list_item" />
-
-                        <include layout="@layout/category_list_item" />
-
-                    </LinearLayout>
+                        />
                 </HorizontalScrollView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
