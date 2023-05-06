@@ -54,7 +54,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center_vertical"
-            android:clickable="false"
+            android:enabled="false"
             android:insetLeft="0dp"
             app:icon="@drawable/baseline_navigate_next_24"
             app:iconSize="40dp"
