@@ -1,7 +1,7 @@
 package com.application.project2java;
 
 public class Category {
-    private CategoryName category = CategoryName.CATEGORY1;
+    private CategoryName category;
     private int frequency;
 
     public Category(CategoryName category, int frequency) {

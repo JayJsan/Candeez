@@ -15,6 +15,4 @@ public class MainActivity extends FragmentActivity {
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
     }
-
-
 }
