@@ -2,11 +2,9 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/display_card_default"
     android:layout_width="150dp"
-    android:layout_height="wrap_content"
-    android:elevation="0dip"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="0dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
