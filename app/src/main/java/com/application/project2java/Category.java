@@ -1,16 +1,16 @@
 package com.application.project2java;
 
 public class Category {
-    private String name;
+    private CategoryName category = CategoryName.CATEGORY1;
     private int frequency;
 
-    public Category(String name, int frequency) {
-        this.name = name;
+    public Category(CategoryName category, int frequency) {
+        this.category = category;
         this.frequency = frequency;
     }
 
     public String getName() {
-        return name;
+        return category.name();
     }
 
     public int getFrequency() {

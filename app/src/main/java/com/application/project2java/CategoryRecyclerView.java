@@ -6,16 +6,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.project2java.R;
-
-import java.util.HashMap;
-import java.util.Map;
-import static java.util.Map.entry;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,14 +22,17 @@ public class CategoryRecyclerView extends Fragment {
     protected CategoryAdapter adapter;
     protected RecyclerView recyclerView;
     private Category[] categories = {
-            new Category("Category1", 69),
-            new Category("Category2", 69),
-            new Category("Category3", 69),
-            new Category("Category4", 69),
+            new Category(CategoryName.CATEGORY1, 69),
+            new Category(CategoryName.CATEGORY2, 69),
+            new Category(CategoryName.CATEGORY3, 69),
+            new Category(CategoryName.CATEGORY4, 69),
     };
     public CategoryRecyclerView() {
         // Required empty public constructor
     }
+    //TODO
+    private void setupCategories() {}
+
 
     public static CategoryRecyclerView newInstance(String param1, String param2) {
         CategoryRecyclerView fragment = new CategoryRecyclerView();
