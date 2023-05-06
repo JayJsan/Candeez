@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -14,9 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.project2java.R;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
+    private Category[] categories;
+
+    public CategoryAdapter(Category[] categories){
+        this.categories = categories;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final CardView cardView;
+        TextView textViewName;
+        TextView textViewQty;
 
         public ViewHolder(View v) {
             super(v);
@@ -28,6 +36,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 }
             });
             cardView = (CardView) v.findViewById(R.id.category_list_item);
+            textViewName = v.findViewById(R.id.category_name);
+            textViewQty = v.findViewById(R.id.category_qty);
         }
 
         public CardView getCardView() {
@@ -44,11 +54,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
-        Log.d("TEST", "Element " + holder.getAdapterPosition() + " clicked.");
+        Category category = categories[position];
+        String name = category.getName();
+        String qty = String.valueOf(category.getFrequency());
+        holder.textViewName.setText(name);
+        holder.textViewQty.setText(qty + " Items");
     }
 
     @Override
     public int getItemCount() {
-        return 6;
+        return categories.length;
     }
 }
