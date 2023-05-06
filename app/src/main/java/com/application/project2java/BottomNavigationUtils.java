@@ -16,7 +16,7 @@ public class BottomNavigationUtils {
 
     static {
         destinationMap.put(R.id.home, MainActivity.class);
-        destinationMap.put(R.id.search, ListActivity.class);
+        destinationMap.put(R.id.search, DetailsActivity.class);
     }
 
     public static void setupBottomNavigationView(FragmentActivity activity) {
