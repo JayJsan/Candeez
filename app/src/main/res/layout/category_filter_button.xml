@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="140dp"
+    android:layout_height="42dp"
+    android:textColor="@color/md_theme_light_onTertiaryContainer"
+    app:backgroundTint="@color/md_theme_light_secondaryContainer"
+    app:cornerRadius="22dp"
+    tools:text="Category">
+
+</com.google.android.material.button.MaterialButton>
