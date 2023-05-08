@@ -44,7 +44,7 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Category category = categories[position];
         String name = category.getName();
-        holder.filterButton.setText(name);
+        holder.getFilterButton().setText(name);
     }
 
 

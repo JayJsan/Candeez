@@ -1,6 +1,11 @@
 package com.application.project2java;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,12 +22,22 @@ public class ListActivity extends FragmentActivity {
             new Category(CategoryName.CATEGORY3, 69),
             new Category(CategoryName.CATEGORY4, 69)};
     private FilterAdapter filterAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
+        EditText searchArea = this.findViewById(R.id.search_area);
+        searchArea.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                hideKeyboard(v);
+            }
+        });
+
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
+
         RecyclerView filterRecyclerView = this.findViewById(R.id.filter_recycler_view);
         filterAdapter = new FilterAdapter(categories);
         filterRecyclerView.setAdapter(filterAdapter);
@@ -31,4 +46,10 @@ public class ListActivity extends FragmentActivity {
         filterRecyclerView.setLayoutManager(layoutManager);
 
     }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
 }

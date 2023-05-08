@@ -17,6 +17,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/top_bar"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="213dp">
 
@@ -42,14 +44,17 @@
                             android:id="@+id/textView4"
                             android:layout_width="wrap_content"
                             android:layout_height="26dp"
+                            android:layout_marginStart="4dp"
                             android:text="Search Items"
                             android:textColor="@color/md_theme_light_onPrimary"
                             android:textSize="20sp"
-                            app:layout_constraintBottom_toTopOf="@+id/editTextText"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintBottom_toBottomOf="@+id/materialButton"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/materialButton"
+                            app:layout_constraintVertical_bias="0.59" />
 
                         <EditText
-                            android:id="@+id/editTextText"
+                            android:id="@+id/search_area"
                             style="@style/Widget.Material3.AutoCompleteTextView.FilledBox"
                             android:layout_width="match_parent"
                             android:layout_height="75dp"
@@ -72,11 +77,16 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
 
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:background="@drawable/baseline_search_24"
-                            app:layout_constraintBottom_toTopOf="@+id/editTextText"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/materialButton"
+                            style="@style/Widget.Material3.Button.IconButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="-16dp"
+                            android:insetLeft="0dp"
+                            app:icon="@drawable/baseline_search_24"
+                            app:iconTint="@color/md_theme_light_onPrimary"
+                            app:layout_constraintBottom_toTopOf="@+id/search_area"
                             app:layout_constraintEnd_toEndOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
