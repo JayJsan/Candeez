@@ -22,6 +22,7 @@ public class ListActivity extends FragmentActivity {
             new Category(CategoryName.CATEGORY3, 69),
             new Category(CategoryName.CATEGORY4, 69)};
     private FilterAdapter filterAdapter;
+    private ProductListAdapter productListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,12 @@ public class ListActivity extends FragmentActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         filterRecyclerView.setLayoutManager(layoutManager);
+
+        RecyclerView productRecyclerView = this.findViewById(R.id.product_recycler_view);
+        productListAdapter = new ProductListAdapter(categories);
+        productRecyclerView.setAdapter(productListAdapter);
+        LinearLayoutManager productLayoutManager = new LinearLayoutManager(this);
+        productRecyclerView.setLayoutManager(productLayoutManager);
 
     }
 

@@ -17,10 +17,10 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/top_bar"
-                android:clickable="true"
-                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="213dp">
+                android:layout_height="213dp"
+                android:clickable="true"
+                android:focusableInTouchMode="true">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -142,6 +142,10 @@
                     app:layout_constraintTop_toBottomOf="@id/filter_recycler_view" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/product_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 
