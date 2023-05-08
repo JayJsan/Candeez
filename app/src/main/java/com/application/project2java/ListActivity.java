@@ -1,12 +1,18 @@
 package com.application.project2java;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +29,7 @@ public class ListActivity extends FragmentActivity {
             new Category(CategoryName.CATEGORY4, 69)};
     private FilterAdapter filterAdapter;
     private ProductListAdapter productListAdapter;
+    private boolean isSearching;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +53,50 @@ public class ListActivity extends FragmentActivity {
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         filterRecyclerView.setLayoutManager(layoutManager);
 
+        View rootView = findViewById(android.R.id.content);
+
+        rootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            private int mPreviousHeight = rootView.getHeight();
+
+            @Override
+            public void onGlobalLayout() {
+                int newHeight = rootView.getHeight();
+                if (newHeight != mPreviousHeight) {
+                    boolean isKeyboardOpen = newHeight < mPreviousHeight;
+                    if (isKeyboardOpen) {
+                        growSearch();
+                    } else {
+                        shrinkSearch();
+                    }
+                    mPreviousHeight = newHeight;
+                }
+            }
+        });
+        setupProductRecyclerView();
+
+    }
+
+    private void setupProductRecyclerView() {
         RecyclerView productRecyclerView = this.findViewById(R.id.product_recycler_view);
         productListAdapter = new ProductListAdapter(categories);
         productRecyclerView.setAdapter(productListAdapter);
         LinearLayoutManager productLayoutManager = new LinearLayoutManager(this);
         productRecyclerView.setLayoutManager(productLayoutManager);
 
+    }
+
+    private void shrinkSearch() {
+        LinearLayout topSection = this.findViewById(R.id.search_and_filters);
+        ObjectAnimator animation = ObjectAnimator.ofFloat(topSection, "translationY", -140f);
+        animation.setDuration(200);
+        animation.start();
+    }
+
+    private void growSearch() {
+        LinearLayout topSection = this.findViewById(R.id.search_and_filters);
+        ObjectAnimator animation = ObjectAnimator.ofFloat(topSection, "translationY", 0f);
+        animation.setDuration(200);
+        animation.start();
     }
 
     public void hideKeyboard(View view) {
