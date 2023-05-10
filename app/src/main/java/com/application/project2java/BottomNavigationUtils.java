@@ -14,7 +14,7 @@ public class BottomNavigationUtils {
 
     static {
         destinationMap.put(R.id.home, MainActivity.class);
-        destinationMap.put(R.id.search, DetailsActivity.class);
+        destinationMap.put(R.id.search, ListActivity.class);
     }
 
     public static void setupBottomNavigationView(FragmentActivity activity) {
@@ -50,7 +50,7 @@ public class BottomNavigationUtils {
         int selectedItemIndex;
         if (activity instanceof MainActivity) {
             selectedItemIndex = 0;
-        } else if (activity instanceof ListActivity) {
+        } else if (activity instanceof ListActivity || activity instanceof DetailsActivity) {
             selectedItemIndex = 1;
         } else {
             selectedItemIndex = 0;
