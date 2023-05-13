@@ -1,25 +1,27 @@
 package com.application.project2java;
 
-public class Item {
+public class ItemModel {
     private int id;
-    private int cost;
+    private String[] imageUris;
+    private int price;
     private int viewCount;
     private boolean isFavourite;
-    private boolean isInCart;
+    private int cartQuantity;
     private String description;
     private String name;
 
-    public Item(int cost, int viewCount, boolean isFavourite, boolean isInCart, String description, String name) {
-        this.cost = cost;
+    public ItemModel(String name, String description, int price, String[] imageUris, int viewCount, boolean isFavourite, int cartQuantity ) {
+        this.price = price;
         this.viewCount = viewCount;
         this.isFavourite = isFavourite;
-        this.isInCart = isInCart;
+        this.cartQuantity = cartQuantity;
         this.description = description;
         this.name = name;
+        this.imageUris = imageUris;
     }
 
-    public int getCost() {
-        return cost;
+    public int getPrice() {
+        return price;
     }
 
     public int getViewCount() {
@@ -30,8 +32,8 @@ public class Item {
         return isFavourite;
     }
 
-    public boolean isInCart() {
-        return isInCart;
+    public int getCartQuantity() {
+        return cartQuantity;
     }
 
     public String getDescription() {

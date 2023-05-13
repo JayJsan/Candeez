@@ -3,7 +3,6 @@ package com.application.project2java;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import com.application.project2java.DatabaseHelper;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -25,25 +24,24 @@ public class DataProvider {
         dbHelper.close();
     }
 
-    public List<Item> getAllData() {
-        List<Item> dataList = new ArrayList<>();
+    public List<ItemModel> searchData(String query, String[] selectionArgs) {
+        List<ItemModel> dataList = new ArrayList<>();
 
-        Cursor cursor = db.query(
-                ItemContract.ItemTable.TABLE_NAME,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-
+        // To use, have ? in the query so you can fill it in with selectionArgs
+        Cursor cursor = db.rawQuery(query, selectionArgs);
         if (cursor.moveToFirst()) {
             do {
                 int id = cursor.getInt(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_ID));
                 String name = cursor.getString(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_NAME));
-                int age = cursor.getInt(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_AGE));
+                String imageUris = cursor.getString(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_IMAGE_URIS));
+                String[] imageUriArray = imageUris.split(",");
+                String description = cursor.getString(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_DESCRIPTION));
+                boolean isFavourite = cursor.getInt(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_IS_FAVOURITE)) == 1;
+                int cartQty = cursor.getInt(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_CART_QUANTITY));
+                int viewCount = cursor.getInt(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_VIEW_COUNT));
+                int price = cursor.getInt(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_PRICE));
                 //TODO add data to the list of data
+                ItemModel item = new ItemModel(name, description, price, imageUriArray, viewCount, isFavourite, cartQty);
 
             } while (cursor.moveToNext());
         }
@@ -55,20 +53,18 @@ public class DataProvider {
 
     public void updateData(int id, String name, int age) {
         ContentValues values = new ContentValues();
-        values.put(DatabaseHelper.COLUMN_NAME, name);
-        values.put(DatabaseHelper.COLUMN_AGE, age);
 
-        String whereClause = DatabaseHelper.COLUMN_ID + " = ?";
-        String[] whereArgs = {String.valueOf(id)};
+        String whereClause = "";
+        String[] whereArgs = {};
 
-        db.update(DatabaseHelper.TABLE_NAME, values, whereClause, whereArgs);
+        db.update(ItemContract.ItemTable.TABLE_NAME, values, whereClause, whereArgs);
     }
 
     public void deleteData(int id) {
-        String whereClause = DatabaseHelper.COLUMN_ID + " = ?";
+        String whereClause = ItemContract.ItemEntry.COLUMN_ID + " = ?";
         String[] whereArgs = {String.valueOf(id)};
 
-        db.delete(DatabaseHelper.TABLE_NAME, whereClause, whereArgs);
+        db.delete(ItemContract.ItemTable.TABLE_NAME, whereClause, whereArgs);
     }
 }
 
