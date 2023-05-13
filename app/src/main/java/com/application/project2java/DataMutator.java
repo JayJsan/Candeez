@@ -20,15 +20,15 @@ public class DataMutator {
         dbHelper.close();
     }
 
-    public long addData(String name, String description, int price, String imageUris, int viewCount, boolean isFavourite, int cartQty) {
+    public long addData(ItemModel item) {
         ContentValues values = new ContentValues();
-        values.put(ItemContract.ItemEntry.COLUMN_NAME, name);
-        values.put(ItemContract.ItemEntry.COLUMN_DESCRIPTION, description);
-        values.put(ItemContract.ItemEntry.COLUMN_PRICE, price);
-        values.put(ItemContract.ItemEntry.COLUMN_IMAGE_URIS, imageUris);
-        values.put(ItemContract.ItemEntry.COLUMN_VIEW_COUNT, viewCount);
-        values.put(ItemContract.ItemEntry.COLUMN_IS_FAVOURITE, isFavourite ? 1 : 0);
-        values.put(ItemContract.ItemEntry.COLUMN_CART_QUANTITY, cartQty);
+        values.put(ItemContract.ItemEntry.COLUMN_NAME, item.getName());
+        values.put(ItemContract.ItemEntry.COLUMN_DESCRIPTION, item.getDescription());
+        values.put(ItemContract.ItemEntry.COLUMN_PRICE, item.getPrice());
+        values.put(ItemContract.ItemEntry.COLUMN_IMAGE_URIS, item.getImageUris().toString());
+        values.put(ItemContract.ItemEntry.COLUMN_VIEW_COUNT, item.getViewCount());
+        values.put(ItemContract.ItemEntry.COLUMN_IS_FAVOURITE, item.isFavourite() ? 1 : 0);
+        values.put(ItemContract.ItemEntry.COLUMN_CART_QUANTITY, item.getCartQuantity());
 
         return db.insert(ItemContract.ItemTable.TABLE_NAME, null, values);
     }

@@ -1,8 +1,10 @@
 package com.application.project2java;
 
+import java.util.List;
+
 public class ItemModel {
     private int id;
-    private String[] imageUris;
+    private List<String> imageUris;
     private int price;
     private int viewCount;
     private boolean isFavourite;
@@ -10,7 +12,7 @@ public class ItemModel {
     private String description;
     private String name;
 
-    public ItemModel(String name, String description, int price, String[] imageUris, int viewCount, boolean isFavourite, int cartQuantity) {
+    public ItemModel(String name, String description, int price, List<String> imageUris, int viewCount, boolean isFavourite, int cartQuantity) {
         this.price = price;
         this.viewCount = viewCount;
         this.isFavourite = isFavourite;
@@ -42,5 +44,13 @@ public class ItemModel {
 
     public String getName() {
         return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public List<String> getImageUris() {
+        return imageUris;
     }
 }

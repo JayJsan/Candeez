@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -25,6 +26,8 @@ public class DataProviderInstrumentedTest {
     private DataProvider dataProvider;
     private DataMutator dataMutator;
     private SQLiteDatabase database;
+
+    private ItemModel mockData = new ItemModel("test", "testLorem", 69, Arrays.asList("test"), 69, false, 99);
 
     private void deleteAllRows() {
         database.delete(ItemContract.ItemTable.TABLE_NAME, null, null);
@@ -64,16 +67,7 @@ public class DataProviderInstrumentedTest {
             try {
                 int columnNameIndex = cursor.getColumnIndex("name");
 
-                String[] expectedColumns = {
-                        ItemContract.ItemEntry.COLUMN_ID,
-                        ItemContract.ItemEntry.COLUMN_NAME,
-                        ItemContract.ItemEntry.COLUMN_IMAGE_URIS,
-                        ItemContract.ItemEntry.COLUMN_DESCRIPTION,
-                        ItemContract.ItemEntry.COLUMN_PRICE,
-                        ItemContract.ItemEntry.COLUMN_IS_FAVOURITE,
-                        ItemContract.ItemEntry.COLUMN_CART_QUANTITY,
-                        ItemContract.ItemEntry.COLUMN_VIEW_COUNT
-                };
+                String[] expectedColumns = {ItemContract.ItemEntry.COLUMN_ID, ItemContract.ItemEntry.COLUMN_NAME, ItemContract.ItemEntry.COLUMN_IMAGE_URIS, ItemContract.ItemEntry.COLUMN_DESCRIPTION, ItemContract.ItemEntry.COLUMN_PRICE, ItemContract.ItemEntry.COLUMN_IS_FAVOURITE, ItemContract.ItemEntry.COLUMN_CART_QUANTITY, ItemContract.ItemEntry.COLUMN_VIEW_COUNT};
 
                 for (String expectedColumn : expectedColumns) {
                     boolean columnExists = false;
@@ -115,14 +109,14 @@ public class DataProviderInstrumentedTest {
 
     @Test
     public void testAddData() {
-        long row = dataMutator.addData("test", "testLorem", 69, "live", 69, false, 99);
+        long row = dataMutator.addData(mockData);
         System.out.println(row);
         assertNotEquals(-1, row);
     }
 
     @Test
     public void testUpdateCart() {
-
+        dataMutator.addData(mockData);
         int updated = dataMutator.updateItemCartStatus("test", 99);
         System.out.println(Integer.toString(updated) + " rows updated.");
         assertTrue(updated > 0);

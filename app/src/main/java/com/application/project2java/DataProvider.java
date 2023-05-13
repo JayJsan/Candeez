@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DataProvider {
@@ -35,7 +36,7 @@ public class DataProvider {
                 int id = cursor.getInt(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_ID));
                 String name = cursor.getString(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_NAME));
                 String imageUris = cursor.getString(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_IMAGE_URIS));
-                String[] imageUriArray = imageUris.split(",");
+                List<String> imageUriArray = Arrays.asList(imageUris.split(","));
                 String description = cursor.getString(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_DESCRIPTION));
                 boolean isFavourite = cursor.getInt(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_IS_FAVOURITE)) == 1;
                 int cartQty = cursor.getInt(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_CART_QUANTITY));
