@@ -104,7 +104,7 @@ public class DataProviderInstrumentedTest {
     }
 
     @Test
-    public void testSearchData() {
+    public void testAllItemsQuery() {
         dataMutator.addData(mockData);
         List<ItemModel> dataList = dataProvider.getAllItems();
 
@@ -131,6 +131,19 @@ public class DataProviderInstrumentedTest {
         }
 
     }
+
+    @Test
+    public void testBestSellingQuery(){
+        final int itemsToAdd = 5;
+        for(int i = 0; i < itemsToAdd; ++i){
+            dataMutator.addData(mockData);
+        }
+        List<ItemModel> allItems = dataProvider.getAllItems();
+        assertEquals(itemsToAdd, allItems.size());
+        List<ItemModel> result = dataProvider.getBestSellingItems();
+        assertEquals(3, result.size());
+    }
+
 
     @Test
     public void testUpdateCart() {

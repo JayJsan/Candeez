@@ -10,11 +10,9 @@ import static com.application.project2java.ItemContract.ItemEntry.COLUMN_NAME;
 import static com.application.project2java.ItemContract.ItemEntry.COLUMN_PRICE;
 import static com.application.project2java.ItemContract.ItemEntry.COLUMN_VIEW_COUNT;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,6 +68,10 @@ public class DataProvider {
 
     public List<ItemModel> getFavouriteItems() {
         return searchData(QueryProvider.FAVOURITE_ITEMS_QUERY, null);
+    }
+
+    public List<ItemModel> getBestSellingItems() {
+        return searchData(QueryProvider.BEST_SELLING_QUERY, null);
     }
 
 
