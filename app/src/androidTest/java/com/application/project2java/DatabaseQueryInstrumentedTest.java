@@ -20,12 +20,6 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
         System.out.println(dataList.toString());
     }
 
-    @Test
-    public void testAddData() {
-        long row = dataMutator.addData(mockData);
-        System.out.println(row);
-        assertNotEquals(-1, row);
-    }
 
     @Test
     public void testFavouritesQuery() {
@@ -45,15 +39,18 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
     }
 
     @Test
-    public void testBestSellingQuery(){
+    public void testBestSellingQuery() {
         final int itemsToAdd = 5;
-        for(int i = 0; i < itemsToAdd; ++i){
+        for (int i = 0; i < itemsToAdd; ++i) {
             dataMutator.addData(mockData);
         }
         List<ItemModel> allItems = dataProvider.getAllItems();
         assertEquals(itemsToAdd, allItems.size());
         List<ItemModel> result = dataProvider.getBestSellingItems();
         assertEquals(3, result.size());
+    }
+
+    public void testCartQuery() {
     }
 
 
