@@ -27,7 +27,7 @@ public class DataProviderInstrumentedTest {
     private DataMutator dataMutator;
     private SQLiteDatabase database;
 
-    private ItemModel mockData = new ItemModel("test", "testLorem", 69, Arrays.asList("test"), 69, false, 99);
+    private ItemModel mockData = new ItemModel("test", "testLorem", 69, CategoryName.CATEGORY1, Arrays.asList("test"), 69, false, 99);
 
     private void deleteAllRows() {
         database.delete(ItemContract.ItemTable.TABLE_NAME, null, null);
@@ -67,7 +67,16 @@ public class DataProviderInstrumentedTest {
             try {
                 int columnNameIndex = cursor.getColumnIndex("name");
 
-                String[] expectedColumns = {ItemContract.ItemEntry.COLUMN_ID, ItemContract.ItemEntry.COLUMN_NAME, ItemContract.ItemEntry.COLUMN_IMAGE_URIS, ItemContract.ItemEntry.COLUMN_DESCRIPTION, ItemContract.ItemEntry.COLUMN_PRICE, ItemContract.ItemEntry.COLUMN_IS_FAVOURITE, ItemContract.ItemEntry.COLUMN_CART_QUANTITY, ItemContract.ItemEntry.COLUMN_VIEW_COUNT};
+                String[] expectedColumns = {
+                        ItemContract.ItemEntry.COLUMN_ID,
+                        ItemContract.ItemEntry.COLUMN_NAME,
+                        ItemContract.ItemEntry.COLUMN_CATEGORY,
+                        ItemContract.ItemEntry.COLUMN_IMAGE_URIS,
+                        ItemContract.ItemEntry.COLUMN_DESCRIPTION,
+                        ItemContract.ItemEntry.COLUMN_PRICE,
+                        ItemContract.ItemEntry.COLUMN_IS_FAVOURITE,
+                        ItemContract.ItemEntry.COLUMN_CART_QUANTITY,
+                        ItemContract.ItemEntry.COLUMN_VIEW_COUNT};
 
                 for (String expectedColumn : expectedColumns) {
                     boolean columnExists = false;
@@ -116,7 +125,7 @@ public class DataProviderInstrumentedTest {
         dataMutator.addData(mockData);
         dataMutator.updateItemFavouriteStatus("test", true);
         List<ItemModel> result = dataProvider.getFavouriteItems();
-        for(ItemModel item : result){
+        for (ItemModel item : result) {
             System.out.println(item.toString());
             assertTrue(item.isFavourite());
         }

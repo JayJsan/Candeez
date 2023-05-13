@@ -27,6 +27,7 @@ public class DataMutator {
         values.put(ItemContract.ItemEntry.COLUMN_NAME, item.getName());
         values.put(ItemContract.ItemEntry.COLUMN_DESCRIPTION, item.getDescription());
         values.put(ItemContract.ItemEntry.COLUMN_PRICE, item.getPrice());
+        values.put(ItemContract.ItemEntry.COLUMN_CATEGORY, item.getCategory());
         values.put(ItemContract.ItemEntry.COLUMN_IMAGE_URIS, item.getImageUris().toString());
         values.put(ItemContract.ItemEntry.COLUMN_VIEW_COUNT, item.getViewCount());
         values.put(ItemContract.ItemEntry.COLUMN_IS_FAVOURITE, item.isFavourite() ? 1 : 0);

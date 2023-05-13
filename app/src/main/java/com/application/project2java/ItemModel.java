@@ -9,15 +9,17 @@ public class ItemModel {
     private List<String> imageUris;
     private int price;
     private int viewCount;
+    private CategoryName category;
     private boolean isFavourite;
     private int cartQuantity;
     private String description;
     private String name;
 
-    public ItemModel(String name, String description, int price, List<String> imageUris, int viewCount, boolean isFavourite, int cartQuantity) {
+    public ItemModel(String name, String description, int price, CategoryName category, List<String> imageUris, int viewCount, boolean isFavourite, int cartQuantity) {
         this.price = price;
         this.viewCount = viewCount;
         this.isFavourite = isFavourite;
+        this.category = category;
         this.cartQuantity = cartQuantity;
         this.description = description;
         this.name = name;
@@ -56,6 +58,10 @@ public class ItemModel {
         return imageUris;
     }
 
+    public String getCategory(){
+        return category.toString();
+    }
+
     @NonNull
     @Override
     public String toString() {
@@ -66,7 +72,9 @@ public class ItemModel {
                 .append(getDescription())
                 .append("\nPrice: ")
                 .append(getPrice())
-                .append("\nView Count ")
+                .append("\nCategory: ")
+                .append(getCategory())
+                .append("\nView Count: ")
                 .append(getViewCount())
                 .append("\nFavourite?: ")
                 .append(isFavourite())
