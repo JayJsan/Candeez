@@ -129,6 +129,11 @@ public class DataProviderInstrumentedTest {
             System.out.println(item.toString());
             assertTrue(item.isFavourite());
         }
+        dataMutator.updateItemFavouriteStatus("test", false);
+        result = dataProvider.getFavouriteItems();
+        System.out.println("Items in favourites after removing: " + result.size());
+        assertEquals(0, result.size());
+
 
     }
 
