@@ -3,6 +3,7 @@ package com.application.project2java;
 import static com.application.project2java.ItemContract.ItemEntry.COLUMN_CART_QUANTITY;
 import static com.application.project2java.ItemContract.ItemEntry.COLUMN_DESCRIPTION;
 import static com.application.project2java.ItemContract.ItemEntry.COLUMN_ID;
+import static com.application.project2java.ItemContract.ItemEntry.COLUMN_IMAGE_URIS;
 import static com.application.project2java.ItemContract.ItemEntry.COLUMN_IS_FAVOURITE;
 import static com.application.project2java.ItemContract.ItemEntry.COLUMN_NAME;
 import static com.application.project2java.ItemContract.ItemEntry.COLUMN_PRICE;
@@ -27,9 +28,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String createTableQuery = "CREATE TABLE " + ItemContract.ItemTable.TABLE_NAME + " ("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_NAME + " TEXT, "
+                + COLUMN_IMAGE_URIS + " TEXT, "
                 + COLUMN_DESCRIPTION + " TEXT, "
                 + COLUMN_PRICE + " SMALLINT, "
-                + COLUMN_IS_FAVOURITE + " BOOLEAN, "
+                + COLUMN_IS_FAVOURITE + " SMALLINT, "
                 + COLUMN_CART_QUANTITY + " SMALLINT, "
                 + COLUMN_VIEW_COUNT + " SMALLINT)";
 

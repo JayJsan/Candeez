@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,19 @@ public class DataProvider {
         cursor.close();
 
         return dataList;
+    }
+
+    public long addData(String name, String description, int price, String imageUris, int viewCount, boolean isFavourite, int cartQty) {
+        ContentValues values = new ContentValues();
+        values.put(ItemContract.ItemEntry.COLUMN_NAME, name);
+        values.put(ItemContract.ItemEntry.COLUMN_DESCRIPTION, description);
+        values.put(ItemContract.ItemEntry.COLUMN_PRICE, price);
+        values.put(ItemContract.ItemEntry.COLUMN_IMAGE_URIS, imageUris);
+        values.put(ItemContract.ItemEntry.COLUMN_VIEW_COUNT, viewCount);
+        values.put(ItemContract.ItemEntry.COLUMN_IS_FAVOURITE, isFavourite ? 1 : 0);
+        values.put(ItemContract.ItemEntry.COLUMN_CART_QUANTITY, cartQty);
+
+        return db.insert(ItemContract.ItemTable.TABLE_NAME, null, values);
     }
 
     public void updateData(int id, String name, int age) {
