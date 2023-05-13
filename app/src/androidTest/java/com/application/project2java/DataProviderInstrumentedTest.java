@@ -115,6 +115,18 @@ public class DataProviderInstrumentedTest {
     }
 
     @Test
+    public void testUpdateFavourite() {
+        dataMutator.addData(mockData);
+        dataMutator.updateItemFavouriteStatus("test", true);
+        List<ItemModel> result = dataProvider.getFavouriteItems();
+        for(ItemModel item : result){
+            System.out.println(item.toString());
+            assertTrue(item.isFavourite());
+        }
+
+    }
+
+    @Test
     public void testUpdateCart() {
         dataMutator.addData(mockData);
         int updated = dataMutator.updateItemCartStatus("test", 99);

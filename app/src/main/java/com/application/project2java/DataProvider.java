@@ -53,5 +53,11 @@ public class DataProvider {
         return dataList;
     }
 
+    public List<ItemModel> getFavouriteItems(){
+        return searchData(QueryProvider.FAVOURITE_ITEMS_QUERY, null);
+    }
+
+
+
 }
 

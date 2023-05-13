@@ -1,5 +1,7 @@
 package com.application.project2java;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 public class ItemModel {
@@ -52,5 +54,26 @@ public class ItemModel {
 
     public List<String> getImageUris() {
         return imageUris;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("");
+        sb.append("Name: ")
+                .append(getName())
+                .append(" Description: ")
+                .append(getDescription())
+                .append("\nPrice: ")
+                .append(getPrice())
+                .append("\nView Count ")
+                .append(getViewCount())
+                .append("\nFavourite?: ")
+                .append(isFavourite())
+                .append("\nQuantity in cart: ")
+                .append(getCartQuantity())
+                .append("\nImage URIs: ")
+                .append(getImageUris());
+        return sb.toString();
     }
 }

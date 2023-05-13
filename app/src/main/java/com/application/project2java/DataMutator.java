@@ -1,5 +1,7 @@
 package com.application.project2java;
+
 import com.application.project2java.ItemContract.ItemEntry.*;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -36,10 +38,19 @@ public class DataMutator {
     public int updateItemCartStatus(String name, int cartQty) {
         ContentValues values = new ContentValues();
         values.put(ItemContract.ItemEntry.COLUMN_CART_QUANTITY, cartQty);
+        return updateAtName(name, values);
 
+    }
+
+    public int updateItemFavouriteStatus(String name, boolean isFavourite) {
+        ContentValues values = new ContentValues();
+        values.put(ItemContract.ItemEntry.COLUMN_IS_FAVOURITE, isFavourite ? 1 : 0);
+        return updateAtName(name, values);
+    }
+
+    private int updateAtName(String name, ContentValues values) {
         String whereClause = ItemContract.ItemEntry.COLUMN_NAME + " = ?";
         String[] whereArgs = {name};
-
         return db.update(ItemContract.ItemTable.TABLE_NAME, values, whereClause, whereArgs);
     }
 
