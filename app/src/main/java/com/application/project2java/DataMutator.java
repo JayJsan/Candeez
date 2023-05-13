@@ -55,6 +55,7 @@ public class DataMutator {
         return db.update(ItemContract.ItemTable.TABLE_NAME, values, whereClause, whereArgs);
     }
 
+
     public void deleteData(int id) {
         String whereClause = ItemContract.ItemEntry.COLUMN_ID + " = ?";
         String[] whereArgs = {String.valueOf(id)};

@@ -12,7 +12,7 @@ import java.util.List;
 public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
     @Test
     public void testAllItemsQuery() {
-        super.dataMutator.addData(mockData);
+        super.dataMutator.addData(defaultItem);
         List<ItemModel> dataList = dataProvider.getAllItems();
 
         assertNotNull(dataList.toString(), dataList);
@@ -23,7 +23,7 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
 
     @Test
     public void testFavouritesQuery() {
-        dataMutator.addData(mockData);
+        dataMutator.addData(defaultItem);
         dataMutator.updateItemFavouriteStatus("test", true);
         List<ItemModel> result = dataProvider.getFavouriteItems();
         for (ItemModel item : result) {
@@ -42,7 +42,7 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
     public void testBestSellingQuery() {
         final int itemsToAdd = 5;
         for (int i = 0; i < itemsToAdd; ++i) {
-            dataMutator.addData(mockData);
+            dataMutator.addData(defaultItem);
         }
         List<ItemModel> allItems = dataProvider.getAllItems();
         assertEquals(itemsToAdd, allItems.size());
@@ -50,7 +50,15 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
         assertEquals(3, result.size());
     }
 
+    @Test
     public void testCartQuery() {
+        dataMutator.addData(defaultItem);
+        List<ItemModel> result = dataProvider.getCartItems();
+        assertEquals(0, result.size());
+        dataMutator.addData(itemInCart);
+        result = dataProvider.getCartItems();
+        assertEquals(1, result.size());
+
     }
 
 

@@ -25,7 +25,9 @@ public class DatabaseInstrumentedTest {
     DataMutator dataMutator;
     SQLiteDatabase database;
 
-    ItemModel mockData = new ItemModel("test", "testLorem", 69, CategoryName.CATEGORY1, Arrays.asList("test"), 69, false, 0);
+    ItemModel defaultItem = new ItemModel("test", "testLorem", 69, CategoryName.CATEGORY1, Arrays.asList("test"), 69, false, 0);
+    //CartQty > 0
+    ItemModel itemInCart = new ItemModel("test", "testLorem", 69, CategoryName.CATEGORY1, Arrays.asList("test"), 69, false, 1);
 
     private void deleteAllRows() {
         database.delete(ItemContract.ItemTable.TABLE_NAME, null, null);
