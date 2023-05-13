@@ -10,7 +10,7 @@ public class ItemModel {
     private String description;
     private String name;
 
-    public ItemModel(String name, String description, int price, String[] imageUris, int viewCount, boolean isFavourite, int cartQuantity ) {
+    public ItemModel(String name, String description, int price, String[] imageUris, int viewCount, boolean isFavourite, int cartQuantity) {
         this.price = price;
         this.viewCount = viewCount;
         this.isFavourite = isFavourite;

@@ -1,6 +1,12 @@
 package com.application.project2java;
 
-import static com.application.project2java.ItemContract.ItemEntry.*;
+import static com.application.project2java.ItemContract.ItemEntry.COLUMN_CART_QUANTITY;
+import static com.application.project2java.ItemContract.ItemEntry.COLUMN_DESCRIPTION;
+import static com.application.project2java.ItemContract.ItemEntry.COLUMN_ID;
+import static com.application.project2java.ItemContract.ItemEntry.COLUMN_IS_FAVOURITE;
+import static com.application.project2java.ItemContract.ItemEntry.COLUMN_NAME;
+import static com.application.project2java.ItemContract.ItemEntry.COLUMN_PRICE;
+import static com.application.project2java.ItemContract.ItemEntry.COLUMN_VIEW_COUNT;
 import static com.application.project2java.ItemContract.ItemTable.TABLE_NAME;
 
 import android.content.Context;
