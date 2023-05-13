@@ -26,6 +26,9 @@ public class DataProviderInstrumentedTest {
     private DataMutator dataMutator;
     private SQLiteDatabase database;
 
+    private void deleteAllRows() {
+        database.delete(ItemContract.ItemTable.TABLE_NAME, null, null);
+    }
 
     @Before
     public void setup() {
@@ -39,6 +42,7 @@ public class DataProviderInstrumentedTest {
 
     @After
     public void teardown() {
+        deleteAllRows();
         dataMutator.close();
         dataProvider.close();
     }
@@ -52,6 +56,7 @@ public class DataProviderInstrumentedTest {
     public void testDatabaseNotNull() {
         assertNotNull(database);
     }
+
     @Test
     public void testTableColumns() {
         Cursor cursor = database.rawQuery("PRAGMA table_info(" + ItemContract.ItemTable.TABLE_NAME + ")", null);
@@ -94,6 +99,7 @@ public class DataProviderInstrumentedTest {
             fail("Failed to retrieve table schema");
         }
     }
+
     @Test
     public void testSearchData() {
         //TODO add data
@@ -103,7 +109,7 @@ public class DataProviderInstrumentedTest {
         List<ItemModel> dataList = dataProvider.searchData(query, selectionArgs);
 
         assertNotNull(dataList.toString(), dataList);
-        assertTrue(dataList.toString(),dataList.size() > 0);
+        assertTrue(dataList.toString(), dataList.size() > 0);
         System.out.println(dataList.toString());
     }
 
