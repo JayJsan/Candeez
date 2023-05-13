@@ -43,7 +43,7 @@ public class DataProvider {
                 int price = cursor.getInt(cursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_PRICE));
                 //TODO add data to the list of data
                 ItemModel item = new ItemModel(name, description, price, imageUriArray, viewCount, isFavourite, cartQty);
-
+                dataList.add(item);
             } while (cursor.moveToNext());
         }
 
@@ -52,33 +52,5 @@ public class DataProvider {
         return dataList;
     }
 
-    public long addData(String name, String description, int price, String imageUris, int viewCount, boolean isFavourite, int cartQty) {
-        ContentValues values = new ContentValues();
-        values.put(ItemContract.ItemEntry.COLUMN_NAME, name);
-        values.put(ItemContract.ItemEntry.COLUMN_DESCRIPTION, description);
-        values.put(ItemContract.ItemEntry.COLUMN_PRICE, price);
-        values.put(ItemContract.ItemEntry.COLUMN_IMAGE_URIS, imageUris);
-        values.put(ItemContract.ItemEntry.COLUMN_VIEW_COUNT, viewCount);
-        values.put(ItemContract.ItemEntry.COLUMN_IS_FAVOURITE, isFavourite ? 1 : 0);
-        values.put(ItemContract.ItemEntry.COLUMN_CART_QUANTITY, cartQty);
-
-        return db.insert(ItemContract.ItemTable.TABLE_NAME, null, values);
-    }
-
-    public void updateData(int id, String name, int age) {
-        ContentValues values = new ContentValues();
-
-        String whereClause = "";
-        String[] whereArgs = {};
-
-        db.update(ItemContract.ItemTable.TABLE_NAME, values, whereClause, whereArgs);
-    }
-
-    public void deleteData(int id) {
-        String whereClause = ItemContract.ItemEntry.COLUMN_ID + " = ?";
-        String[] whereArgs = {String.valueOf(id)};
-
-        db.delete(ItemContract.ItemTable.TABLE_NAME, whereClause, whereArgs);
-    }
 }
 

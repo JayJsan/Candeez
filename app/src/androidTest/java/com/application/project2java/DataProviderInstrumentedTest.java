@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -22,19 +23,23 @@ import static org.junit.Assert.fail;
 @RunWith(AndroidJUnit4.class)
 public class DataProviderInstrumentedTest {
     private DataProvider dataProvider;
+    private DataMutator dataMutator;
     private SQLiteDatabase database;
+
 
     @Before
     public void setup() {
         Context context = ApplicationProvider.getApplicationContext();
+        dataMutator = new DataMutator(context);
         dataProvider = new DataProvider(context);
+        dataMutator.open();
         dataProvider.open();
         database = dataProvider.db;
-        dataProvider.addData("test", "testLorem", 69, "live", 69, false, 99);
     }
 
     @After
     public void teardown() {
+        dataMutator.close();
         dataProvider.close();
     }
 
@@ -97,25 +102,24 @@ public class DataProviderInstrumentedTest {
 
         List<ItemModel> dataList = dataProvider.searchData(query, selectionArgs);
 
-        assertNotNull(dataList);
-        assertTrue(dataList.size() > 0);
-    }
-
-    @Test
-    public void testUpdateData() {
-        //TODO add data
-        int id = 1;
-        String name = "John";
-        int age = 30;
-
-        dataProvider.updateData(id, name, age);
-
-        //TODO make assertions
+        assertNotNull(dataList.toString(), dataList);
+        assertTrue(dataList.toString(),dataList.size() > 0);
+        System.out.println(dataList.toString());
     }
 
     @Test
     public void testAddData() {
-        dataProvider.addData("test", "testLorem", 69, "live", 69, false, 99);
+        long row = dataMutator.addData("test", "testLorem", 69, "live", 69, false, 99);
+        System.out.println(row);
+        assertNotEquals(-1, row);
+    }
+
+    @Test
+    public void testUpdateCart() {
+
+        int updated = dataMutator.updateItemCartStatus("test", 99);
+        System.out.println(Integer.toString(updated) + " rows updated.");
+        assertTrue(updated > 0);
 
     }
 
@@ -125,7 +129,8 @@ public class DataProviderInstrumentedTest {
 
         int id = 1;
 
-        dataProvider.deleteData(id);
+        dataMutator.deleteData(id);
+        dataMutator.close();
 
         //TODO make assertions
     }
