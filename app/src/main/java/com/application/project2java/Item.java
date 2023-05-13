@@ -1,6 +1,7 @@
 package com.application.project2java;
 
 public class Item {
+    private int id;
     private int cost;
     private int viewCount;
     private boolean isFavourite;
