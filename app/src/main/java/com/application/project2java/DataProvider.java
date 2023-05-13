@@ -74,6 +74,10 @@ public class DataProvider {
         return searchData(QueryProvider.BEST_SELLING_QUERY, null);
     }
 
+    public List<ItemModel> getCategoryItems(CategoryName category){
+        return searchData(QueryProvider.CATEGORY_ITEM_QUERY, new String[]{category.toString()});
+    }
+
 
 }
 
