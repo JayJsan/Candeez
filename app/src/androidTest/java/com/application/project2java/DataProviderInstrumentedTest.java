@@ -96,11 +96,8 @@ public class DataProviderInstrumentedTest {
 
     @Test
     public void testSearchData() {
-        //TODO add data
-        String query = "SELECT * FROM " + ItemContract.ItemTable.TABLE_NAME;
-        String[] selectionArgs = null;
-
-        List<ItemModel> dataList = dataProvider.searchData(query, selectionArgs);
+        dataMutator.addData(mockData);
+        List<ItemModel> dataList = dataProvider.getAllItems();
 
         assertNotNull(dataList.toString(), dataList);
         assertTrue(dataList.toString(), dataList.size() > 0);
@@ -115,7 +112,7 @@ public class DataProviderInstrumentedTest {
     }
 
     @Test
-    public void testUpdateFavourite() {
+    public void testFavouritesQuery() {
         dataMutator.addData(mockData);
         dataMutator.updateItemFavouriteStatus("test", true);
         List<ItemModel> result = dataProvider.getFavouriteItems();

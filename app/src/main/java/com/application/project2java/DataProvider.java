@@ -26,7 +26,7 @@ public class DataProvider {
         dbHelper.close();
     }
 
-    public List<ItemModel> searchData(String query, String[] selectionArgs) {
+    private List<ItemModel> searchData(String query, String[] selectionArgs) {
         List<ItemModel> dataList = new ArrayList<>();
 
         // To use, have ? in the query so you can fill it in with selectionArgs
@@ -51,6 +51,10 @@ public class DataProvider {
         cursor.close();
 
         return dataList;
+    }
+
+    public List<ItemModel> getAllItems(){
+        return searchData(QueryProvider.ALL_ITEMS_QUERY, null);
     }
 
     public List<ItemModel> getFavouriteItems(){
