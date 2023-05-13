@@ -10,7 +10,7 @@ import java.util.List;
 
 public class DataProvider {
     private DatabaseHelper dbHelper;
-    private SQLiteDatabase db;
+    SQLiteDatabase db;
 
     public DataProvider(Context context) {
         dbHelper = new DatabaseHelper(context);
