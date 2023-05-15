@@ -20,7 +20,7 @@ public class ListActivity extends FragmentActivity {
     //TODO REMOVE
     private Category[] categories = {
             new Category(CategoryName.Gummies, 69),
-            new Category(CategoryName.CATEGORY2, 69),
+            new Category(CategoryName.Hard_Candy, 69),
             new Category(CategoryName.CATEGORY3, 69),
             new Category(CategoryName.CATEGORY4, 69)};
     private FilterAdapter filterAdapter;

@@ -28,6 +28,7 @@ public class DatabaseInstrumentedTest {
     ItemModel defaultItem = new ItemModel("test", "testLorem", 69, CategoryName.Gummies, Arrays.asList("test"), 69, false, 0);
     //CartQty > 0
     ItemModel itemInCart = new ItemModel("test", "testLorem", 69, CategoryName.Gummies, Arrays.asList("test"), 69, false, 1);
+    ItemModel hardCandyItem = new ItemModel("test", "testLorem", 69, CategoryName.Hard_Candy, Arrays.asList("test"), 69, false, 1);
 
     private void deleteAllRows() {
         database.delete(ItemContract.ItemTable.TABLE_NAME, null, null);

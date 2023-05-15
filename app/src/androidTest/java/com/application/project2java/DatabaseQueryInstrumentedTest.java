@@ -70,5 +70,11 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
         assertEquals("Gummies", result.get(0).getCategory());
     }
 
+    @Test
+    public void testMultipleCategoryQuery() {
+        dataMutator.addData(defaultItem);
+        dataMutator.addData(hardCandyItem);
+    }
+
 
 }

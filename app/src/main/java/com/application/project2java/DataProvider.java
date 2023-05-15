@@ -34,7 +34,7 @@ public class DataProvider {
         dbHelper.close();
     }
 
-    private List<ItemModel> searchData(String query, String[] selectionArgs) {
+    public List<ItemModel> searchData(String query, String[] selectionArgs) {
         List<ItemModel> dataList = new ArrayList<>();
 
         // To use, have ? in the query so you can fill it in with selectionArgs

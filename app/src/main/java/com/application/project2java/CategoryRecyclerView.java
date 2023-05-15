@@ -23,7 +23,7 @@ public class CategoryRecyclerView extends Fragment {
     protected RecyclerView recyclerView;
     private Category[] categories = {
             new Category(CategoryName.Gummies, 69),
-            new Category(CategoryName.CATEGORY2, 69),
+            new Category(CategoryName.Hard_Candy, 69),
             new Category(CategoryName.CATEGORY3, 69),
             new Category(CategoryName.CATEGORY4, 69),
     };
