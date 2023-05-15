@@ -71,7 +71,7 @@
                         android:insetLeft="0dp"
                         app:icon="@drawable/ic_plus_box"
                         app:iconSize="40dp"
-                        app:iconTint="@color/md_theme_light_primary"
+                        app:iconTint="@color/md_theme_light_tertiaryFixed"
                         app:layout_constraintStart_toEndOf="@id/text_item_amount"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -84,7 +84,7 @@
                         android:fontFamily="sans-serif-black"
                         android:text="Item 424"
                         android:textAlignment="viewStart"
-                        android:textColor="@color/md_theme_light_primary"
+                        android:textColor="@color/md_theme_light_onSurfaceVariant"
                         android:textSize="24sp"
                         app:layout_constraintBottom_toTopOf="@id/text_item_amount"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -113,7 +113,7 @@
                         android:insetLeft="0dp"
                         app:icon="@drawable/ic_minus_box"
                         app:iconSize="40dp"
-                        app:iconTint="@color/md_theme_light_primary"
+                        app:iconTint="@color/md_theme_light_tertiaryContainer"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -130,7 +130,7 @@
                         android:insetLeft="0dp"
                         app:icon="@drawable/ic_close"
                         app:iconSize="40dp"
-                        app:iconTint="@color/md_theme_light_primary"
+                        app:iconTint="@color/md_theme_light_outline"
                         app:layout_constraintStart_toEndOf="@id/button_add_item"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,6 +142,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-black"
                     android:text="$69"
+                    android:textColor="@color/md_theme_light_onSurfaceVariant"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
