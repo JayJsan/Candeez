@@ -61,5 +61,14 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
 
     }
 
+    @Test
+    public void testCategoryQuery() {
+        dataMutator.addData(defaultItem);
+        List<ItemModel> result = dataProvider.getCategoryItems(CategoryName.Gummies);
+        assertEquals(1, result.size());
+        System.out.println(result.get(0).toString());
+        assertEquals("Gummies", result.get(0).getCategory());
+    }
+
 
 }

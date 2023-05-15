@@ -2,17 +2,13 @@ package com.application.project2java;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +19,7 @@ public class ListActivity extends FragmentActivity {
 
     //TODO REMOVE
     private Category[] categories = {
-            new Category(CategoryName.CATEGORY1, 69),
+            new Category(CategoryName.Gummies, 69),
             new Category(CategoryName.CATEGORY2, 69),
             new Category(CategoryName.CATEGORY3, 69),
             new Category(CategoryName.CATEGORY4, 69)};
