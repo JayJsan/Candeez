@@ -8,7 +8,7 @@
     tools:context="com.application.project2java.MainActivity">
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scroll_details"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -274,6 +274,6 @@
         android:name="com.application.project2java.Navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintBottom_toBottomOf="@+id/scroll_details" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
