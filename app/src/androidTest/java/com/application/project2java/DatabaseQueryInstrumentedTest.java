@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
@@ -74,6 +75,17 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
     public void testMultipleCategoryQuery() {
         dataMutator.addData(defaultItem);
         dataMutator.addData(hardCandyItem);
+        List<CategoryName> categoriesToQuery = new ArrayList<CategoryName>() {{
+            add(CategoryName.Gummies);
+            add(CategoryName.Hard_Candy);
+            add(CategoryName.CATEGORY3);
+        }};
+        List<ItemModel> result = dataProvider.getItemsFromMultipleCategories(categoriesToQuery);
+        assertEquals(result.size(), 2);
+        dataMutator.addData(defaultItem);
+        result = dataProvider.getItemsFromMultipleCategories(categoriesToQuery);
+        assertEquals(result.size(), 3);
+
     }
 
 

@@ -71,7 +71,7 @@ public class DataProvider {
     }
 
     public List<ItemModel> getBestSellingItems() {
-        return searchData(QueryProvider.BEST_SELLING_QUERY, null);
+        return searchData(QueryProvider.BEST_SELLING_HOME_SCREEN_QUERY, null);
     }
 
     public List<ItemModel> getCartItems(){
@@ -82,6 +82,13 @@ public class DataProvider {
     public List<ItemModel> getCategoryItems(CategoryName category){
         return searchData(QueryProvider.CATEGORY_ITEM_QUERY, new String[]{category.toString()});
     }
+
+    public List<ItemModel> getItemsFromMultipleCategories(List<CategoryName> categories){
+        String query = QueryUtils.formatQueryWithArray(categories.size(), QueryProvider.CATEGORY_ITEM_QUERY);
+        String[] args = QueryUtils.joinCategories(categories);
+        return searchData(query, args);
+    }
+
 
 
 }
