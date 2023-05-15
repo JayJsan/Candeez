@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintlayout_details_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_theme_light_surfaceContainerLow"
@@ -15,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintlayout_details_container"
             style="@style/scrollview_navbar_clearance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,6 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintlayout_header"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingTop="35dp">
@@ -61,7 +64,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_item_details"
+                android:id="@+id/constraintlayout_item_details"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
@@ -70,7 +73,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/card_header">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/itemDetailsCardView"
+                    android:id="@+id/card_item_details"
                     style="@style/display_card_default"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -79,6 +82,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
+                        android:id="@+id/linearlayout_item_details"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
@@ -94,7 +98,7 @@
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/relativeLayout"
+                            android:id="@+id/relativelayout_item_details_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -203,8 +207,8 @@
                 android:text="Related Items"
                 android:textAlignment="textStart"
                 android:textColor="@color/md_theme_light_onSurfaceVariant"
-                app:layout_constraintStart_toStartOf="@+id/constraint_item_details"
-                app:layout_constraintTop_toBottomOf="@+id/constraint_item_details" />
+                app:layout_constraintStart_toStartOf="@+id/constraintlayout_item_details"
+                app:layout_constraintTop_toBottomOf="@+id/constraintlayout_item_details" />
 
             <View
                 android:id="@+id/line_related_items"
