@@ -28,6 +28,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_search"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="-35dp"
@@ -41,6 +42,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintlayout_search_container"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:paddingHorizontal="16dp">
@@ -52,11 +54,11 @@
                             android:text="Search Items"
                             android:textColor="@color/md_theme_light_onPrimary"
                             android:textSize="20sp"
-                            app:layout_constraintBottom_toTopOf="@+id/button3"
+                            app:layout_constraintBottom_toTopOf="@+id/button_search_text"
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <Button
-                            android:id="@+id/button3"
+                            android:id="@+id/button_search_text"
                             android:layout_width="match_parent"
                             android:layout_height="72dp"
                             android:layout_marginBottom="36dp"
@@ -75,10 +77,11 @@
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <ImageView
+                            android:id="@+id/image_search"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:background="@drawable/baseline_search_24"
-                            app:layout_constraintBottom_toTopOf="@+id/button3"
+                            app:layout_constraintBottom_toTopOf="@+id/button_search_text"
                             app:layout_constraintEnd_toEndOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
