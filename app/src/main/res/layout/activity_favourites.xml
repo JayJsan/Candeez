@@ -5,6 +5,7 @@
     android:id="@+id/constraintlayout_favourites"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_theme_light_surfaceContainerLow"
     tools:context="com.application.project2java.FavouritesActivity">
 
     <ScrollView
@@ -25,7 +26,7 @@
                 android:id="@+id/card_header"
                 style="@style/heading_card_default"
                 android:layout_width="match_parent"
-                app:cardBackgroundColor="@color/md_theme_light_secondaryContainer"
+                app:cardBackgroundColor="@color/md_theme_light_tertiaryContainer"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
