@@ -1,8 +1,8 @@
 package com.application.project2java;
 
 public enum CategoryName {
-    CATEGORY1,
-    CATEGORY2,
+    Gummies,
+    Hard_Candy,
     CATEGORY3,
     CATEGORY4,
 }
