@@ -76,7 +76,7 @@
     </ScrollView>
 
     <fragment
-        android:id="@+id/navigation_fragment2"
+        android:id="@+id/navigation_fragment"
         android:name="com.application.project2java.Navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
