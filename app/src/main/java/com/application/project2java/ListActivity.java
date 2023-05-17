@@ -32,7 +32,7 @@ public class ListActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        EditText searchArea = this.findViewById(R.id.search_area);
+        EditText searchArea = this.findViewById(R.id.edit_search_area);
         searchArea.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
                 hideKeyboard(v);
