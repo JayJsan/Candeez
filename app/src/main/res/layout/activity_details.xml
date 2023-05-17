@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintlayout_details_container"
+            android:id="@+id/constraintlayout_favourites_container"
             style="@style/scrollview_navbar_clearance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
