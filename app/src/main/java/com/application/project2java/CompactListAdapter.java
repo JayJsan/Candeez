@@ -3,11 +3,14 @@ package com.application.project2java;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
@@ -20,9 +23,15 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView textViewName;
+        TextView textViewPrice;
+        ImageView imageView;
+        MaterialButton buttonViewItem;
 
         public ViewHolder(View v) {
             super(v);
+            textViewName = v.findViewById(R.id.compact_item_name);
+            textViewPrice = v.findViewById(R.id.compact_item_price);
         }
 
     }
@@ -37,6 +46,9 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ItemModel item = items.get(position);
+        holder.textViewName.setText(item.getName());
+        holder.textViewPrice.setText("$" + Integer.toString(item.getPrice()));
     }
 
 

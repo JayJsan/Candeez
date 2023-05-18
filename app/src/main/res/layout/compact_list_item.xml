@@ -37,7 +37,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/text_item_name"
+                android:id="@+id/compact_item_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Item #49"
@@ -46,7 +46,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/text_item_price"
+                android:id="@+id/compact_item_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
@@ -54,7 +54,7 @@
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_view_item"
+            android:id="@+id/compact_button_view_item"
             style="@style/Widget.Material3.Button.IconButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
