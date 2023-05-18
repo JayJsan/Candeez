@@ -39,8 +39,7 @@ public class MainActivity extends FragmentActivity {
 
     private void setupMostViewedRecyclerView(){
         RecyclerView mostViewedRecyclerView = this.findViewById(R.id.most_viewed_recycler_view);
-        //TODO change to most viewed items
-        List<ItemModel> items = dataProvider.getBestSellingItems();
+        List<ItemModel> items = dataProvider.getMostViewedItems();
         CompactListAdapter compactListAdapter = new CompactListAdapter(items);
         mostViewedRecyclerView.setAdapter(compactListAdapter);
         LinearLayoutManager productLayoutManager = new LinearLayoutManager(this);
