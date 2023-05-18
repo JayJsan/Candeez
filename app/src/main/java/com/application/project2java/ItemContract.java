@@ -12,7 +12,6 @@ public final class ItemContract {
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_PRICE = "price";
         public static final String COLUMN_IMAGE_URIS = "image_uris";
-
         public static final String COLUMN_CATEGORY = "category";
         public static final String COLUMN_VIEW_COUNT = "view_count";
         public static final String COLUMN_IS_FAVOURITE = "is_favourite";
