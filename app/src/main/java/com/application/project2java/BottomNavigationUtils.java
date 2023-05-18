@@ -16,6 +16,7 @@ public class BottomNavigationUtils {
         destinationMap.put(R.id.home, MainActivity.class);
         destinationMap.put(R.id.search, ListActivity.class);
         destinationMap.put(R.id.favourites, FavouritesActivity.class);
+        destinationMap.put(R.id.cart, CartActivity.class);
     }
 
     public static void setupBottomNavigationView(FragmentActivity activity) {
@@ -55,7 +56,9 @@ public class BottomNavigationUtils {
             selectedItemIndex = 1;
         } else if (activity instanceof FavouritesActivity) {
             selectedItemIndex = 2;
-        } else {
+        } else if (activity instanceof CartActivity) {
+            selectedItemIndex = 3;
+        }else {
             selectedItemIndex = 0;
         }
         bottomNavigationView.getMenu().getItem(selectedItemIndex).setChecked(true);
