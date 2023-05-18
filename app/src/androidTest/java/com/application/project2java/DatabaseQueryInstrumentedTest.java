@@ -78,7 +78,7 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
         List<CategoryName> categoriesToQuery = new ArrayList<CategoryName>() {{
             add(CategoryName.Gummies);
             add(CategoryName.Hard_Candy);
-            add(CategoryName.CATEGORY3);
+            add(CategoryName.Chocolate);
         }};
         List<ItemModel> result = dataProvider.getItemsFromMultipleCategories(categoriesToQuery);
         assertEquals(result.size(), 2);

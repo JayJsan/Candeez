@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.project2java.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends FragmentActivity {
 
+    DataProvider dataProvider;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,14 +21,17 @@ public class MainActivity extends FragmentActivity {
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
 
+        dataProvider = new DataProvider(App.getAppContext());
+        dataProvider.open();
         setupBestSellingRecyclerView();
         setupMostViewedRecyclerView();
+        dataProvider.close();
     }
 
     private void setupBestSellingRecyclerView() {
         RecyclerView bestSellingRecyclerView = this.findViewById(R.id.best_selling_recycler_view);
-        //TODO use real data
-        CompactListAdapter compactListAdapter = new CompactListAdapter(new ArrayList<>());
+        List<ItemModel> items = dataProvider.getBestSellingItems();
+        CompactListAdapter compactListAdapter = new CompactListAdapter(items);
         bestSellingRecyclerView.setAdapter(compactListAdapter);
         LinearLayoutManager productLayoutManager = new LinearLayoutManager(this);
         bestSellingRecyclerView.setLayoutManager(productLayoutManager);
@@ -34,8 +39,9 @@ public class MainActivity extends FragmentActivity {
 
     private void setupMostViewedRecyclerView(){
         RecyclerView mostViewedRecyclerView = this.findViewById(R.id.most_viewed_recycler_view);
-        //TODO use real data
-        CompactListAdapter compactListAdapter = new CompactListAdapter(new ArrayList<>());
+        //TODO change to most viewed items
+        List<ItemModel> items = dataProvider.getBestSellingItems();
+        CompactListAdapter compactListAdapter = new CompactListAdapter(items);
         mostViewedRecyclerView.setAdapter(compactListAdapter);
         LinearLayoutManager productLayoutManager = new LinearLayoutManager(this);
         mostViewedRecyclerView.setLayoutManager(productLayoutManager);
