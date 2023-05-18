@@ -78,7 +78,7 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
         List<CategoryName> categoriesToQuery = new ArrayList<CategoryName>() {{
             add(CategoryName.Gummies);
             add(CategoryName.Hard_Candy);
-            add(CategoryName.CATEGORY3);
+            add(CategoryName.Chocolate);
         }};
         List<ItemModel> result = dataProvider.getItemsFromMultipleCategories(categoriesToQuery);
         assertEquals(result.size(), 2);
@@ -87,6 +87,30 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
         assertEquals(result.size(), 3);
 
     }
+
+    @Test
+    public void testCategoryFrequencyQuery() {
+        dataMutator.addData(defaultItem);
+        dataMutator.addData(defaultItem);
+        int result = dataProvider.getCategoryItemFrequency(CategoryName.Gummies);
+        assertEquals(2, result);
+        dataMutator.addData(hardCandyItem);
+        result = dataProvider.getCategoryItemFrequency(CategoryName.Gummies);
+        assertEquals(2, result);
+        dataMutator.addData(defaultItem);
+        result = dataProvider.getCategoryItemFrequency(CategoryName.Gummies);
+        assertEquals(3, result);
+    }
+
+    @Test
+    public void testMostViewedQuery() {
+        for (int i = 0; i < 6; ++i){
+            dataMutator.addData(defaultItem);
+        }
+        List<ItemModel> result = dataProvider.getMostViewedItems();
+        assertEquals(3, result.size());
+    }
+
 
 
 }

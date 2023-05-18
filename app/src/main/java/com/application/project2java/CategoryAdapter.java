@@ -2,6 +2,7 @@ package com.application.project2java;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
-    private Category[] categories;
+import java.util.List;
 
-    public CategoryAdapter(Category[] categories){
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
+    private List<Category> categories;
+
+    public CategoryAdapter(List<Category> categories){
         this.categories = categories;
     }
 
@@ -54,7 +57,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
-        Category category = categories[position];
+        Category category = categories.get(position);
         String name = category.getName();
         String qty = String.valueOf(category.getFrequency());
         holder.textViewName.setText(name);
@@ -63,6 +66,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return categories.length;
+        return categories.size();
     }
 }

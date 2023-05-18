@@ -62,6 +62,16 @@ public class DataProvider {
         return dataList;
     }
 
+    public int countData(String query, String[] selectionArgs) {
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+        cursor.close();
+        return count;
+    }
+
     public List<ItemModel> getAllItems() {
         return searchData(QueryProvider.ALL_ITEMS_QUERY, null);
     }
@@ -74,21 +84,27 @@ public class DataProvider {
         return searchData(QueryProvider.BEST_SELLING_HOME_SCREEN_QUERY, null);
     }
 
-    public List<ItemModel> getCartItems(){
+    public List<ItemModel> getMostViewedItems() {
+        return searchData(QueryProvider.MOST_VIEWED_HOME_SCREEN_QUERY, null);
+    }
+    public List<ItemModel> getCartItems() {
         return searchData(QueryProvider.CART_ITEMS_QUERY, null);
     }
 
 
-    public List<ItemModel> getCategoryItems(CategoryName category){
+    public List<ItemModel> getCategoryItems(CategoryName category) {
         return searchData(QueryProvider.CATEGORY_ITEM_QUERY, new String[]{category.toString()});
     }
 
-    public List<ItemModel> getItemsFromMultipleCategories(List<CategoryName> categories){
+    public List<ItemModel> getItemsFromMultipleCategories(List<CategoryName> categories) {
         String query = QueryUtils.formatQueryWithArray(categories.size(), QueryProvider.CATEGORY_ITEM_QUERY);
         String[] args = QueryUtils.joinCategories(categories);
         return searchData(query, args);
     }
 
+    public int getCategoryItemFrequency(CategoryName category) {
+        return countData(QueryProvider.CATEGORY_ITEM_FREQUENCY_QUERY, new String[]{category.toString()});
+    }
 
 
 }

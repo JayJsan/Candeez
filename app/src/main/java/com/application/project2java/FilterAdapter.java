@@ -12,10 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 
-public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder> {
-    private Category[] categories;
+import java.util.List;
 
-    public FilterAdapter(Category[] categories) {
+public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder> {
+    private List<CategoryName> categories;
+
+    public FilterAdapter(List<CategoryName> categories) {
         this.categories = categories;
     }
 
@@ -42,15 +44,15 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Category category = categories[position];
-        String name = category.getName();
+        CategoryName category = categories.get(position);
+        String name = category.toString();
         holder.getFilterButton().setText(name);
     }
 
 
     @Override
     public int getItemCount() {
-        return categories.length;
+        return categories.size();
     }
 
 
