@@ -84,6 +84,9 @@ public class DataProvider {
         return searchData(QueryProvider.BEST_SELLING_HOME_SCREEN_QUERY, null);
     }
 
+    public List<ItemModel> getMostViewedItems() {
+        return searchData(QueryProvider.MOST_VIEWED_HOME_SCREEN_QUERY, null);
+    }
     public List<ItemModel> getCartItems() {
         return searchData(QueryProvider.CART_ITEMS_QUERY, null);
     }
