@@ -201,12 +201,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/best_selling_heading"
                     tools:layout_editor_absoluteX="8dp">
 
-                    <include layout="@layout/compact_list_item" />
-
-                    <include layout="@layout/compact_list_item" />
-
-                    <include layout="@layout/compact_list_item" />
-
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/best_selling_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -261,12 +259,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/most_viewed_heading"
                     tools:layout_editor_absoluteX="8dp">
 
-                    <include layout="@layout/compact_list_item" />
-
-                    <include layout="@layout/compact_list_item" />
-
-                    <include layout="@layout/compact_list_item" />
-
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/most_viewed_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

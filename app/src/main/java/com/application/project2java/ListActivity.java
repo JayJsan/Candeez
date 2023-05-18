@@ -29,8 +29,6 @@ public class ListActivity extends FragmentActivity {
     private void setupCategories() {
         categories.addAll(Arrays.asList(CategoryName.values()));
     }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupCategories();
