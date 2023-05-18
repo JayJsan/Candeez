@@ -3,11 +3,15 @@ package com.application.project2java;
 import static com.application.project2java.ItemContract.ItemEntry.COLUMN_CART_QUANTITY;
 import static com.application.project2java.ItemContract.ItemEntry.COLUMN_CATEGORY;
 import static com.application.project2java.ItemContract.ItemEntry.COLUMN_IS_FAVOURITE;
+import static com.application.project2java.ItemContract.ItemEntry.COLUMN_VIEW_COUNT;
 import static com.application.project2java.ItemContract.ItemTable.TABLE_NAME;
 
 public final class QueryProvider {
     public static final String BEST_SELLING_HOME_SCREEN_QUERY = "SELECT * FROM " + TABLE_NAME
             + " ORDER BY " + COLUMN_CART_QUANTITY + " DESC"
+            + " LIMIT 3";
+    public static final String MOST_VIEWED_HOME_SCREEN_QUERY = "SELECT * FROM " + TABLE_NAME
+            + " ORDER BY " + COLUMN_VIEW_COUNT + " DESC"
             + " LIMIT 3";
     public static final String CART_ITEMS_QUERY = "SELECT * FROM " + TABLE_NAME + " WHERE "
             + COLUMN_CART_QUANTITY + " > 0";
