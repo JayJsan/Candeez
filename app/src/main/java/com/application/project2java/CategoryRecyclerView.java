@@ -1,5 +1,6 @@
 package com.application.project2java;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,9 @@ import android.view.ViewGroup;
 
 import com.example.project2java.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CategoryRecyclerView#newInstance} factory method to
@@ -21,17 +25,17 @@ public class CategoryRecyclerView extends Fragment {
 
     protected CategoryAdapter adapter;
     protected RecyclerView recyclerView;
-    private Category[] categories = {
-            new Category(CategoryName.Gummies, 69),
-            new Category(CategoryName.Hard_Candy, 69),
-            new Category(CategoryName.CATEGORY3, 69),
-            new Category(CategoryName.CATEGORY4, 69),
-    };
-    public CategoryRecyclerView() {
-        // Required empty public constructor
+    private List<Category> categories = new ArrayList<>();
+
+    private void setupCategories() {
+        DataProvider dataProvider = new DataProvider(App.getAppContext());
+        dataProvider.open();
+        for(CategoryName categoryName: CategoryName.values()){
+            int categoryFrequency = dataProvider.getCategoryItemFrequency(categoryName);
+            categories.add(new Category(categoryName, categoryFrequency));
+        }
+
     }
-    //TODO
-    private void setupCategories() {}
 
 
     public static CategoryRecyclerView newInstance(String param1, String param2) {
@@ -51,7 +55,7 @@ public class CategoryRecyclerView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        setupCategories();
         View rootView = inflater.inflate(R.layout.fragment_category_recycler_view, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.category_recycler_view);
         adapter = new CategoryAdapter(categories);
