@@ -88,5 +88,19 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
 
     }
 
+    @Test
+    public void testCategoryFrequencyQuery() {
+        dataMutator.addData(defaultItem);
+        dataMutator.addData(defaultItem);
+        int result = dataProvider.getCategoryItemFrequency(CategoryName.Gummies);
+        assertEquals(2, result);
+        dataMutator.addData(hardCandyItem);
+        result = dataProvider.getCategoryItemFrequency(CategoryName.Gummies);
+        assertEquals(2, result);
+        dataMutator.addData(defaultItem);
+        result = dataProvider.getCategoryItemFrequency(CategoryName.Gummies);
+        assertEquals(3, result);
+    }
+
 
 }
