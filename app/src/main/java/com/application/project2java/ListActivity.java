@@ -15,21 +15,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ListActivity extends FragmentActivity {
 
-    //TODO REMOVE
-    private Category[] categories = {
-            new Category(CategoryName.Gummies, 69),
-            new Category(CategoryName.Hard_Candy, 69),
-            new Category(CategoryName.CATEGORY3, 69),
-            new Category(CategoryName.CATEGORY4, 69)};
+    private List<CategoryName> categories = new ArrayList<>();
     private FilterAdapter filterAdapter;
     private ProductListAdapter productListAdapter;
     private boolean isSearching;
 
+    private void setupCategories() {
+        categories.addAll(Arrays.asList(CategoryName.values()));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupCategories();
         setContentView(R.layout.activity_list);
 
         EditText searchArea = this.findViewById(R.id.edit_search_area);
@@ -74,7 +78,7 @@ public class ListActivity extends FragmentActivity {
 
     private void setupProductRecyclerView() {
         RecyclerView productRecyclerView = this.findViewById(R.id.product_recycler_view);
-        productListAdapter = new ProductListAdapter(categories);
+        productListAdapter = new ProductListAdapter();
         productRecyclerView.setAdapter(productListAdapter);
         LinearLayoutManager productLayoutManager = new LinearLayoutManager(this);
         productRecyclerView.setLayoutManager(productLayoutManager);

@@ -32,7 +32,7 @@ public class CategoryRecyclerView extends Fragment {
         dataProvider.open();
         for(CategoryName categoryName: CategoryName.values()){
             int categoryFrequency = dataProvider.getCategoryItemFrequency(categoryName);
-            categories.add(new Category(categoryName, categoryFrequency));
+            categories.add(new Category("", categoryName, categoryFrequency));
         }
 
     }

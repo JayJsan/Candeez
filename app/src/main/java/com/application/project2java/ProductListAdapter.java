@@ -12,7 +12,7 @@ import com.example.project2java.R;
 
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder>{
 
-    public ProductListAdapter(Category[] categories){
+    public ProductListAdapter(){
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

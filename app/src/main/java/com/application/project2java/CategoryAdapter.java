@@ -20,15 +20,6 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
     private List<Category> categories;
 
-    private void setupCategories() {
-        DataProvider dataProvider = new DataProvider(App.getAppContext());
-        dataProvider.open();
-        for(CategoryName categoryName: CategoryName.values()){
-            int categoryFrequency = dataProvider.getCategoryItemFrequency(categoryName);
-            categories.add(new Category(categoryName, categoryFrequency));
-        }
-
-    }
     public CategoryAdapter(List<Category> categories){
         this.categories = categories;
     }
