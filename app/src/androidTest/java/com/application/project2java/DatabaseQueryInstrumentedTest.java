@@ -102,5 +102,15 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
         assertEquals(3, result);
     }
 
+    @Test
+    public void testMostViewedQuery() {
+        for (int i = 0; i < 6; ++i){
+            dataMutator.addData(defaultItem);
+        }
+        List<ItemModel> result = dataProvider.getMostViewedItems();
+        assertEquals(3, result.size());
+    }
+
+
 
 }
