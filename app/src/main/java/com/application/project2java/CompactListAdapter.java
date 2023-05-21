@@ -1,6 +1,9 @@
 package com.application.project2java;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.graphics.Bitmap;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,19 +29,30 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
         this.items = items;
     }
 
+    DataMutator dataMutator;
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textViewName;
         TextView textViewPrice;
         ShapeableImageView imageView;
         MaterialButton buttonViewItem;
+        MaterialButton buttonFavouriteItem;
 
         public ViewHolder(View v) {
             super(v);
             imageView = v.findViewById(R.id.compact_item_image);
             textViewName = v.findViewById(R.id.compact_item_name);
             textViewPrice = v.findViewById(R.id.compact_item_price);
-        }
+            buttonFavouriteItem = v.findViewById(R.id.compact_favourite_button);
 
+            buttonFavouriteItem.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       // change favourites id to the opposite of current state
+                       // i.e. ---> isFavourite = 1 => isFavourite = 0
+                       //      ---> isFavourite = 0 => isFavourite = 1
+                   }
+            });
+        }
     }
 
     @NonNull
