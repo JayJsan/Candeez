@@ -41,6 +41,7 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
             textViewPrice = v.findViewById(R.id.compact_item_price);
             v.setOnClickListener(v1 -> {
                 Intent intent = new Intent(App.getAppContext(), DetailsActivity.class);
+                intent.putExtra("name", itemName);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                 App.getAppContext().startActivity(intent);
             });
