@@ -28,10 +28,12 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        DataMutator dataMutator;
         TextView textViewName;
         TextView textViewPrice;
         ShapeableImageView imageView;
         MaterialButton buttonViewItem;
+        MaterialButton buttonFavouriteItem;
         String itemName;
 
         public ViewHolder(View v) {
@@ -45,7 +47,13 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                 App.getAppContext().startActivity(intent);
             });
+            buttonFavouriteItem = v.findViewById(R.id.compact_favourite_button);
 
+            buttonFavouriteItem.setOnClickListener(v12 -> {
+                // change favourites id to the opposite of current state
+                // i.e. ---> isFavourite = 1 => isFavourite = 0
+                //      ---> isFavourite = 0 => isFavourite = 1
+            });
         }
 
 
