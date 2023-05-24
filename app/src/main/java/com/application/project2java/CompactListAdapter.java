@@ -1,5 +1,6 @@
 package com.application.project2java;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,13 +32,21 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
         TextView textViewPrice;
         ShapeableImageView imageView;
         MaterialButton buttonViewItem;
+        String itemName;
 
         public ViewHolder(View v) {
             super(v);
             imageView = v.findViewById(R.id.compact_item_image);
             textViewName = v.findViewById(R.id.compact_item_name);
             textViewPrice = v.findViewById(R.id.compact_item_price);
+            v.setOnClickListener(v1 -> {
+                Intent intent = new Intent(App.getAppContext(), DetailsActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                App.getAppContext().startActivity(intent);
+            });
+
         }
+
 
     }
 
@@ -52,8 +61,10 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ItemModel item = items.get(position);
-        holder.textViewName.setText(item.getName());
+        String name = item.getName();
+        holder.textViewName.setText(name);
         holder.textViewPrice.setText("$" + item.getPrice());
+        holder.itemName = name;
         Log.d("DEBUG", item.getImageUris().toString());
         ImageUtils.getImageBitmapAsync(item.getImageUris().get(0), new ImageUtils.BitmapCallback() {
             @Override

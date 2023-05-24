@@ -1,6 +1,7 @@
 package com.application.project2java;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -15,4 +16,9 @@ public class DetailsActivity extends FragmentActivity {
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
     }
+
+    public void goBack(View v){
+        this.finish();
+    }
+
 }
