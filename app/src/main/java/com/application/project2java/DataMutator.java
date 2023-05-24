@@ -1,10 +1,7 @@
 package com.application.project2java;
 
-import com.application.project2java.ItemContract.ItemEntry.*;
-
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +27,6 @@ public class DataMutator extends AbstractDatabase {
             listener.onDatabaseWrite();
         }
     }
-
     public long addData(ItemModel item) {
         ContentValues values = new ContentValues();
         values.put(ItemContract.ItemEntry.COLUMN_NAME, item.getName());

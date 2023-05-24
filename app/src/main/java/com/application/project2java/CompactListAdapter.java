@@ -1,6 +1,5 @@
 package com.application.project2java;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;

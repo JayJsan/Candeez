@@ -19,4 +19,5 @@ public abstract class AbstractDatabase {
     public void close() {
         dbHelper.close();
     }
+
 }

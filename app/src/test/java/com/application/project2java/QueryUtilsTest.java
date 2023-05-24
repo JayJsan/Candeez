@@ -2,12 +2,12 @@ package com.application.project2java;
 
 import static com.application.project2java.ItemContract.ItemEntry.COLUMN_CATEGORY;
 import static com.application.project2java.ItemContract.ItemTable.TABLE_NAME;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class QueryUtilsTest {

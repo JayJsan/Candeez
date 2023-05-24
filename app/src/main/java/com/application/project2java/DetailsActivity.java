@@ -9,8 +9,6 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.example.project2java.R;
 
-import java.util.Locale;
-
 public class DetailsActivity extends FragmentActivity {
     DataProvider dataProvider;
     ItemModel item;
