@@ -43,14 +43,15 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
             textViewName = v.findViewById(R.id.compact_item_name);
             textViewPrice = v.findViewById(R.id.compact_item_price);
             v.setOnClickListener(v1 -> {
-                Intent intent = new Intent(App.getAppContext(), DetailsActivity.class);
-                intent.putExtra("name", itemName);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                App.getAppContext().startActivity(intent);
+                ListItemUtils.navigateToDetails(itemName);
             });
-            buttonFavouriteItem = v.findViewById(R.id.compact_favourite_button);
+            buttonViewItem = v.findViewById(R.id.compact_button_view_item);
+            buttonViewItem.setOnClickListener(v1 -> {
+                ListItemUtils.navigateToDetails(itemName);
+            });
 
-            buttonFavouriteItem.setOnClickListener(v12 -> {
+            buttonFavouriteItem = v.findViewById(R.id.compact_favourite_button);
+            buttonFavouriteItem.setOnClickListener(v1 -> {
                 // change favourites id to the opposite of current state
                 // i.e. ---> isFavourite = 1 => isFavourite = 0
                 //      ---> isFavourite = 0 => isFavourite = 1
@@ -58,19 +59,8 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
                 dataMutator.open();
                 dataMutator.updateItemFavouriteStatus(itemName, isFavourite);
                 dataMutator.close();
-                updateButtonAppearance();
-
+                ListItemUtils.updateFavouriteButtonAppearance(isFavourite, buttonFavouriteItem);
             });
-        }
-
-        public void updateButtonAppearance() {
-            if (isFavourite) {
-                buttonFavouriteItem.setIconTintResource(R.color.md_theme_light_tertiary);
-                buttonFavouriteItem.setIconResource(R.drawable.baseline_favorite_24);
-            } else {
-                buttonFavouriteItem.setIconTintResource(R.color.md_theme_light_primary);
-                buttonFavouriteItem.setIconResource(R.drawable.baseline_favorite_border_24);
-            }
         }
 
 
@@ -93,7 +83,7 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
         holder.textViewPrice.setText("$" + item.getPrice());
         holder.itemName = name;
         holder.isFavourite = isFavourite;
-        holder.updateButtonAppearance();
+        ListItemUtils.updateFavouriteButtonAppearance(isFavourite, holder.buttonFavouriteItem);
 
         Log.d("DEBUG", item.getImageUris().toString());
         ImageUtils.getImageBitmapAsync(item.getImageUris().get(0), new ImageUtils.BitmapCallback() {
