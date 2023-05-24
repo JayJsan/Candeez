@@ -22,6 +22,11 @@ public class FavouritesActivity extends FragmentActivity {
         setContentView(R.layout.activity_favourites);
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
+        setup();
+
+    }
+
+    private void setup() {
 
         dataProvider = App.getDataProvider();
         dataMutator = App.getDataMutator();
@@ -31,6 +36,7 @@ public class FavouritesActivity extends FragmentActivity {
         setupFavouritesRecyclerView();
         dataProvider.close();
     }
+
 
     private void updateItems() {
         dataProvider.open();
