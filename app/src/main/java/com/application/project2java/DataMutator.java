@@ -25,7 +25,6 @@ public class DataMutator extends AbstractDatabase {
         writeListeners.remove(listener);
     }
 
-    // Whenever a write operation occurs, notify all the listeners
     private void notifyDatabaseWrite() {
         for (DatabaseWriteListener listener : writeListeners) {
             listener.onDatabaseWrite();

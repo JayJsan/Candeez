@@ -19,6 +19,7 @@ public class DetailsActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+        dataProvider = App.getDataProvider();
         fetchItemDetails();
         setDetails();
         BottomNavigationUtils.setupBottomNavigationView(this);
@@ -26,7 +27,6 @@ public class DetailsActivity extends FragmentActivity {
     }
 
     private void fetchItemDetails() {
-        dataProvider = new DataProvider(App.getAppContext());
         dataProvider.open();
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");

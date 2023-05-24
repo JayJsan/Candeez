@@ -28,7 +28,7 @@ public class CategoryRecyclerView extends Fragment {
     private List<Category> categories = new ArrayList<>();
 
     private void setupCategories() {
-        DataProvider dataProvider = new DataProvider(App.getAppContext());
+        DataProvider dataProvider = App.getDataProvider();
         dataProvider.open();
         for (CategoryName categoryName : CategoryName.values()) {
             int categoryFrequency = dataProvider.getCategoryItemFrequency(categoryName);

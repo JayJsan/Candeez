@@ -21,7 +21,7 @@ public class MainActivity extends FragmentActivity {
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
 
-        dataProvider = new DataProvider(App.getAppContext());
+        dataProvider = App.getDataProvider();
         dataProvider.open();
         setupBestSellingRecyclerView();
         setupMostViewedRecyclerView();
