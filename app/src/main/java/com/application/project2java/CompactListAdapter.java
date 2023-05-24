@@ -1,9 +1,7 @@
 package com.application.project2java;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,30 +27,28 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
         this.items = items;
     }
 
-    DataMutator dataMutator;
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textViewName;
         TextView textViewPrice;
         ShapeableImageView imageView;
         MaterialButton buttonViewItem;
-        MaterialButton buttonFavouriteItem;
+        String itemName;
 
         public ViewHolder(View v) {
             super(v);
             imageView = v.findViewById(R.id.compact_item_image);
             textViewName = v.findViewById(R.id.compact_item_name);
             textViewPrice = v.findViewById(R.id.compact_item_price);
-            buttonFavouriteItem = v.findViewById(R.id.compact_favourite_button);
-
-            buttonFavouriteItem.setOnClickListener(new View.OnClickListener() {
-                   @Override
-                   public void onClick(View v) {
-                       // change favourites id to the opposite of current state
-                       // i.e. ---> isFavourite = 1 => isFavourite = 0
-                       //      ---> isFavourite = 0 => isFavourite = 1
-                   }
+            v.setOnClickListener(v1 -> {
+                Intent intent = new Intent(App.getAppContext(), DetailsActivity.class);
+                intent.putExtra("name", itemName);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                App.getAppContext().startActivity(intent);
             });
+
         }
+
+
     }
 
     @NonNull
@@ -66,8 +62,10 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ItemModel item = items.get(position);
-        holder.textViewName.setText(item.getName());
+        String name = item.getName();
+        holder.textViewName.setText(name);
         holder.textViewPrice.setText("$" + item.getPrice());
+        holder.itemName = name;
         Log.d("DEBUG", item.getImageUris().toString());
         ImageUtils.getImageBitmapAsync(item.getImageUris().get(0), new ImageUtils.BitmapCallback() {
             @Override
