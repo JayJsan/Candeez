@@ -6,20 +6,30 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-public class DataMutator {
-    private DatabaseHelper dbHelper;
-    SQLiteDatabase db;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DataMutator extends AbstractDatabase {
 
     public DataMutator(Context context) {
-        dbHelper = new DatabaseHelper(context);
+        super(context);
     }
 
-    public void open() {
-        db = dbHelper.getWritableDatabase();
+    private List<DatabaseWriteListener> writeListeners = new ArrayList<>();
+
+    public void addDatabaseWriteListener(DatabaseWriteListener listener) {
+        writeListeners.add(listener);
     }
 
-    public void close() {
-        dbHelper.close();
+    public void removeDatabaseWriteListener(DatabaseWriteListener listener) {
+        writeListeners.remove(listener);
+    }
+
+    // Whenever a write operation occurs, notify all the listeners
+    private void notifyDatabaseWrite() {
+        for (DatabaseWriteListener listener : writeListeners) {
+            listener.onDatabaseWrite();
+        }
     }
 
     public long addData(ItemModel item) {

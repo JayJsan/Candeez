@@ -18,20 +18,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DataProvider {
-    private DatabaseHelper dbHelper;
-    SQLiteDatabase db;
+public class DataProvider extends AbstractDatabase {
 
     public DataProvider(Context context) {
-        dbHelper = new DatabaseHelper(context);
-    }
-
-    public void open() {
-        db = dbHelper.getWritableDatabase();
-    }
-
-    public void close() {
-        dbHelper.close();
+        super(context);
     }
 
     public List<ItemModel> searchData(String query, String[] selectionArgs) {
