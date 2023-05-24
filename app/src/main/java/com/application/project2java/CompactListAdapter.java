@@ -28,7 +28,7 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        DataMutator dataMutator;
+        DataMutator dataMutator = new DataMutator(App.getAppContext());
         TextView textViewName;
         TextView textViewPrice;
         ShapeableImageView imageView;
@@ -54,7 +54,23 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
                 // change favourites id to the opposite of current state
                 // i.e. ---> isFavourite = 1 => isFavourite = 0
                 //      ---> isFavourite = 0 => isFavourite = 1
+                isFavourite = !isFavourite;
+                dataMutator.open();
+                dataMutator.updateItemFavouriteStatus(itemName, isFavourite);
+                dataMutator.close();
+                updateButtonAppearance();
+
             });
+        }
+
+        public void updateButtonAppearance() {
+            if (isFavourite) {
+                buttonFavouriteItem.setIconTintResource(R.color.md_theme_light_tertiary);
+                buttonFavouriteItem.setIconResource(R.drawable.baseline_favorite_24);
+            } else {
+                buttonFavouriteItem.setIconTintResource(R.color.md_theme_light_primary);
+                buttonFavouriteItem.setIconResource(R.drawable.baseline_favorite_border_24);
+            }
         }
 
 
@@ -77,10 +93,7 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
         holder.textViewPrice.setText("$" + item.getPrice());
         holder.itemName = name;
         holder.isFavourite = isFavourite;
-        if (isFavourite) {
-            holder.buttonFavouriteItem.setIconTintResource(R.color.md_theme_light_tertiary);
-            holder.buttonFavouriteItem.setIconResource(R.drawable.baseline_favorite_24);
-        }
+        holder.updateButtonAppearance();
 
         Log.d("DEBUG", item.getImageUris().toString());
         ImageUtils.getImageBitmapAsync(item.getImageUris().get(0), new ImageUtils.BitmapCallback() {
