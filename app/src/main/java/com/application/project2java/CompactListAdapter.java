@@ -35,6 +35,7 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
         MaterialButton buttonViewItem;
         MaterialButton buttonFavouriteItem;
         String itemName;
+        boolean isFavourite;
 
         public ViewHolder(View v) {
             super(v);
@@ -71,9 +72,16 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ItemModel item = items.get(position);
         String name = item.getName();
+        boolean isFavourite = item.isFavourite();
         holder.textViewName.setText(name);
         holder.textViewPrice.setText("$" + item.getPrice());
         holder.itemName = name;
+        holder.isFavourite = isFavourite;
+        if (isFavourite) {
+            holder.buttonFavouriteItem.setIconTintResource(R.color.md_theme_light_tertiary);
+            holder.buttonFavouriteItem.setIconResource(R.drawable.baseline_favorite_24);
+        }
+
         Log.d("DEBUG", item.getImageUris().toString());
         ImageUtils.getImageBitmapAsync(item.getImageUris().get(0), new ImageUtils.BitmapCallback() {
             @Override
