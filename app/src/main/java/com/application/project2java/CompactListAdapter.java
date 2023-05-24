@@ -1,5 +1,6 @@
 package com.application.project2java;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,17 +28,41 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        DataMutator dataMutator = new DataMutator(App.getAppContext());
         TextView textViewName;
         TextView textViewPrice;
         ShapeableImageView imageView;
         MaterialButton buttonViewItem;
+        MaterialButton buttonFavouriteItem;
+        String itemName;
+        boolean isFavourite;
 
         public ViewHolder(View v) {
             super(v);
             imageView = v.findViewById(R.id.compact_item_image);
             textViewName = v.findViewById(R.id.compact_item_name);
             textViewPrice = v.findViewById(R.id.compact_item_price);
+            v.setOnClickListener(v1 -> {
+                ListItemUtils.navigateToDetails(itemName);
+            });
+            buttonViewItem = v.findViewById(R.id.compact_button_view_item);
+            buttonViewItem.setOnClickListener(v1 -> {
+                ListItemUtils.navigateToDetails(itemName);
+            });
+
+            buttonFavouriteItem = v.findViewById(R.id.compact_favourite_button);
+            buttonFavouriteItem.setOnClickListener(v1 -> {
+                // change favourites id to the opposite of current state
+                // i.e. ---> isFavourite = 1 => isFavourite = 0
+                //      ---> isFavourite = 0 => isFavourite = 1
+                isFavourite = !isFavourite;
+                dataMutator.open();
+                dataMutator.updateItemFavouriteStatus(itemName, isFavourite);
+                dataMutator.close();
+                ListItemUtils.updateFavouriteButtonAppearance(isFavourite, buttonFavouriteItem);
+            });
         }
+
 
     }
 
@@ -52,8 +77,14 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ItemModel item = items.get(position);
-        holder.textViewName.setText(item.getName());
+        String name = item.getName();
+        boolean isFavourite = item.isFavourite();
+        holder.textViewName.setText(name);
         holder.textViewPrice.setText("$" + item.getPrice());
+        holder.itemName = name;
+        holder.isFavourite = isFavourite;
+        ListItemUtils.updateFavouriteButtonAppearance(isFavourite, holder.buttonFavouriteItem);
+
         Log.d("DEBUG", item.getImageUris().toString());
         ImageUtils.getImageBitmapAsync(item.getImageUris().get(0), new ImageUtils.BitmapCallback() {
             @Override

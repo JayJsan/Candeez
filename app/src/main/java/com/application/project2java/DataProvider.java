@@ -87,8 +87,16 @@ public class DataProvider {
     public List<ItemModel> getMostViewedItems() {
         return searchData(QueryProvider.MOST_VIEWED_HOME_SCREEN_QUERY, null);
     }
+
     public List<ItemModel> getCartItems() {
         return searchData(QueryProvider.CART_ITEMS_QUERY, null);
+    }
+
+    public ItemModel getItemWithName(String name) {
+        List<ItemModel> result = searchData(QueryProvider.ITEM_BY_NAME_QUERY, new String[]{name});
+        if (result.size() > 0)
+            return result.get(0);
+        else return null;
     }
 
 

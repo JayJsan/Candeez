@@ -3,6 +3,7 @@ package com.application.project2java;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -109,6 +110,15 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
         }
         List<ItemModel> result = dataProvider.getMostViewedItems();
         assertEquals(3, result.size());
+    }
+
+    @Test
+    public void testGetItemByNameQuery() {
+        dataMutator.addData(defaultItem);
+        ItemModel result = dataProvider.getItemWithName("test");
+        assertNotEquals(null, result);
+        result = dataProvider.getItemWithName("fake");
+        assertNull(result);
     }
 
 
