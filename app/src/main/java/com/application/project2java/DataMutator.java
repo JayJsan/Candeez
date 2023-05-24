@@ -57,7 +57,9 @@ public class DataMutator extends AbstractDatabase {
     private int updateAtName(String name, ContentValues values) {
         String whereClause = ItemContract.ItemEntry.COLUMN_NAME + " = ?";
         String[] whereArgs = {name};
-        return db.update(ItemContract.ItemTable.TABLE_NAME, values, whereClause, whereArgs);
+        int result = db.update(ItemContract.ItemTable.TABLE_NAME, values, whereClause, whereArgs);
+        notifyDatabaseWrite();
+        return result;
     }
 
 

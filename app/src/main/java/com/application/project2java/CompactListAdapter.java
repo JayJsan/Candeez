@@ -20,6 +20,7 @@ import java.util.List;
 
 public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.ViewHolder> {
 
+
     private List<ItemModel> items;
 
     public CompactListAdapter(List<ItemModel> items) {
@@ -54,15 +55,22 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
                 // change favourites id to the opposite of current state
                 // i.e. ---> isFavourite = 1 => isFavourite = 0
                 //      ---> isFavourite = 0 => isFavourite = 1
-                isFavourite = !isFavourite;
                 dataMutator.open();
-                dataMutator.updateItemFavouriteStatus(itemName, isFavourite);
+                dataMutator.updateItemFavouriteStatus(itemName, !isFavourite);
                 dataMutator.close();
-                ListItemUtils.updateFavouriteButtonAppearance(isFavourite, buttonFavouriteItem);
             });
+
         }
 
+        public void updateFavouriteButton() {
+            ListItemUtils.updateFavouriteButtonAppearance(isFavourite, buttonFavouriteItem);
+        }
 
+    }
+
+    public void setItems(List<ItemModel> items) {
+        this.items = items;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -82,9 +90,11 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
         holder.textViewPrice.setText("$" + item.getPrice());
         holder.itemName = name;
         holder.isFavourite = isFavourite;
-        ListItemUtils.updateFavouriteButtonAppearance(isFavourite, holder.buttonFavouriteItem);
 
+        holder.updateFavouriteButton();
+        Log.d("DEBUG", Boolean.toString(isFavourite));
         Log.d("DEBUG", item.getImageUris().toString());
+
         ImageUtils.getImageBitmapAsync(item.getImageUris().get(0), new ImageUtils.BitmapCallback() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap) {
