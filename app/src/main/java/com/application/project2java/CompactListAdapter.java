@@ -28,7 +28,7 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        DataMutator dataMutator = new DataMutator(App.getAppContext());
+        DataMutator dataMutator = App.getDataMutator();
         TextView textViewName;
         TextView textViewPrice;
         ShapeableImageView imageView;
