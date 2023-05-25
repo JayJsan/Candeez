@@ -121,6 +121,17 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
         assertNull(result);
     }
 
+    @Test
+    public void testGetWithNameAndCategoryQuery(){
+        dataMutator.addData(defaultItem);
+        List<CategoryName> categories = new ArrayList<>();
+        categories.add(CategoryName.Gummies);
+        List<ItemModel> result = dataProvider.getItemsFromMultipleCategoriesWithName(categories, "es");
+        for (ItemModel i : result){
+            System.out.println(i.toString());
+        }
+        assertEquals(1, result.size());
+    }
 
 
 }

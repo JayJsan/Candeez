@@ -33,6 +33,7 @@ public class DataProvider extends AbstractDatabase {
                 int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
                 String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
                 String imageUris = cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE_URIS));
+                imageUris = imageUris.replaceAll(" ", "");
                 List<String> imageUriArray = Arrays.asList(imageUris.split(","));
                 CategoryName category = CategoryName.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_CATEGORY)));
                 String description = cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION));
@@ -97,6 +98,15 @@ public class DataProvider extends AbstractDatabase {
         String query = QueryUtils.formatQueryWithArray(categories.size(), QueryProvider.CATEGORY_ITEM_QUERY);
         String[] args = QueryUtils.joinCategories(categories);
         return searchData(query, args);
+    }
+
+    public List<ItemModel> getItemsFromMultipleCategoriesWithName(List<CategoryName> categories, String name) {
+        String[] categoryQueryArgs = QueryUtils.joinCategories(categories);
+        List<String> temp = new ArrayList<>(Arrays.asList(categoryQueryArgs));
+        temp.add("%" + name + "%");
+        String[] args = temp.toArray(temp.toArray(new String[0]));
+        return searchData(QueryProvider.ITEMS_LIKE_NAME_QUERY, args);
+
     }
 
     public int getCategoryItemFrequency(CategoryName category) {
