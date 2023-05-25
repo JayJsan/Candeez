@@ -1,6 +1,8 @@
 package com.application.project2java;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,7 +30,6 @@ public class MainActivity extends FragmentActivity {
 
         dataMutator = App.getDataMutator();
         dataMutator.addDatabaseWriteListener(this::updateItems);
-
         dataProvider = App.getDataProvider();
         setup();
     }
@@ -66,5 +67,10 @@ public class MainActivity extends FragmentActivity {
         mostViewedRecyclerView.setAdapter(mostViewedAdapter);
         LinearLayoutManager productLayoutManager = new LinearLayoutManager(this);
         mostViewedRecyclerView.setLayoutManager(productLayoutManager);
+    }
+
+    public void goToSearch(View view) {
+        Intent intent = new Intent(this, ListActivity.class);
+        this.startActivity(intent);
     }
 }
