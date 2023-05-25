@@ -33,7 +33,7 @@ public class ListActivity extends FragmentActivity {
     private List<ItemModel> filteredItems;
     private FilterAdapter filterAdapter;
     private ProductListAdapter productListAdapter;
-    private String searchQuery;
+    private String searchQuery = "";
 
     private void setupCategories() {
         categories.addAll(Arrays.asList(CategoryName.values()));
@@ -73,14 +73,10 @@ public class ListActivity extends FragmentActivity {
     }
 
     private void updateData() {
-        if (!selectedCategories.isEmpty()) {
-            dataProvider.open();
-            filteredItems = dataProvider.getItemsFromMultipleCategoriesWithName(selectedCategories, searchQuery);
-            dataProvider.close();
-            productListAdapter.setItems(filteredItems);
-        } else {
-            productListAdapter.setItems(items);
-        }
+        dataProvider.open();
+        filteredItems = dataProvider.getItemsFromMultipleCategoriesWithName(selectedCategories, searchQuery);
+        dataProvider.close();
+        productListAdapter.setItems(filteredItems);
     }
 
 
@@ -110,15 +106,7 @@ public class ListActivity extends FragmentActivity {
                 handler.removeCallbacks(runnable);
                 runnable = () -> {
                     searchQuery = searchArea.getText().toString();
-                    if (searchQuery.trim().equals("")) {
-                        updateData();
-                    } else {
-                        dataProvider.open();
-                        filteredItems = dataProvider.getItemsFromMultipleCategoriesWithName(selectedCategories, searchQuery);
-                        dataProvider.close();
-                        productListAdapter.setItems(filteredItems);
-                    }
-
+                    updateData();
                     Log.d("DEBUG", searchQuery);
                 };
                 handler.postDelayed(runnable, 300);
