@@ -4,7 +4,6 @@ package com.application.project2java;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,7 +37,17 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
         String name = category.toString();
         holder.categoryName = category;
         holder.getFilterButton().setText(name);
-        holder.itemView.setOnClickListener(v -> onSelectListener.onSelect(holder.categoryName));
+        holder.filterButton.setOnClickListener(v -> {
+            holder.isSelected = !holder.isSelected;
+            if (holder.isSelected) {
+                holder.filterButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primary));
+                holder.filterButton.setTextColor(ResourceUtils.getColorStateList(R.color.md_theme_light_onPrimary));
+            } else {
+                holder.filterButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primaryContainer));
+                holder.filterButton.setTextColor(ResourceUtils.getColorStateList(R.color.md_theme_light_onTertiaryContainer));
+            }
+            onSelectListener.onSelect(holder.categoryName, holder.isSelected);
+        });
 
     }
 
@@ -56,17 +65,6 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
         public ViewHolder(View v) {
             super(v);
             filterButton = v.findViewById(R.id.filter_button);
-            v.setOnClickListener(v1 -> {
-                isSelected = !isSelected;
-                if (isSelected) {
-                    filterButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primary));
-                    filterButton.setTextColor(ResourceUtils.getColorStateList(R.color.md_theme_light_onPrimary));
-                } else {
-                    filterButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primaryContainer));
-                    filterButton.setTextColor(ResourceUtils.getColorStateList(R.color.md_theme_light_onTertiaryContainer));
-                }
-
-            });
         }
 
         public MaterialButton getFilterButton() {
@@ -75,7 +73,7 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
     }
 
     public static interface OnSelectListener {
-        void onSelect(CategoryName categoryName);
+        void onSelect(CategoryName categoryName, boolean isSelected);
     }
 
 
