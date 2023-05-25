@@ -54,7 +54,7 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
         Log.d("DEBUG", Boolean.toString(isFavourite));
         Log.d("DEBUG", item.getImageUris().toString());
 
-        ImageUtils.getImageBitmapAsync(item.getImageUris().get(0), new ImageUtils.BitmapCallback() {
+        ResourceUtils.getImageBitmapAsync(item.getImageUris().get(0), new ResourceUtils.BitmapCallback() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap) {
                 holder.imageView.setImageBitmap(bitmap);

@@ -1,7 +1,6 @@
 package com.application.project2java;
 
 import android.graphics.Bitmap;
-import android.graphics.drawable.shapes.Shape;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +47,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         holder.textViewDescription.setText(item.getDescription());
         holder.itemName = name;
 
-        ImageUtils.getImageBitmapAsync(item.getImageUris().get(0), new ImageUtils.BitmapCallback() {
+        ResourceUtils.getImageBitmapAsync(item.getImageUris().get(0), new ResourceUtils.BitmapCallback() {
 
             @Override
             public void onBitmapLoaded(Bitmap bitmap) {

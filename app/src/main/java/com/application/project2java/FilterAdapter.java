@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
@@ -46,9 +47,21 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
         private final MaterialButton filterButton;
         CategoryName categoryName;
 
+        boolean isSelected;
+
         public ViewHolder(View v) {
             super(v);
             filterButton = v.findViewById(R.id.filter_button);
+            v.setOnClickListener(v1 -> {
+                isSelected = !isSelected;
+                if (isSelected){
+                    filterButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primary));
+                    filterButton.setTextColor(ResourceUtils.getColorStateList(R.color.md_theme_light_onPrimary));
+                } else {
+                    filterButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primaryContainer));
+                    filterButton.setTextColor(ResourceUtils.getColorStateList(R.color.md_theme_light_onTertiaryContainer));
+                }
+            });
         }
 
         public MaterialButton getFilterButton() {

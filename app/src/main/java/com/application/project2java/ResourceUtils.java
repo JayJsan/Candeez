@@ -1,9 +1,14 @@
 package com.application.project2java;
 
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
+
+import androidx.core.content.ContextCompat;
+
+import com.example.project2java.R;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -11,7 +16,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class ImageUtils {
+public class ResourceUtils {
     //https://stackoverflow.com/questions/3870638/how-to-use-setimageuri-on-android/
     public static void getImageBitmapAsync(String url, final BitmapCallback callback) {
         Handler handler = new Handler(Looper.getMainLooper());
@@ -42,6 +47,10 @@ public class ImageUtils {
         void onBitmapLoaded(Bitmap bitmap);
 
         void onBitmapFailed(Exception e);
+    }
+
+    public static ColorStateList getColorStateList(int resourceId){
+        return ContextCompat.getColorStateList(App.getAppContext(), resourceId);
     }
 }
 
