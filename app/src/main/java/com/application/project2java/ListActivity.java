@@ -26,7 +26,7 @@ import java.util.List;
 public class ListActivity extends FragmentActivity {
 
     private final List<CategoryName> categories = new ArrayList<>();
-    private List<CategoryName> selectedCategories = new ArrayList<>();
+    private final List<CategoryName> selectedCategories = new ArrayList<>();
     private Handler handler;
     private DataProvider dataProvider;
     private List<ItemModel> items;
@@ -110,7 +110,7 @@ public class ListActivity extends FragmentActivity {
                 handler.removeCallbacks(runnable);
                 runnable = () -> {
                     String searchQuery = searchArea.getText().toString();
-                    if(searchQuery.trim().equals("")){
+                    if (searchQuery.trim().equals("")) {
                         updateData();
                     } else {
                         dataProvider.open();

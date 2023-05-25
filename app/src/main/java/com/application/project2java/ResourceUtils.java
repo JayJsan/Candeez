@@ -8,8 +8,6 @@ import android.os.Looper;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.project2java.R;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,15 +40,15 @@ public class ResourceUtils {
         thread.start();
     }
 
+    public static ColorStateList getColorStateList(int resourceId) {
+        return ContextCompat.getColorStateList(App.getAppContext(), resourceId);
+    }
+
     // Define an interface to handle the bitmap retrieval result
     public interface BitmapCallback {
         void onBitmapLoaded(Bitmap bitmap);
 
         void onBitmapFailed(Exception e);
-    }
-
-    public static ColorStateList getColorStateList(int resourceId){
-        return ContextCompat.getColorStateList(App.getAppContext(), resourceId);
     }
 }
 

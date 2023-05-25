@@ -21,9 +21,9 @@ import java.util.List;
  */
 public class CategoryRecyclerView extends Fragment {
 
+    private final List<Category> categories = new ArrayList<>();
     protected CategoryAdapter adapter;
     protected RecyclerView recyclerView;
-    private final List<Category> categories = new ArrayList<>();
 
     public static CategoryRecyclerView newInstance(String param1, String param2) {
         CategoryRecyclerView fragment = new CategoryRecyclerView();
@@ -55,7 +55,7 @@ public class CategoryRecyclerView extends Fragment {
                              Bundle savedInstanceState) {
         setupCategories();
         View rootView = inflater.inflate(R.layout.fragment_category_recycler_view, container, false);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.category_recycler_view);
+        recyclerView = rootView.findViewById(R.id.category_recycler_view);
         adapter = new CategoryAdapter(categories);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());

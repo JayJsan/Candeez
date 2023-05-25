@@ -54,7 +54,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             super(v);
             // Define click listener for the ViewHolder's View.
             v.setOnClickListener(v1 -> Log.d(TAG, "Element " + getAdapterPosition() + " clicked."));
-            cardView = (CardView) v.findViewById(R.id.category_list_item);
+            cardView = v.findViewById(R.id.category_list_item);
             textViewName = v.findViewById(R.id.category_name);
             textViewQty = v.findViewById(R.id.category_qty);
         }

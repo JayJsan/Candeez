@@ -5,8 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 public abstract class AbstractDatabase {
 
-    SQLiteDatabase db;
     private final DatabaseHelper dbHelper;
+    SQLiteDatabase db;
 
     public AbstractDatabase(Context context) {
         dbHelper = new DatabaseHelper(context);

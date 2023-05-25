@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 public class ItemModel {
-    private int id;
     private final List<String> imageUris;
     private final int price;
     private final int viewCount;
@@ -14,6 +13,7 @@ public class ItemModel {
     private final int cartQuantity;
     private final String description;
     private final String name;
+    private int id;
 
     public ItemModel(String name, String description, int price, CategoryName category, List<String> imageUris, int viewCount, boolean isFavourite, int cartQuantity) {
         this.price = price;

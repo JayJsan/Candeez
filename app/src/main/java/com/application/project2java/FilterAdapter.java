@@ -56,6 +56,10 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
         return categories.size();
     }
 
+    public interface OnSelectListener {
+        void onSelect(CategoryName categoryName, boolean isSelected);
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final MaterialButton filterButton;
         CategoryName categoryName;
@@ -70,10 +74,6 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
         public MaterialButton getFilterButton() {
             return filterButton;
         }
-    }
-
-    public static interface OnSelectListener {
-        void onSelect(CategoryName categoryName, boolean isSelected);
     }
 
 
