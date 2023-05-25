@@ -32,7 +32,9 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CategoryName category = categories.get(position);
         String name = category.toString();
+        holder.categoryName = category;
         holder.getFilterButton().setText(name);
+
     }
 
     @Override
@@ -42,6 +44,7 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final MaterialButton filterButton;
+        CategoryName categoryName;
 
         public ViewHolder(View v) {
             super(v);

@@ -77,7 +77,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         TextView textViewName;
         TextView textViewDescription;
         TextView textViewPrice;
-
         ShapeableImageView imageView;
 
         public ViewHolder(View v) {

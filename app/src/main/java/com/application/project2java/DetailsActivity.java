@@ -35,10 +35,12 @@ public class DetailsActivity extends FragmentActivity {
 
     private void setDetails() {
         if (item == null) return;
-        TextView heading = this.findViewById(R.id.item_title);
+        TextView heading = this.findViewById(R.id.product_header);
+        TextView title = this.findViewById(R.id.item_title);
         TextView details = this.findViewById(R.id.item_description);
         TextView price = this.findViewById(R.id.item_price);
         heading.setText(item.getName());
+        title.setText(item.getName());
         details.setText(item.getDescription());
         price.setText("$" + item.getPrice());
     }
