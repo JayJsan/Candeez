@@ -3,6 +3,10 @@ package com.application.project2java;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
@@ -23,8 +27,8 @@ public class ListActivity extends FragmentActivity {
 
     private final List<CategoryName> categories = new ArrayList<>();
     private List<CategoryName> selectedCategories = new ArrayList<>();
+    private Handler handler;
     private DataProvider dataProvider;
-    private DataMutator dataMutator;
     private List<ItemModel> items;
     private List<ItemModel> filteredItems;
     private FilterAdapter filterAdapter;
@@ -78,31 +82,58 @@ public class ListActivity extends FragmentActivity {
     }
 
     private void setUpSearchBar() {
-        EditText searchArea = this.findViewById(R.id.edit_search_area);
+        EditText searchArea = this.findViewById(R.id.search_area);
         searchArea.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
                 hideKeyboard(v);
             }
         });
-        View rootView = findViewById(android.R.id.content);
 
-        rootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            private int mPreviousHeight = rootView.getHeight();
+        handler = new Handler();
+
+        searchArea.addTextChangedListener(new TextWatcher() {
+            private Runnable runnable;
 
             @Override
-            public void onGlobalLayout() {
-                int newHeight = rootView.getHeight();
-                if (newHeight != mPreviousHeight) {
-                    boolean isKeyboardOpen = newHeight < mPreviousHeight;
-                    if (isKeyboardOpen) {
-                        growSearch();
-                    } else {
-                        shrinkSearch();
-                    }
-                    mPreviousHeight = newHeight;
-                }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                handler.removeCallbacks(runnable);
+                runnable = () -> {
+                    String searchQuery = searchArea.getText().toString();
+                    Log.d("DEBUG", searchQuery);
+                };
+                handler.postDelayed(runnable, 300);
             }
         });
+
+        View rootView = findViewById(android.R.id.content);
+
+        rootView.getViewTreeObserver().
+
+                addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    private int mPreviousHeight = rootView.getHeight();
+
+                    @Override
+                    public void onGlobalLayout() {
+                        int newHeight = rootView.getHeight();
+                        if (newHeight != mPreviousHeight) {
+                            boolean isKeyboardOpen = newHeight < mPreviousHeight;
+                            if (isKeyboardOpen) {
+                                growSearch();
+                            } else {
+                                shrinkSearch();
+                            }
+                            mPreviousHeight = newHeight;
+                        }
+                    }
+                });
     }
 
     private void setupProductRecyclerView() {
