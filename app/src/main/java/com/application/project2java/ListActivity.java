@@ -69,6 +69,10 @@ public class ListActivity extends FragmentActivity {
         else
             selectedCategories.remove(categoryName);
 
+        updateData();
+    }
+
+    private void updateData() {
         if (!selectedCategories.isEmpty()) {
             dataProvider.open();
             filteredItems = dataProvider.getItemsFromMultipleCategories(selectedCategories);
@@ -77,9 +81,8 @@ public class ListActivity extends FragmentActivity {
         } else {
             productListAdapter.setItems(items);
         }
-
-
     }
+
 
     private void setUpSearchBar() {
         EditText searchArea = this.findViewById(R.id.search_area);
@@ -107,6 +110,15 @@ public class ListActivity extends FragmentActivity {
                 handler.removeCallbacks(runnable);
                 runnable = () -> {
                     String searchQuery = searchArea.getText().toString();
+                    if(searchQuery.trim().equals("")){
+                        updateData();
+                    } else {
+                        dataProvider.open();
+                        filteredItems = dataProvider.getItemsFromMultipleCategoriesWithName(selectedCategories, searchQuery);
+                        dataProvider.close();
+                        productListAdapter.setItems(filteredItems);
+                    }
+
                     Log.d("DEBUG", searchQuery);
                 };
                 handler.postDelayed(runnable, 300);

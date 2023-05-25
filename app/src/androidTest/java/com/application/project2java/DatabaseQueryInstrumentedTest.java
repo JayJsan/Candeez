@@ -131,6 +131,11 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
             System.out.println(i.toString());
         }
         assertEquals(1, result.size());
+        categories.remove(0);
+
+        result = dataProvider.getItemsFromMultipleCategoriesWithName(categories, "es");
+        assertEquals(1, result.size());
+
     }
 
 

@@ -101,11 +101,20 @@ public class DataProvider extends AbstractDatabase {
     }
 
     public List<ItemModel> getItemsFromMultipleCategoriesWithName(List<CategoryName> categories, String name) {
-        String[] categoryQueryArgs = QueryUtils.joinCategories(categories);
-        List<String> temp = new ArrayList<>(Arrays.asList(categoryQueryArgs));
-        temp.add("%" + name + "%");
-        String[] args = temp.toArray(temp.toArray(new String[0]));
-        return searchData(QueryProvider.ITEMS_LIKE_NAME_QUERY, args);
+        String query;
+        String[] args ;
+        String nameClause = "%" + name + "%";
+        if (categories.size() > 0){
+            String[] categoryQueryArgs = QueryUtils.joinCategories(categories);
+            List<String> temp = new ArrayList<>(Arrays.asList(categoryQueryArgs));
+            temp.add(nameClause);
+            args = temp.toArray(temp.toArray(new String[0]));
+            query = QueryProvider.ITEMS_LIKE_NAME_IN_CATEGORIES_QUERY;
+        } else {
+            query = QueryProvider.ITEMS_LIKE_NAME_QUERY;
+            args = new String[]{nameClause};
+        }
+        return searchData(query, args);
 
     }
 
