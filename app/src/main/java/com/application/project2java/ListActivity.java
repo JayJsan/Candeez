@@ -58,14 +58,14 @@ public class ListActivity extends FragmentActivity {
         filterRecyclerView.setLayoutManager(layoutManager);
     }
 
-    private void updateFilters(CategoryName categoryName, boolean isSelected){
+    private void updateFilters(CategoryName categoryName, boolean isSelected) {
 
         if (isSelected)
             selectedCategories.add(categoryName);
         else
             selectedCategories.remove(categoryName);
 
-        if(!selectedCategories.isEmpty()){
+        if (!selectedCategories.isEmpty()) {
             dataProvider.open();
             filteredItems = dataProvider.getItemsFromMultipleCategories(selectedCategories);
             dataProvider.close();

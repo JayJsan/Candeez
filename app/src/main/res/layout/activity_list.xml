@@ -80,7 +80,9 @@
                                 android:paddingEnd="0dp"
                                 android:paddingRight="0dp"
                                 android:paddingBottom="0dp"
-                                android:text="Name"
+                                android:hint="Type Something"
+                                android:textColorHint="@color/md_theme_light_primaryFixed"
+
                                 android:textColor="@color/md_theme_light_primaryFixed"
                                 android:textSize="40dp"
                                 android:textStyle="bold"
