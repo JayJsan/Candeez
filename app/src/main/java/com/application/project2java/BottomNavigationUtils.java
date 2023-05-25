@@ -42,6 +42,7 @@ public class BottomNavigationUtils {
     private static void navigateToDestination(FragmentActivity activity, Class<?> destinationClass, int itemId) {
         Intent intent = new Intent(activity, destinationClass);
         activity.startActivity(intent);
+        activity.finish();
     }
 
     public static void setCurrentItem(FragmentActivity activity) {
