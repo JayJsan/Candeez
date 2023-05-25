@@ -1,14 +1,20 @@
 package com.application.project2java;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.shapes.Shape;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 
@@ -39,6 +45,24 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         holder.textViewPrice.setText("$" + item.getPrice());
         holder.textViewName.setText(item.getName());
         holder.textViewDescription.setText(item.getDescription());
+
+        ImageUtils.getImageBitmapAsync(item.getImageUris().get(0), new ImageUtils.BitmapCallback() {
+
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap) {
+                holder.imageView.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onBitmapFailed(Exception e) {
+                holder.imageView.setImageResource(R.drawable.baseline_image_not_supported_24);
+                DrawableCompat.setTint(
+                        DrawableCompat.wrap(holder.imageView.getDrawable()),
+                        ContextCompat.getColor(App.getAppContext(), R.color.md_theme_light_primaryContainer)
+                );
+                Log.d("DEBUG", e.getLocalizedMessage());
+            }
+        });
     }
 
     @Override
@@ -51,6 +75,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         TextView textViewDescription;
         TextView textViewPrice;
 
+        ShapeableImageView imageView;
+
         public ViewHolder(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
@@ -62,6 +88,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             textViewName = v.findViewById(R.id.product_name);
             textViewDescription = v.findViewById(R.id.product_description);
             textViewPrice = v.findViewById(R.id.product_price);
+            imageView = v.findViewById(R.id.product_image);
         }
 
     }
