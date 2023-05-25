@@ -34,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_IS_FAVOURITE + " SMALLINT, "
             + COLUMN_CART_QUANTITY + " SMALLINT, "
             + COLUMN_VIEW_COUNT + " SMALLINT)";
-    private Context context;
+    private final Context context;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

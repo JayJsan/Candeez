@@ -6,14 +6,14 @@ import java.util.List;
 
 public class ItemModel {
     private int id;
-    private List<String> imageUris;
-    private int price;
-    private int viewCount;
-    private CategoryName category;
-    private boolean isFavourite;
-    private int cartQuantity;
-    private String description;
-    private String name;
+    private final List<String> imageUris;
+    private final int price;
+    private final int viewCount;
+    private final CategoryName category;
+    private final boolean isFavourite;
+    private final int cartQuantity;
+    private final String description;
+    private final String name;
 
     public ItemModel(String name, String description, int price, CategoryName category, List<String> imageUris, int viewCount, boolean isFavourite, int cartQuantity) {
         this.price = price;
@@ -58,30 +58,29 @@ public class ItemModel {
         return imageUris;
     }
 
-    public String getCategory(){
+    public String getCategory() {
         return category.toString();
     }
 
     @NonNull
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("");
-        sb.append("Name: ")
-                .append(getName())
-                .append(" Description: ")
-                .append(getDescription())
-                .append("\nPrice: ")
-                .append(getPrice())
-                .append("\nCategory: ")
-                .append(getCategory())
-                .append("\nView Count: ")
-                .append(getViewCount())
-                .append("\nFavourite?: ")
-                .append(isFavourite())
-                .append("\nQuantity in cart: ")
-                .append(getCartQuantity())
-                .append("\nImage URIs: ")
-                .append(getImageUris());
-        return sb.toString();
+        String sb = "Name: " +
+                getName() +
+                " Description: " +
+                getDescription() +
+                "\nPrice: " +
+                getPrice() +
+                "\nCategory: " +
+                getCategory() +
+                "\nView Count: " +
+                getViewCount() +
+                "\nFavourite?: " +
+                isFavourite() +
+                "\nQuantity in cart: " +
+                getCartQuantity() +
+                "\nImage URIs: " +
+                getImageUris();
+        return sb;
     }
 }

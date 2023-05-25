@@ -8,11 +8,11 @@ import java.util.List;
 
 public class DataMutator extends AbstractDatabase {
 
+    private final List<DatabaseWriteListener> writeListeners = new ArrayList<>();
+
     public DataMutator(Context context) {
         super(context);
     }
-
-    private List<DatabaseWriteListener> writeListeners = new ArrayList<>();
 
     public void addDatabaseWriteListener(DatabaseWriteListener listener) {
         writeListeners.add(listener);
@@ -27,6 +27,7 @@ public class DataMutator extends AbstractDatabase {
             listener.onDatabaseWrite();
         }
     }
+
     public long addData(ItemModel item) {
         ContentValues values = new ContentValues();
         values.put(ItemContract.ItemEntry.COLUMN_NAME, item.getName());

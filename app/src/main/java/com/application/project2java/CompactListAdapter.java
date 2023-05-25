@@ -27,47 +27,6 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
         this.items = items;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        DataMutator dataMutator = App.getDataMutator();
-        TextView textViewName;
-        TextView textViewPrice;
-        ShapeableImageView imageView;
-        MaterialButton buttonViewItem;
-        MaterialButton buttonFavouriteItem;
-        String itemName;
-        boolean isFavourite;
-
-        public ViewHolder(View v) {
-            super(v);
-            imageView = v.findViewById(R.id.compact_item_image);
-            textViewName = v.findViewById(R.id.compact_item_name);
-            textViewPrice = v.findViewById(R.id.compact_item_price);
-            v.setOnClickListener(v1 -> {
-                ListItemUtils.navigateToDetails(itemName);
-            });
-            buttonViewItem = v.findViewById(R.id.compact_button_view_item);
-            buttonViewItem.setOnClickListener(v1 -> {
-                ListItemUtils.navigateToDetails(itemName);
-            });
-
-            buttonFavouriteItem = v.findViewById(R.id.compact_favourite_button);
-            buttonFavouriteItem.setOnClickListener(v1 -> {
-                // change favourites id to the opposite of current state
-                // i.e. ---> isFavourite = 1 => isFavourite = 0
-                //      ---> isFavourite = 0 => isFavourite = 1
-                dataMutator.open();
-                dataMutator.updateItemFavouriteStatus(itemName, !isFavourite);
-                dataMutator.close();
-            });
-
-        }
-
-        public void updateFavouriteButton() {
-            ListItemUtils.updateFavouriteButtonAppearance(isFavourite, buttonFavouriteItem);
-        }
-
-    }
-
     public void setItems(List<ItemModel> items) {
         this.items = items;
         notifyDataSetChanged();
@@ -113,9 +72,49 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
         });
     }
 
-
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        DataMutator dataMutator = App.getDataMutator();
+        TextView textViewName;
+        TextView textViewPrice;
+        ShapeableImageView imageView;
+        MaterialButton buttonViewItem;
+        MaterialButton buttonFavouriteItem;
+        String itemName;
+        boolean isFavourite;
+
+        public ViewHolder(View v) {
+            super(v);
+            imageView = v.findViewById(R.id.compact_item_image);
+            textViewName = v.findViewById(R.id.compact_item_name);
+            textViewPrice = v.findViewById(R.id.compact_item_price);
+            v.setOnClickListener(v1 -> {
+                ListItemUtils.navigateToDetails(itemName);
+            });
+            buttonViewItem = v.findViewById(R.id.compact_button_view_item);
+            buttonViewItem.setOnClickListener(v1 -> {
+                ListItemUtils.navigateToDetails(itemName);
+            });
+
+            buttonFavouriteItem = v.findViewById(R.id.compact_favourite_button);
+            buttonFavouriteItem.setOnClickListener(v1 -> {
+                // change favourites id to the opposite of current state
+                // i.e. ---> isFavourite = 1 => isFavourite = 0
+                //      ---> isFavourite = 0 => isFavourite = 1
+                dataMutator.open();
+                dataMutator.updateItemFavouriteStatus(itemName, !isFavourite);
+                dataMutator.close();
+            });
+
+        }
+
+        public void updateFavouriteButton() {
+            ListItemUtils.updateFavouriteButtonAppearance(isFavourite, buttonFavouriteItem);
+        }
+
     }
 }

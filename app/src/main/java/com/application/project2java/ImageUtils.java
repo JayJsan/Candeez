@@ -12,13 +12,6 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class ImageUtils {
-    // Define an interface to handle the bitmap retrieval result
-    public interface BitmapCallback {
-        void onBitmapLoaded(Bitmap bitmap);
-
-        void onBitmapFailed(Exception e);
-    }
-
     //https://stackoverflow.com/questions/3870638/how-to-use-setimageuri-on-android/
     public static void getImageBitmapAsync(String url, final BitmapCallback callback) {
         Handler handler = new Handler(Looper.getMainLooper());
@@ -42,6 +35,13 @@ public class ImageUtils {
             handler.post(() -> callback.onBitmapLoaded(finalBitmap));
         });
         thread.start();
+    }
+
+    // Define an interface to handle the bitmap retrieval result
+    public interface BitmapCallback {
+        void onBitmapLoaded(Bitmap bitmap);
+
+        void onBitmapFailed(Exception e);
     }
 }
 

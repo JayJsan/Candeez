@@ -14,23 +14,10 @@ import com.google.android.material.button.MaterialButton;
 import java.util.List;
 
 public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder> {
-    private List<CategoryName> categories;
+    private final List<CategoryName> categories;
 
     public FilterAdapter(List<CategoryName> categories) {
         this.categories = categories;
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final MaterialButton filterButton;
-
-        public ViewHolder(View v) {
-            super(v);
-            filterButton = v.findViewById(R.id.filter_button);
-        }
-
-        public MaterialButton getFilterButton() {
-            return filterButton;
-        }
     }
 
     @NonNull
@@ -48,10 +35,22 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
         holder.getFilterButton().setText(name);
     }
 
-
     @Override
     public int getItemCount() {
         return categories.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private final MaterialButton filterButton;
+
+        public ViewHolder(View v) {
+            super(v);
+            filterButton = v.findViewById(R.id.filter_button);
+        }
+
+        public MaterialButton getFilterButton() {
+            return filterButton;
+        }
     }
 
 

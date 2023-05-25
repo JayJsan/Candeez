@@ -8,15 +8,6 @@ public class App extends Application {
     private static DataProvider dataProvider;
     private static DataMutator dataMutator;
 
-    public void onCreate() {
-        super.onCreate();
-        App.context = getApplicationContext();
-        DatabaseHelper databaseHelper = new DatabaseHelper(context);
-        databaseHelper.copyDatabase();
-        dataProvider = new DataProvider(context);
-        dataMutator = new DataMutator(context);
-    }
-
     public static Context getAppContext() {
         return App.context;
     }
@@ -27,6 +18,15 @@ public class App extends Application {
 
     public static DataMutator getDataMutator() {
         return dataMutator;
+    }
+
+    public void onCreate() {
+        super.onCreate();
+        App.context = getApplicationContext();
+        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        databaseHelper.copyDatabase();
+        dataProvider = new DataProvider(context);
+        dataMutator = new DataMutator(context);
     }
 
 }

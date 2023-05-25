@@ -17,29 +17,10 @@ import com.example.project2java.R;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
-    private List<Category> categories;
+    private final List<Category> categories;
 
     public CategoryAdapter(List<Category> categories) {
         this.categories = categories;
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final CardView cardView;
-        TextView textViewName;
-        TextView textViewQty;
-
-        public ViewHolder(View v) {
-            super(v);
-            // Define click listener for the ViewHolder's View.
-            v.setOnClickListener(v1 -> Log.d(TAG, "Element " + getAdapterPosition() + " clicked."));
-            cardView = (CardView) v.findViewById(R.id.category_list_item);
-            textViewName = v.findViewById(R.id.category_name);
-            textViewQty = v.findViewById(R.id.category_qty);
-        }
-
-        public CardView getCardView() {
-            return cardView;
-        }
     }
 
     @NonNull
@@ -62,5 +43,24 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public int getItemCount() {
         return categories.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private final CardView cardView;
+        TextView textViewName;
+        TextView textViewQty;
+
+        public ViewHolder(View v) {
+            super(v);
+            // Define click listener for the ViewHolder's View.
+            v.setOnClickListener(v1 -> Log.d(TAG, "Element " + getAdapterPosition() + " clicked."));
+            cardView = (CardView) v.findViewById(R.id.category_list_item);
+            textViewName = v.findViewById(R.id.category_name);
+            textViewQty = v.findViewById(R.id.category_qty);
+        }
+
+        public CardView getCardView() {
+            return cardView;
+        }
     }
 }

@@ -1,7 +1,6 @@
 package com.application.project2java;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;

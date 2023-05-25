@@ -23,7 +23,14 @@ public class CategoryRecyclerView extends Fragment {
 
     protected CategoryAdapter adapter;
     protected RecyclerView recyclerView;
-    private List<Category> categories = new ArrayList<>();
+    private final List<Category> categories = new ArrayList<>();
+
+    public static CategoryRecyclerView newInstance(String param1, String param2) {
+        CategoryRecyclerView fragment = new CategoryRecyclerView();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     private void setupCategories() {
         DataProvider dataProvider = App.getDataProvider();
@@ -34,14 +41,6 @@ public class CategoryRecyclerView extends Fragment {
         }
         dataProvider.close();
 
-    }
-
-
-    public static CategoryRecyclerView newInstance(String param1, String param2) {
-        CategoryRecyclerView fragment = new CategoryRecyclerView();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override

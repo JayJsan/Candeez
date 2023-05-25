@@ -16,7 +16,7 @@ public class ListItemUtils {
         }
     }
 
-    public static void navigateToDetails(String name){
+    public static void navigateToDetails(String name) {
         Intent intent = new Intent(App.getAppContext(), DetailsActivity.class);
         intent.putExtra("name", name);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);

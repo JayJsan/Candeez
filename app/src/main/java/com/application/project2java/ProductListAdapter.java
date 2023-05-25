@@ -10,9 +10,40 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
 
-public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder>{
+import java.util.List;
 
-    public ProductListAdapter(){
+public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder> {
+    private List<ItemModel> items;
+
+    public ProductListAdapter(List<ItemModel> items) {
+        this.items = items;
+    }
+
+    public void setItems(List<ItemModel> items) {
+        this.items = items;
+        notifyDataSetChanged();
+    }
+
+    @NonNull
+    @Override
+    public ProductListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.product_list_item, parent, false);
+        return new ViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ProductListAdapter.ViewHolder holder, int position) {
+        ItemModel item = items.get(position);
+
+        holder.textViewPrice.setText("$" + item.getPrice());
+        holder.textViewName.setText(item.getName());
+        holder.textViewDescription.setText(item.getDescription());
+    }
+
+    @Override
+    public int getItemCount() {
+        return items.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -33,21 +64,5 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             textViewPrice = v.findViewById(R.id.product_price);
         }
 
-    }
-    @NonNull
-    @Override
-    public ProductListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.product_list_item, parent, false);
-        return new ViewHolder(v);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ProductListAdapter.ViewHolder holder, int position) {
-    }
-
-    @Override
-    public int getItemCount() {
-        return 10;
     }
 }
