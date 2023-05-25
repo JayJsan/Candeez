@@ -103,7 +103,7 @@ public class DataProvider extends AbstractDatabase {
     public List<ItemModel> getItemsFromMultipleCategoriesWithName(List<CategoryName> categories, String name) {
         String query;
         String[] args;
-        String nameClause = name != "" ?  "%" + name + "%" : "%";
+        String nameClause = name != "" ?  name + "%" : "%";
         if (categories.size() > 0) {
             String[] categoryQueryArgs = QueryUtils.joinCategories(categories);
 

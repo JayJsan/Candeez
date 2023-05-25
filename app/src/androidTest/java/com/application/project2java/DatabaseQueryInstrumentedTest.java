@@ -126,7 +126,7 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
         dataMutator.addData(defaultItem);
         List<CategoryName> categories = new ArrayList<>();
         categories.add(CategoryName.Gummies);
-        List<ItemModel> result = dataProvider.getItemsFromMultipleCategoriesWithName(categories, "es");
+        List<ItemModel> result = dataProvider.getItemsFromMultipleCategoriesWithName(categories, "te");
         for (ItemModel i : result){
             System.out.println(i.toString());
         }
@@ -134,7 +134,7 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
         categories.remove(0);
 
         result = dataProvider.getItemsFromMultipleCategoriesWithName(categories, "es");
-        assertEquals(1, result.size());
+        assertEquals(0, result.size());
 
     }
 
