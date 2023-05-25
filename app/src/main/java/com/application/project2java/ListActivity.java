@@ -33,7 +33,7 @@ public class ListActivity extends FragmentActivity {
     private List<ItemModel> filteredItems;
     private FilterAdapter filterAdapter;
     private ProductListAdapter productListAdapter;
-    private boolean isSearching;
+    private String searchQuery;
 
     private void setupCategories() {
         categories.addAll(Arrays.asList(CategoryName.values()));
@@ -75,7 +75,7 @@ public class ListActivity extends FragmentActivity {
     private void updateData() {
         if (!selectedCategories.isEmpty()) {
             dataProvider.open();
-            filteredItems = dataProvider.getItemsFromMultipleCategories(selectedCategories);
+            filteredItems = dataProvider.getItemsFromMultipleCategoriesWithName(selectedCategories, searchQuery);
             dataProvider.close();
             productListAdapter.setItems(filteredItems);
         } else {
@@ -109,7 +109,7 @@ public class ListActivity extends FragmentActivity {
             public void afterTextChanged(Editable editable) {
                 handler.removeCallbacks(runnable);
                 runnable = () -> {
-                    String searchQuery = searchArea.getText().toString();
+                    searchQuery = searchArea.getText().toString();
                     if (searchQuery.trim().equals("")) {
                         updateData();
                     } else {
