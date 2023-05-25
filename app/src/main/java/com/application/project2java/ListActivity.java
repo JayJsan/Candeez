@@ -22,6 +22,7 @@ import java.util.List;
 public class ListActivity extends FragmentActivity {
 
     private final List<CategoryName> categories = new ArrayList<>();
+    private List<CategoryName> selectedCategories = new ArrayList<>();
     private DataProvider dataProvider;
     private DataMutator dataMutator;
     private List<ItemModel> items;
@@ -50,13 +51,22 @@ public class ListActivity extends FragmentActivity {
 
     private void setupFilterRecyclerView() {
         RecyclerView filterRecyclerView = this.findViewById(R.id.filter_recycler_view);
-        filterAdapter = new FilterAdapter(categories);
+        filterAdapter = new FilterAdapter(categories, this::updateFilters);
         filterRecyclerView.setAdapter(filterAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         filterRecyclerView.setLayoutManager(layoutManager);
     }
 
+    private void updateFilters(CategoryName categoryName){
+
+        selectedCategories.add(categoryName);
+        dataProvider.open();
+        filteredItems = dataProvider.getItemsFromMultipleCategories(selectedCategories);
+        dataProvider.close();
+        productListAdapter.setItems(filteredItems);
+
+    }
 
     private void setUpSearchBar() {
         EditText searchArea = this.findViewById(R.id.edit_search_area);
