@@ -41,10 +41,12 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ProductListAdapter.ViewHolder holder, int position) {
         ItemModel item = items.get(position);
+        String name = item.getName();
 
         holder.textViewPrice.setText("$" + item.getPrice());
-        holder.textViewName.setText(item.getName());
+        holder.textViewName.setText(name);
         holder.textViewDescription.setText(item.getDescription());
+        holder.itemName = name;
 
         ImageUtils.getImageBitmapAsync(item.getImageUris().get(0), new ImageUtils.BitmapCallback() {
 
@@ -71,6 +73,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        String itemName;
         TextView textViewName;
         TextView textViewDescription;
         TextView textViewPrice;
@@ -80,11 +83,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         public ViewHolder(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                }
-            });
+            v.setOnClickListener(v1 -> ListItemUtils.navigateToDetails(itemName));
             textViewName = v.findViewById(R.id.product_name);
             textViewDescription = v.findViewById(R.id.product_description);
             textViewPrice = v.findViewById(R.id.product_price);
