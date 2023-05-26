@@ -1,11 +1,10 @@
 package com.application.project2java;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
 
 import com.example.project2java.R;
 
@@ -23,18 +22,31 @@ public class CartActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        RecyclerView cartRecyclerView = findViewById(R.id.cart_recycler_view);
+
         dataProvider = App.getDataProvider();
+        dataMutator = App.getDataMutator();
+        dataMutator.addDatabaseWriteListener(this::updateData);
+        setupCartRecyclerView();
+
+        BottomNavigationUtils.setupBottomNavigationView(this);
+        BottomNavigationUtils.setCurrentItem(this);
+    }
+
+    private void updateData() {
         dataProvider.open();
-        items = dataProvider.getAllItems();
+        items = dataProvider.getCartItems();
+        cartAdapter.setItems(items);
+        dataProvider.close();
+    }
+
+    private void setupCartRecyclerView() {
+        RecyclerView cartRecyclerView = findViewById(R.id.cart_recycler_view);
+        dataProvider.open();
+        items = dataProvider.getCartItems();
         dataProvider.close();
         cartAdapter = new CartAdapter(items);
         cartRecyclerView.setAdapter(cartAdapter);
         LinearLayoutManager cartLayoutManager = new LinearLayoutManager(this);
         cartRecyclerView.setLayoutManager(cartLayoutManager);
-
-
-        BottomNavigationUtils.setupBottomNavigationView(this);
-        BottomNavigationUtils.setCurrentItem(this);
     }
 }

@@ -14,6 +14,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
@@ -72,7 +73,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        MaterialButton buttonRemoveItem;
         String itemName;
+        int quantity;
         TextView textViewName;
         TextView textViewPrice;
         ShapeableImageView imageView;
@@ -84,6 +87,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             textViewName = v.findViewById(R.id.product_name);
             textViewPrice = v.findViewById(R.id.product_price);
             imageView = v.findViewById(R.id.image_cart_item);
+            buttonRemoveItem = v.findViewById(R.id.button_remove_item);
+
+            buttonRemoveItem.setOnClickListener(v1 -> {
+                DataMutator dataMutator = App.getDataMutator();
+                dataMutator.open();
+                dataMutator.updateItemCartStatus(itemName, 0);
+                dataMutator.close();
+            });
         }
 
     }
