@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/icon_no_search_results"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/emoticon_sad_outline"
+            app:tint="@color/md_theme_light_outlineVariant" />
+
+        <TextView
+            android:id="@+id/text_no_search_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No items found!"
+            android:textAlignment="center"
+            android:textColor="@color/md_theme_light_outlineVariant"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_no_search_results_subheading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Try changing your filters or search terms"
+            android:textAlignment="center"
+            android:textColor="@color/md_theme_light_outlineVariant"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
