@@ -1,10 +1,12 @@
 package com.application.project2java;
 
 public class Category {
-    private CategoryName category;
-    private int frequency;
+    private final String imageUri;
+    private final CategoryName category;
+    private final int frequency;
 
-    public Category(CategoryName category, int frequency) {
+    public Category(String imageUri, CategoryName category, int frequency) {
+        this.imageUri = imageUri;
         this.category = category;
         this.frequency = frequency;
     }

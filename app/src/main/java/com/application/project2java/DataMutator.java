@@ -1,25 +1,31 @@
 package com.application.project2java;
 
-import com.application.project2java.ItemContract.ItemEntry.*;
-
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
-public class DataMutator {
-    private DatabaseHelper dbHelper;
-    SQLiteDatabase db;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DataMutator extends AbstractDatabase {
+
+    private final List<DatabaseWriteListener> writeListeners = new ArrayList<>();
 
     public DataMutator(Context context) {
-        dbHelper = new DatabaseHelper(context);
+        super(context);
     }
 
-    public void open() {
-        db = dbHelper.getWritableDatabase();
+    public void addDatabaseWriteListener(DatabaseWriteListener listener) {
+        writeListeners.add(listener);
     }
 
-    public void close() {
-        dbHelper.close();
+    public void removeDatabaseWriteListener(DatabaseWriteListener listener) {
+        writeListeners.remove(listener);
+    }
+
+    private void notifyDatabaseWrite() {
+        for (DatabaseWriteListener listener : writeListeners) {
+            listener.onDatabaseWrite();
+        }
     }
 
     public long addData(ItemModel item) {
@@ -52,7 +58,9 @@ public class DataMutator {
     private int updateAtName(String name, ContentValues values) {
         String whereClause = ItemContract.ItemEntry.COLUMN_NAME + " = ?";
         String[] whereArgs = {name};
-        return db.update(ItemContract.ItemTable.TABLE_NAME, values, whereClause, whereArgs);
+        int result = db.update(ItemContract.ItemTable.TABLE_NAME, values, whereClause, whereArgs);
+        notifyDatabaseWrite();
+        return result;
     }
 
 

@@ -18,10 +18,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:layout_weight=".2">
+            android:layout_weight=".3">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/shapeableimage_item_pic"
+                android:id="@+id/compact_item_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -37,7 +37,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/text_item_name"
+                android:id="@+id/compact_item_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Item #49"
@@ -46,21 +46,33 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/text_item_price"
+                android:id="@+id/compact_item_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:text="$28" />
+
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_view_item"
+            android:id="@+id/compact_favourite_button"
             style="@style/Widget.Material3.Button.IconButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:enabled="false"
-            android:insetLeft="0dp"
+            android:insetLeft="7dp"
+            android:padding="0dp"
+            app:icon="@drawable/baseline_favorite_border_24"
+            app:iconSize="24dp"
+            app:iconTint="@color/md_theme_light_primary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/compact_button_view_item"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="0dp"
             app:icon="@drawable/baseline_navigate_next_24"
             app:iconSize="40dp"
             app:iconTint="@color/md_theme_light_primary" />

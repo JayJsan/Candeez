@@ -15,6 +15,6 @@ public final class QueryUtils {
     }
 
     public static String formatQueryWithArray(int argCount, String query) {
-        return query.replace("?", String.join(",", Collections.nCopies(argCount, "?")));
+        return query.replace(",,", String.join(",", Collections.nCopies(argCount, "?")));
     }
 }

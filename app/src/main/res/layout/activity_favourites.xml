@@ -36,7 +36,7 @@
                     android:paddingTop="35dp">
 
                     <TextView
-                        android:id="@+id/text_header"
+                        android:id="@+id/product_header"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
@@ -64,11 +64,10 @@
                 app:layout_constraintTop_toBottomOf="@id/card_header"
                 tools:layout_editor_absoluteX="27dp">
 
-                <include layout="@layout/compact_list_item" />
-
-                <include layout="@layout/compact_list_item" />
-
-                <include layout="@layout/compact_list_item" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_favourites"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 

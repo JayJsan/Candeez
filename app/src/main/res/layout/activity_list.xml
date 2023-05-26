@@ -65,7 +65,7 @@
                                 app:layout_constraintVertical_bias="0.59" />
 
                             <EditText
-                                android:id="@+id/edit_search_area"
+                                android:id="@+id/search_area"
                                 style="@style/Widget.Material3.AutoCompleteTextView.FilledBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="75dp"
@@ -80,7 +80,8 @@
                                 android:paddingEnd="0dp"
                                 android:paddingRight="0dp"
                                 android:paddingBottom="0dp"
-                                android:text="Name"
+                                android:hint="Type Something"
+                                android:textColorHint="@color/md_theme_light_primaryFixed"
                                 android:textColor="@color/md_theme_light_primaryFixed"
                                 android:textSize="40dp"
                                 android:textStyle="bold"
@@ -97,7 +98,7 @@
                                 android:insetLeft="0dp"
                                 app:icon="@drawable/baseline_search_24"
                                 app:iconTint="@color/md_theme_light_onPrimary"
-                                app:layout_constraintBottom_toTopOf="@+id/edit_search_area"
+                                app:layout_constraintBottom_toTopOf="@+id/search_area"
                                 app:layout_constraintEnd_toEndOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 

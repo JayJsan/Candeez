@@ -1,16 +1,18 @@
 package com.application.project2java;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.project2java.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,26 +21,26 @@ import com.example.project2java.R;
  */
 public class CategoryRecyclerView extends Fragment {
 
+    private final List<Category> categories = new ArrayList<>();
     protected CategoryAdapter adapter;
     protected RecyclerView recyclerView;
-    private Category[] categories = {
-            new Category(CategoryName.Gummies, 69),
-            new Category(CategoryName.Hard_Candy, 69),
-            new Category(CategoryName.CATEGORY3, 69),
-            new Category(CategoryName.CATEGORY4, 69),
-    };
-    public CategoryRecyclerView() {
-        // Required empty public constructor
-    }
-    //TODO
-    private void setupCategories() {}
-
 
     public static CategoryRecyclerView newInstance(String param1, String param2) {
         CategoryRecyclerView fragment = new CategoryRecyclerView();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    private void setupCategories() {
+        DataProvider dataProvider = App.getDataProvider();
+        dataProvider.open();
+        for (CategoryName categoryName : CategoryName.values()) {
+            int categoryFrequency = dataProvider.getCategoryItemFrequency(categoryName);
+            categories.add(new Category("", categoryName, categoryFrequency));
+        }
+        dataProvider.close();
+
     }
 
     @Override
@@ -51,9 +53,9 @@ public class CategoryRecyclerView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        setupCategories();
         View rootView = inflater.inflate(R.layout.fragment_category_recycler_view, container, false);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.category_recycler_view);
+        recyclerView = rootView.findViewById(R.id.category_recycler_view);
         adapter = new CategoryAdapter(categories);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());

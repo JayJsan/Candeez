@@ -15,29 +15,35 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "itemdatabase.db";
-    private static final int DATABASE_VERSION = 1;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
+public class DatabaseHelper extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME = "candeez_data";
+    private static final int DATABASE_VERSION = 1;
+    private final String createTableQuery = "CREATE TABLE " + ItemContract.ItemTable.TABLE_NAME + " ("
+            + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COLUMN_NAME + " TEXT, "
+            + COLUMN_CATEGORY + " TEXT, "
+            + COLUMN_IMAGE_URIS + " TEXT, "
+            + COLUMN_DESCRIPTION + " TEXT, "
+            + COLUMN_PRICE + " SMALLINT, "
+            + COLUMN_IS_FAVOURITE + " SMALLINT, "
+            + COLUMN_CART_QUANTITY + " SMALLINT, "
+            + COLUMN_VIEW_COUNT + " SMALLINT)";
+    private final Context context;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableQuery = "CREATE TABLE " + ItemContract.ItemTable.TABLE_NAME + " ("
-                + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_NAME + " TEXT, "
-                + COLUMN_CATEGORY + " TEXT, "
-                + COLUMN_IMAGE_URIS + " TEXT, "
-                + COLUMN_DESCRIPTION + " TEXT, "
-                + COLUMN_PRICE + " SMALLINT, "
-                + COLUMN_IS_FAVOURITE + " SMALLINT, "
-                + COLUMN_CART_QUANTITY + " SMALLINT, "
-                + COLUMN_VIEW_COUNT + " SMALLINT)";
-
-        db.execSQL(createTableQuery);
+        //db.execSQL(createTableQuery);
     }
 
     @Override
@@ -46,6 +52,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String alterTableQuery = "ALTER TABLE " + TABLE_NAME
                     + " ADD COLUMN new_column TEXT";
             db.execSQL(alterTableQuery);
+        }
+    }
+
+    public void copyDatabase() {
+        try {
+            getWritableDatabase().execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+            InputStream inputStream = context.getAssets().open(DATABASE_NAME);
+            String outFileName = context.getDatabasePath(DATABASE_NAME).getPath();
+            OutputStream outputStream = Files.newOutputStream(Paths.get(outFileName));
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+            outputStream.flush();
+            outputStream.close();
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
