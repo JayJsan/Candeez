@@ -12,26 +12,15 @@ import static com.application.project2java.ItemContract.ItemEntry.COLUMN_VIEW_CO
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DataProvider {
-    private DatabaseHelper dbHelper;
-    SQLiteDatabase db;
+public class DataProvider extends AbstractDatabase {
 
     public DataProvider(Context context) {
-        dbHelper = new DatabaseHelper(context);
-    }
-
-    public void open() {
-        db = dbHelper.getWritableDatabase();
-    }
-
-    public void close() {
-        dbHelper.close();
+        super(context);
     }
 
     public List<ItemModel> searchData(String query, String[] selectionArgs) {
@@ -44,6 +33,7 @@ public class DataProvider {
                 int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
                 String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
                 String imageUris = cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE_URIS));
+                imageUris = imageUris.replaceAll(" ", "");
                 List<String> imageUriArray = Arrays.asList(imageUris.split(","));
                 CategoryName category = CategoryName.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_CATEGORY)));
                 String description = cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION));
@@ -101,13 +91,32 @@ public class DataProvider {
 
 
     public List<ItemModel> getCategoryItems(CategoryName category) {
-        return searchData(QueryProvider.CATEGORY_ITEM_QUERY, new String[]{category.toString()});
+        return searchData(QueryProvider.CATEGORY_ITEM_QUERY.replaceAll(",,", "?"), new String[]{category.toString()});
     }
 
     public List<ItemModel> getItemsFromMultipleCategories(List<CategoryName> categories) {
         String query = QueryUtils.formatQueryWithArray(categories.size(), QueryProvider.CATEGORY_ITEM_QUERY);
         String[] args = QueryUtils.joinCategories(categories);
         return searchData(query, args);
+    }
+
+    public List<ItemModel> getItemsFromMultipleCategoriesWithName(List<CategoryName> categories, String name) {
+        String query;
+        String[] args;
+        String nameClause = name != "" ?  name + "%" : "%";
+        if (categories.size() > 0) {
+            String[] categoryQueryArgs = QueryUtils.joinCategories(categories);
+
+            List<String> temp = new ArrayList<>(Arrays.asList(categoryQueryArgs));
+            temp.add(nameClause);
+            args = temp.toArray(temp.toArray(new String[0]));
+            query = QueryUtils.formatQueryWithArray(categories.size(), QueryProvider.ITEMS_LIKE_NAME_IN_CATEGORIES_QUERY);
+        } else {
+            query = QueryProvider.ITEMS_LIKE_NAME_QUERY;
+            args = new String[]{nameClause};
+        }
+        return searchData(query, args);
+
     }
 
     public int getCategoryItemFrequency(CategoryName category) {

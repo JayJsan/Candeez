@@ -13,12 +13,6 @@ import org.junit.runner.RunWith;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 @RunWith(AndroidJUnit4.class)
 public class DatabaseInstrumentedTest {
     DataProvider dataProvider;

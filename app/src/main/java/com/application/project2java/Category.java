@@ -1,9 +1,9 @@
 package com.application.project2java;
 
 public class Category {
-    private String imageUri;
-    private CategoryName category;
-    private int frequency;
+    private final String imageUri;
+    private final CategoryName category;
+    private final int frequency;
 
     public Category(String imageUri, CategoryName category, int frequency) {
         this.imageUri = imageUri;

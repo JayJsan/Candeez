@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import org.junit.Test;
 

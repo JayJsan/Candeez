@@ -1,6 +1,8 @@
 package com.application.project2java;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,12 +10,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends FragmentActivity {
 
     DataProvider dataProvider;
+    DataMutator dataMutator;
+    CompactListAdapter bestSellingAdapter;
+    CompactListAdapter mostViewedAdapter;
+    List<ItemModel> bestSellingItems;
+    List<ItemModel> mostViewedItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,28 +28,49 @@ public class MainActivity extends FragmentActivity {
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
 
-        dataProvider = new DataProvider(App.getAppContext());
+        dataMutator = App.getDataMutator();
+        dataMutator.addDatabaseWriteListener(this::updateItems);
+        dataProvider = App.getDataProvider();
+        setup();
+    }
+
+    private void setup() {
         dataProvider.open();
         setupBestSellingRecyclerView();
         setupMostViewedRecyclerView();
         dataProvider.close();
     }
 
+    private void updateItems() {
+        dataProvider.open();
+        bestSellingItems = dataProvider.getBestSellingItems();
+        mostViewedItems = dataProvider.getMostViewedItems();
+        dataProvider.close();
+        bestSellingAdapter.setItems(bestSellingItems);
+        mostViewedAdapter.setItems(mostViewedItems);
+    }
+
+
     private void setupBestSellingRecyclerView() {
         RecyclerView bestSellingRecyclerView = this.findViewById(R.id.best_selling_recycler_view);
-        List<ItemModel> items = dataProvider.getBestSellingItems();
-        CompactListAdapter compactListAdapter = new CompactListAdapter(items);
-        bestSellingRecyclerView.setAdapter(compactListAdapter);
+        bestSellingItems = dataProvider.getBestSellingItems();
+        bestSellingAdapter = new CompactListAdapter(bestSellingItems);
+        bestSellingRecyclerView.setAdapter(bestSellingAdapter);
         LinearLayoutManager productLayoutManager = new LinearLayoutManager(this);
         bestSellingRecyclerView.setLayoutManager(productLayoutManager);
     }
 
-    private void setupMostViewedRecyclerView(){
+    private void setupMostViewedRecyclerView() {
         RecyclerView mostViewedRecyclerView = this.findViewById(R.id.most_viewed_recycler_view);
-        List<ItemModel> items = dataProvider.getMostViewedItems();
-        CompactListAdapter compactListAdapter = new CompactListAdapter(items);
-        mostViewedRecyclerView.setAdapter(compactListAdapter);
+        mostViewedItems = dataProvider.getMostViewedItems();
+        mostViewedAdapter = new CompactListAdapter(mostViewedItems);
+        mostViewedRecyclerView.setAdapter(mostViewedAdapter);
         LinearLayoutManager productLayoutManager = new LinearLayoutManager(this);
         mostViewedRecyclerView.setLayoutManager(productLayoutManager);
+    }
+
+    public void goToSearch(View view) {
+        Intent intent = new Intent(this, ListActivity.class);
+        this.startActivity(intent);
     }
 }

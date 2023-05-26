@@ -1,15 +1,13 @@
 package com.application.project2java;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.project2java.R;
 
@@ -23,12 +21,19 @@ import java.util.List;
  */
 public class CategoryRecyclerView extends Fragment {
 
+    private final List<Category> categories = new ArrayList<>();
     protected CategoryAdapter adapter;
     protected RecyclerView recyclerView;
-    private List<Category> categories = new ArrayList<>();
+
+    public static CategoryRecyclerView newInstance(String param1, String param2) {
+        CategoryRecyclerView fragment = new CategoryRecyclerView();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     private void setupCategories() {
-        DataProvider dataProvider = new DataProvider(App.getAppContext());
+        DataProvider dataProvider = App.getDataProvider();
         dataProvider.open();
         for (CategoryName categoryName : CategoryName.values()) {
             int categoryFrequency = dataProvider.getCategoryItemFrequency(categoryName);
@@ -36,14 +41,6 @@ public class CategoryRecyclerView extends Fragment {
         }
         dataProvider.close();
 
-    }
-
-
-    public static CategoryRecyclerView newInstance(String param1, String param2) {
-        CategoryRecyclerView fragment = new CategoryRecyclerView();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -58,7 +55,7 @@ public class CategoryRecyclerView extends Fragment {
                              Bundle savedInstanceState) {
         setupCategories();
         View rootView = inflater.inflate(R.layout.fragment_category_recycler_view, container, false);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.category_recycler_view);
+        recyclerView = rootView.findViewById(R.id.category_recycler_view);
         adapter = new CategoryAdapter(categories);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
