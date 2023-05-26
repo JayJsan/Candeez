@@ -83,14 +83,14 @@
                     app:backgroundTint="@color/md_theme_light_tertiaryContainer"
                     app:cornerRadius="2dp"
                     app:layout_constraintBottom_toTopOf="@+id/product_price"
-                    app:layout_constraintEnd_toStartOf="@+id/textView"
+                    app:layout_constraintEnd_toStartOf="@+id/product_qty"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/product_name"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/product_qty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
@@ -116,7 +116,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/product_price"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    app:layout_constraintStart_toEndOf="@+id/product_qty"
                     app:layout_constraintTop_toBottomOf="@+id/product_name"
                     app:layout_constraintVertical_bias="0.0" />
 

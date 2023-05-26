@@ -19,7 +19,10 @@ import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 
+
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
+    private static final int MAX_ITEMS = 99;
+    private static final int MIN_ITEMS = 1;
     private List<ItemModel> items;
 
     public CartAdapter(List<ItemModel> items) {
@@ -47,6 +50,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.textViewPrice.setText("$" + item.getPrice());
         holder.textViewName.setText(name);
         holder.itemName = name;
+        holder.quantity = item.getCartQuantity();
+        holder.updateQuantity();
 
         ResourceUtils.getImageBitmapAsync(item.getImageUris().get(0), new ResourceUtils.BitmapCallback() {
 
@@ -74,11 +79,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         MaterialButton buttonRemoveItem;
+        MaterialButton buttonDecrease;
+        MaterialButton buttonIncrease;
         String itemName;
         int quantity;
         TextView textViewName;
         TextView textViewPrice;
+        TextView textViewQuantity;
         ShapeableImageView imageView;
+        DataMutator dataMutator = App.getDataMutator();
 
         public ViewHolder(View v) {
             super(v);
@@ -86,16 +95,51 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             v.setOnClickListener(v1 -> ListItemUtils.navigateToDetails(itemName));
             textViewName = v.findViewById(R.id.product_name);
             textViewPrice = v.findViewById(R.id.product_price);
+            textViewQuantity = v.findViewById(R.id.product_qty);
             imageView = v.findViewById(R.id.image_cart_item);
             buttonRemoveItem = v.findViewById(R.id.button_remove_item);
+            buttonDecrease = v.findViewById(R.id.decrease_qty_button);
+            buttonIncrease = v.findViewById(R.id.increase_qty_button);
+
+            setupOnClicks();
+
+        }
+
+        public void updateQuantity() {
+            textViewQuantity.setText(String.format(Integer.toString(quantity)));
+
+        }
+
+
+        private void setupOnClicks() {
 
             buttonRemoveItem.setOnClickListener(v1 -> {
-                DataMutator dataMutator = App.getDataMutator();
                 dataMutator.open();
                 dataMutator.updateItemCartStatus(itemName, 0);
                 dataMutator.close();
             });
+
+            buttonDecrease.setOnClickListener(v1 -> {
+                if (quantity > MIN_ITEMS) {
+                    quantity = quantity - 1;
+                    dataMutator.open();
+                    dataMutator.updateItemCartStatus(itemName, quantity);
+                    dataMutator.close();
+                    updateQuantity();
+                }
+            });
+
+            buttonIncrease.setOnClickListener(v1 -> {
+                if (quantity < MAX_ITEMS) {
+                    quantity = quantity + 1;
+                    dataMutator.open();
+                    dataMutator.updateItemCartStatus(itemName, quantity);
+                    dataMutator.close();
+                    updateQuantity();
+                }
+            });
         }
 
     }
+
 }
