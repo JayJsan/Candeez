@@ -73,10 +73,15 @@ public class ListActivity extends FragmentActivity {
     }
 
     private void updateData() {
+        if(selectedCategories.isEmpty() && searchQuery.trim().equals("")){
+            productListAdapter.setItems(items);
+            return;
+        }
         dataProvider.open();
         filteredItems = dataProvider.getItemsFromMultipleCategoriesWithName(selectedCategories, searchQuery);
         dataProvider.close();
         productListAdapter.setItems(filteredItems);
+
     }
 
 
