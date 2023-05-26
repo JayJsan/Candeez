@@ -13,9 +13,7 @@
         <ImageView
             android:id="@+id/icon_no_search_results"
             android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:maxHeight="200dp"
-            android:minHeight="25dp"
+            android:layout_height="200dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/emoticon_sad_outline"
             app:tint="@color/md_theme_light_outlineVariant" />
@@ -24,10 +22,20 @@
             android:id="@+id/text_no_search_results"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No items found! \n Try changing your filters or search terms"
+            android:text="No items found!"
             android:textAlignment="center"
             android:textColor="@color/md_theme_light_outlineVariant"
-            android:textSize="10sp" />
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_no_search_results_subheading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Try changing your filters or search terms"
+            android:textAlignment="center"
+            android:textColor="@color/md_theme_light_outlineVariant"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
