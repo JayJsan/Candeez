@@ -45,6 +45,7 @@ public class DataMutator extends AbstractDatabase {
     public int updateItemCartStatus(String name, int cartQty) {
         ContentValues values = new ContentValues();
         values.put(ItemContract.ItemEntry.COLUMN_CART_QUANTITY, cartQty);
+        notifyDatabaseWrite();
         return updateAtName(name, values);
 
     }
