@@ -13,6 +13,7 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
@@ -29,6 +30,7 @@ public class ListActivity extends FragmentActivity {
 
     private final List<CategoryName> categories = new ArrayList<>();
     private final List<CategoryName> selectedCategories = new ArrayList<>();
+    private int allItemCount;
     private Handler handler;
     private DataProvider dataProvider;
     private List<ItemModel> items;
@@ -36,6 +38,7 @@ public class ListActivity extends FragmentActivity {
     private FilterAdapter filterAdapter;
     private ProductListAdapter productListAdapter;
     private RecyclerView productRecyclerView;
+    private TextView resultCount;
     private View noItemsFound;
     private String searchQuery = "";
 
@@ -48,8 +51,11 @@ public class ListActivity extends FragmentActivity {
         setupCategories();
         setContentView(R.layout.activity_list);
         dataProvider = App.getDataProvider();
+
         noItemsFound = findViewById(R.id.no_search_results);
         noItemsFound.setVisibility(View.GONE);
+
+        resultCount = findViewById(R.id.results_returned);
 
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
@@ -57,6 +63,10 @@ public class ListActivity extends FragmentActivity {
         setUpSearchBar();
         setupFilterRecyclerView();
         setupProductRecyclerView();
+    }
+
+    private void updateResultCount(int count){
+        resultCount.setText(count + " Results Returned");
     }
 
     private void setupFilterRecyclerView() {
@@ -81,6 +91,7 @@ public class ListActivity extends FragmentActivity {
     private void updateData() {
         if (selectedCategories.isEmpty() && searchQuery.trim().equals("")) {
             productListAdapter.setItems(items);
+            updateResultCount(allItemCount);
             return;
         }
 
@@ -88,13 +99,14 @@ public class ListActivity extends FragmentActivity {
         filteredItems = dataProvider.getItemsFromMultipleCategoriesWithName(selectedCategories, searchQuery);
         dataProvider.close();
         if(filteredItems.isEmpty()) {
-
             noItemsFound.setVisibility(View.VISIBLE);
             productRecyclerView.setVisibility(View.GONE);
+            updateResultCount(0);
         } else {
             noItemsFound.setVisibility(View.GONE);
             productRecyclerView.setVisibility(View.VISIBLE);
             productListAdapter.setItems(filteredItems);
+            updateResultCount(filteredItems.size());
         }
 
     }
@@ -162,6 +174,8 @@ public class ListActivity extends FragmentActivity {
         dataProvider.close();
         productRecyclerView = this.findViewById(R.id.product_recycler_view);
         productListAdapter = new ProductListAdapter(items);
+        allItemCount = items.size();
+        updateResultCount(allItemCount);
         productRecyclerView.setAdapter(productListAdapter);
         LinearLayoutManager productLayoutManager = new LinearLayoutManager(this);
         productRecyclerView.setLayoutManager(productLayoutManager);
