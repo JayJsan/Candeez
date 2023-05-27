@@ -25,9 +25,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class ListActivity extends FragmentActivity {
@@ -46,6 +48,9 @@ public class ListActivity extends FragmentActivity {
     private TextView resultCount;
     private View noItemsFound;
     private String searchQuery = "";
+    private FilterField filterField;
+    private FilterDirection filterDirection = FilterDirection.ASCENDING;
+    private Comparator<ItemModel> comparator;
 
     private void setupCategories() {
         categories.addAll(Arrays.asList(CategoryName.values()));
@@ -73,9 +78,11 @@ public class ListActivity extends FragmentActivity {
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
 
+
         setUpSearchBar();
         setupFilterRecyclerView();
         setupProductRecyclerView();
+        setupFilterDialog();
         updateData();
     }
 
@@ -83,9 +90,13 @@ public class ListActivity extends FragmentActivity {
         resultCount.setText(count + " Results Returned");
     }
 
-    private void setupFilterRecyclerView() {
+
+    private void setupFilterDialog() {
         MaterialButton filterButton = findViewById(R.id.button_filter);
         filterButton.setOnClickListener(l -> openFilters());
+    }
+
+    private void setupFilterRecyclerView() {
         RecyclerView filterRecyclerView = findViewById(R.id.filter_recycler_view);
         filterAdapter = new FilterAdapter(categories, selectedCategories, this::updateFilters);
         filterRecyclerView.setAdapter(filterAdapter);
@@ -98,6 +109,17 @@ public class ListActivity extends FragmentActivity {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.filter_bottom_drawer);
+
+        FloatingActionButton buttonSortName = dialog.findViewById(R.id.button_sort_name);
+        FloatingActionButton buttonSortBestSelling = dialog.findViewById(R.id.button_sort_best_selling);
+        FloatingActionButton buttonSortPrice = dialog.findViewById(R.id.button_sort_price);
+        FloatingActionButton buttonSortMostViewed = dialog.findViewById(R.id.button_sort_most_viewed);
+
+        setupFilterButton(buttonSortName, FilterField.FILTER_ALPHABETICALLY);
+        setupFilterButton(buttonSortMostViewed, FilterField.FILTER_BY_VIEWS);
+        setupFilterButton(buttonSortPrice, FilterField.FILTER_BY_PRICE);
+        setupFilterButton(buttonSortBestSelling, FilterField.FILTER_BEST_SELLING);
+
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setGravity(Gravity.BOTTOM);
@@ -119,12 +141,27 @@ public class ListActivity extends FragmentActivity {
         updateData();
     }
 
+    private void displayDefaultItems() {
+        noItemsFound.setVisibility(View.GONE);
+        productRecyclerView.setVisibility(View.VISIBLE);
+        productListAdapter.setItems(items);
+        updateResultCount(allItemCount);
+    }
+
+    private void displayNonEmptyFilteredItems() {
+        noItemsFound.setVisibility(View.GONE);
+        productRecyclerView.setVisibility(View.VISIBLE);
+        productListAdapter.setItems(filteredItems);
+        updateResultCount(filteredItems.size());
+    }
+
+    private boolean isDefaultSettings() {
+        return selectedCategories.isEmpty() && searchQuery.trim().equals("");
+    }
+
     private void updateData() {
-        if (selectedCategories.isEmpty() && searchQuery.trim().equals("")) {
-            noItemsFound.setVisibility(View.GONE);
-            productRecyclerView.setVisibility(View.VISIBLE);
-            productListAdapter.setItems(items);
-            updateResultCount(allItemCount);
+        if (isDefaultSettings()) {
+            displayDefaultItems();
             return;
         }
 
@@ -136,10 +173,8 @@ public class ListActivity extends FragmentActivity {
             productRecyclerView.setVisibility(View.GONE);
             updateResultCount(0);
         } else {
-            noItemsFound.setVisibility(View.GONE);
-            productRecyclerView.setVisibility(View.VISIBLE);
-            productListAdapter.setItems(filteredItems);
-            updateResultCount(filteredItems.size());
+            FilterUtils.applyFilters(filteredItems, comparator);
+            displayNonEmptyFilteredItems();
         }
 
     }
@@ -194,6 +229,25 @@ public class ListActivity extends FragmentActivity {
 
     }
 
+    private void setupFilterButton(FloatingActionButton floatingActionButton, FilterField filterField) {
+        floatingActionButton.setOnClickListener(l -> {
+            this.filterField = filterField;
+            if(filterDirection == FilterDirection.ASCENDING) filterDirection = FilterDirection.DESCENDING;
+            else filterDirection = FilterDirection.ASCENDING;
+            comparator = FilterUtils.getComparator(filterField, filterDirection);
+            if (isDefaultSettings()) {
+                FilterUtils.applyFilters(items, comparator);
+                displayDefaultItems();
+
+                return;
+            }
+            if (!filteredItems.isEmpty()) {
+                FilterUtils.applyFilters(filteredItems, comparator);
+                displayNonEmptyFilteredItems();
+            }
+
+        });
+    }
 
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
