@@ -35,15 +35,18 @@ public class FilterUtils {
 
     public static void setButtonDisabled(FloatingActionButton floatingActionButton) {
         floatingActionButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primaryFixed));
+        floatingActionButton.setImageTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primary));
 
     }
 
     public static void setAscendingButtonAppearance(FloatingActionButton floatingActionButton) {
         floatingActionButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primary));
+        floatingActionButton.setImageTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_onPrimary));
     }
 
     public static void setDescendingButtonAppearance(FloatingActionButton floatingActionButton) {
         floatingActionButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_tertiary));
+        floatingActionButton.setImageTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_onPrimary));
     }
 
 }
