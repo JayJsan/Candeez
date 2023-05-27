@@ -89,14 +89,12 @@
                         android:orientation="vertical"
                         app:layout_constraintStart_toStartOf="parent">
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/item_image"
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/image_view_pager"
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ceiling_fan_test"
-                            android:visibility="visible"
                             app:layout_constraintStart_toStartOf="parent" />
+
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/relativelayout_item_details_container"
