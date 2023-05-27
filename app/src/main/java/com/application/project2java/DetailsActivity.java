@@ -10,23 +10,31 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
 public class DetailsActivity extends FragmentActivity {
-    DataProvider dataProvider;
-    ItemModel item;
-    List<ItemModel> relatedItems;
+    private DataProvider dataProvider;
+    private DataMutator dataMutator;
+    private ItemModel item;
+    private boolean isInCart;
+    private MaterialButton favouriteButton;
+    private boolean isFavourite;
+    private List<ItemModel> relatedItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         dataProvider = App.getDataProvider();
+        dataMutator = App.getDataMutator();
         fetchItemDetails();
         setDetails();
+        setupFavouriteButton();
         fetchRelatedItems();
         setupRelatedItemsRecyclerView();
+        updateFavouriteButtonAppearance();
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
     }
@@ -45,6 +53,7 @@ public class DetailsActivity extends FragmentActivity {
         String name = intent.getStringExtra("name");
         item = dataProvider.getItemWithName(name);
         dataProvider.close();
+        isFavourite = item.isFavourite();
 
     }
 
@@ -64,6 +73,29 @@ public class DetailsActivity extends FragmentActivity {
         title.setText(item.getName());
         details.setText(item.getDescription());
         price.setText("$" + item.getPrice());
+    }
+
+    private void setupFavouriteButton() {
+        favouriteButton = findViewById(R.id.favourite_button);
+        favouriteButton.setOnClickListener(l -> {
+            isFavourite = !isFavourite;
+            dataMutator.open();
+            dataMutator.updateItemFavouriteStatus(item.getName(), isFavourite);
+            dataMutator.close();
+            updateFavouriteButtonAppearance();
+        });
+    }
+
+    private void updateFavouriteButtonAppearance() {
+        if (isFavourite) {
+            favouriteButton.setIconResource(R.drawable.baseline_favorite_24);
+            favouriteButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primary));
+            favouriteButton.setTextColor(ResourceUtils.getColorStateList(R.color.md_theme_light_onPrimary));
+        } else {
+            favouriteButton.setIconResource(R.drawable.baseline_favorite_border_24);
+            favouriteButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primaryContainer));
+            favouriteButton.setTextColor(ResourceUtils.getColorStateList(R.color.md_theme_light_onTertiaryContainer));
+        }
     }
 
     public void goBack(View v) {
