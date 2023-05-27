@@ -135,19 +135,19 @@ public class ListActivity extends FragmentActivity {
     private void updateButtons() {
         switch (filterField) {
             case FILTER_ALPHABETICALLY:
-                setButtonAppearance(buttonSortName);
+                setButtonSelected(buttonSortName);
                 setButtonsDisabled(buttonSortPrice, buttonSortBestSelling, buttonSortMostViewed);
                 break;
             case FILTER_BEST_SELLING:
-                setButtonAppearance(buttonSortBestSelling);
+                setButtonSelected(buttonSortBestSelling);
                 setButtonsDisabled(buttonSortPrice, buttonSortName, buttonSortMostViewed);
                 break;
             case FILTER_BY_VIEWS:
-                setButtonAppearance(buttonSortMostViewed);
+                setButtonSelected(buttonSortMostViewed);
                 setButtonsDisabled(buttonSortPrice, buttonSortBestSelling, buttonSortName);
                 break;
             case FILTER_BY_PRICE:
-                setButtonAppearance(buttonSortPrice);
+                setButtonSelected(buttonSortPrice);
                 setButtonsDisabled(buttonSortName, buttonSortBestSelling, buttonSortMostViewed);
                 break;
             default:
@@ -155,8 +155,10 @@ public class ListActivity extends FragmentActivity {
         }
     }
 
-    private void setButtonAppearance(FloatingActionButton button) {
-        FilterUtils.setAscendingButtonAppearance(button);
+    private void setButtonSelected(FloatingActionButton button) {
+        if (filterDirection == FilterDirection.ASCENDING)
+            FilterUtils.setAscendingButtonAppearance(button);
+        else FilterUtils.setDescendingButtonAppearance(button);
     }
 
     private void setButtonsDisabled(FloatingActionButton... buttons) {
@@ -270,11 +272,15 @@ public class ListActivity extends FragmentActivity {
 
     private void setupFilterButton(FloatingActionButton floatingActionButton, FilterField filterField) {
         floatingActionButton.setOnClickListener(l -> {
+            if (this.filterField != filterField) {
+                filterDirection = FilterDirection.ASCENDING;
+            } else {
+                if (filterDirection == FilterDirection.ASCENDING)
+                    filterDirection = FilterDirection.DESCENDING;
+                else filterDirection = FilterDirection.ASCENDING;
+            }
             this.filterField = filterField;
             updateButtons();
-            if (filterDirection == FilterDirection.ASCENDING)
-                filterDirection = FilterDirection.DESCENDING;
-            else filterDirection = FilterDirection.ASCENDING;
             comparator = FilterUtils.getComparator(filterField, filterDirection);
             if (isDefaultSettings()) {
                 FilterUtils.applyFilters(items, comparator);

@@ -42,5 +42,8 @@ public class FilterUtils {
         floatingActionButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primary));
     }
 
+    public static void setDescendingButtonAppearance(FloatingActionButton floatingActionButton) {
+        floatingActionButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_tertiary));
+    }
 
 }
