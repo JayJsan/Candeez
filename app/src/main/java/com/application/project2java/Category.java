@@ -15,6 +15,10 @@ public class Category {
         return category;
     }
 
+    public String getDisplayName() {
+        return category.name().replaceAll("_", " ");
+    }
+
     public String getName() {
         return category.name();
     }

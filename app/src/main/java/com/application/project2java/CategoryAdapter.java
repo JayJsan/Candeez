@@ -37,7 +37,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
         Category category = categories.get(position);
-        String name = category.getName();
+        String name = category.getDisplayName();
         String qty = String.valueOf(category.getFrequency());
         holder.textViewName.setText(name);
         holder.textViewQty.setText(qty + " Items");

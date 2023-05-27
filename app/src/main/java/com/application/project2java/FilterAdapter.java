@@ -38,7 +38,7 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
         CategoryName category = categories.get(position);
         String name = category.toString();
         holder.categoryName = category;
-        holder.getFilterButton().setText(name);
+        holder.getFilterButton().setText(name.replaceAll("_", " "));
         holder.isSelected = presets.contains(category);
         holder.updateButtonAppearance();
         holder.filterButton.setOnClickListener(v -> {
