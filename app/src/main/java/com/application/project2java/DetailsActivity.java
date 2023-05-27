@@ -6,12 +6,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
+
+import java.util.List;
 
 public class DetailsActivity extends FragmentActivity {
     DataProvider dataProvider;
     ItemModel item;
+    List<ItemModel> relatedItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +25,18 @@ public class DetailsActivity extends FragmentActivity {
         dataProvider = App.getDataProvider();
         fetchItemDetails();
         setDetails();
+        fetchRelatedItems();
+        setupRelatedItemsRecyclerView();
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
+    }
+
+    private void setupRelatedItemsRecyclerView() {
+        RecyclerView relatedItemsRecyclerView = findViewById(R.id.related_items_recycler_view);
+        ProductListAdapter relatedItemsAdapter = new ProductListAdapter(relatedItems);
+        relatedItemsRecyclerView.setAdapter(relatedItemsAdapter);
+        LinearLayoutManager productLayoutManager = new LinearLayoutManager(this);
+        relatedItemsRecyclerView.setLayoutManager(productLayoutManager);
     }
 
     private void fetchItemDetails() {
@@ -31,6 +46,12 @@ public class DetailsActivity extends FragmentActivity {
         item = dataProvider.getItemWithName(name);
         dataProvider.close();
 
+    }
+
+    private void fetchRelatedItems() {
+        dataProvider.open();
+        relatedItems = dataProvider.getRelatedItems(item.getName(), CategoryName.valueOf(item.getCategory()));
+        dataProvider.close();
     }
 
     private void setDetails() {
