@@ -19,8 +19,11 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private final List<Category> categories;
 
-    public CategoryAdapter(List<Category> categories) {
+    private OnSelectListener onSelectListener;
+
+    public CategoryAdapter(List<Category> categories, OnSelectListener onSelectListener) {
         this.categories = categories;
+        this.onSelectListener = onSelectListener;
     }
 
     @NonNull
@@ -34,15 +37,22 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
         Category category = categories.get(position);
-        String name = category.getName();
+        String name = category.getDisplayName();
         String qty = String.valueOf(category.getFrequency());
         holder.textViewName.setText(name);
         holder.textViewQty.setText(qty + " Items");
+        holder.cardView.setOnClickListener(l -> {
+            onSelectListener.onSelect(category.getCategory());
+        });
     }
 
     @Override
     public int getItemCount() {
         return categories.size();
+    }
+
+    public interface OnSelectListener {
+        void onSelect(CategoryName categoryName);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -57,6 +67,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             cardView = v.findViewById(R.id.category_list_item);
             textViewName = v.findViewById(R.id.category_name);
             textViewQty = v.findViewById(R.id.category_qty);
+
         }
 
         public CardView getCardView() {

@@ -2,10 +2,10 @@ package com.application.project2java;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
-import android.text.Layout;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,6 +51,13 @@ public class ListActivity extends FragmentActivity {
         setContentView(R.layout.activity_list);
         dataProvider = App.getDataProvider();
 
+        Intent intent = getIntent();
+
+        if (intent.hasExtra("category")) {
+            CategoryName preset = CategoryName.valueOf(intent.getStringExtra("category"));
+            selectedCategories.add(preset);
+        }
+
         noItemsFound = findViewById(R.id.no_search_results);
         noItemsFound.setVisibility(View.GONE);
 
@@ -63,15 +69,16 @@ public class ListActivity extends FragmentActivity {
         setUpSearchBar();
         setupFilterRecyclerView();
         setupProductRecyclerView();
+        updateData();
     }
 
-    private void updateResultCount(int count){
+    private void updateResultCount(int count) {
         resultCount.setText(count + " Results Returned");
     }
 
     private void setupFilterRecyclerView() {
         RecyclerView filterRecyclerView = this.findViewById(R.id.filter_recycler_view);
-        filterAdapter = new FilterAdapter(categories, this::updateFilters);
+        filterAdapter = new FilterAdapter(categories, selectedCategories, this::updateFilters);
         filterRecyclerView.setAdapter(filterAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -90,6 +97,8 @@ public class ListActivity extends FragmentActivity {
 
     private void updateData() {
         if (selectedCategories.isEmpty() && searchQuery.trim().equals("")) {
+            noItemsFound.setVisibility(View.GONE);
+            productRecyclerView.setVisibility(View.VISIBLE);
             productListAdapter.setItems(items);
             updateResultCount(allItemCount);
             return;
@@ -98,7 +107,7 @@ public class ListActivity extends FragmentActivity {
         dataProvider.open();
         filteredItems = dataProvider.getItemsFromMultipleCategoriesWithName(selectedCategories, searchQuery);
         dataProvider.close();
-        if(filteredItems.isEmpty()) {
+        if (filteredItems.isEmpty()) {
             noItemsFound.setVisibility(View.VISIBLE);
             productRecyclerView.setVisibility(View.GONE);
             updateResultCount(0);
