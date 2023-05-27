@@ -74,6 +74,10 @@ public class ListActivity extends FragmentActivity {
             CategoryName preset = CategoryName.valueOf(intent.getStringExtra("category"));
             selectedCategories.add(preset);
         }
+        if (intent.hasExtra("filter")) {
+            filterField = FilterField.valueOf(intent.getStringExtra("filter"));
+            filterDirection = FilterDirection.DESCENDING;
+        }
 
         noItemsFound = findViewById(R.id.no_search_results);
         noItemsFound.setVisibility(View.GONE);
@@ -259,6 +263,7 @@ public class ListActivity extends FragmentActivity {
     private void setupProductRecyclerView() {
         dataProvider.open();
         items = dataProvider.getAllItems();
+        FilterUtils.applyFilters(items, comparator);
         dataProvider.close();
         productRecyclerView = this.findViewById(R.id.product_recycler_view);
         productListAdapter = new ProductListAdapter(items);
