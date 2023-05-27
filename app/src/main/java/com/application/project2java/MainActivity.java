@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,15 @@ public class MainActivity extends FragmentActivity {
         setupBestSellingRecyclerView();
         setupMostViewedRecyclerView();
         setupCategoryRecyclerView();
+        setupButtons();
         dataProvider.close();
+    }
+
+    private void setupButtons() {
+        MaterialButton seeAllCategories = findViewById(R.id.see_all_categories_button);
+        seeAllCategories.setOnClickListener(l -> {
+            ListItemUtils.navigateToList(null);
+        });
     }
 
 

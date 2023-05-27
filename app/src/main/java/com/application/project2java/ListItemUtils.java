@@ -25,9 +25,10 @@ public class ListItemUtils {
         App.getAppContext().startActivity(intent);
     }
 
+
     public static void navigateToList(CategoryName category) {
         Intent intent = new Intent(App.getAppContext(), ListActivity.class);
-        intent.putExtra("category", category.toString());
+        if (category != null) intent.putExtra("category", category.toString());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         App.getAppContext().startActivity(intent);
 
