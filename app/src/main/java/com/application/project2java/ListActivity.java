@@ -13,8 +13,11 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +40,7 @@ public class ListActivity extends FragmentActivity {
     private FilterAdapter filterAdapter;
     private ProductListAdapter productListAdapter;
     private RecyclerView productRecyclerView;
+    private CoordinatorLayout outerScrollView;
     private TextView resultCount;
     private View noItemsFound;
     private String searchQuery = "";
@@ -50,6 +54,7 @@ public class ListActivity extends FragmentActivity {
         setupCategories();
         setContentView(R.layout.activity_list);
         dataProvider = App.getDataProvider();
+
 
         Intent intent = getIntent();
 
@@ -85,7 +90,12 @@ public class ListActivity extends FragmentActivity {
         filterRecyclerView.setLayoutManager(layoutManager);
     }
 
+    private void enterFocusMode() {
+        //outerScrollView.post(() -> outerScrollView.fullScroll(ScrollView.FOCUS_DOWN));
+    }
+
     private void updateFilters(CategoryName categoryName, boolean isSelected) {
+        enterFocusMode();
 
         if (isSelected)
             selectedCategories.add(categoryName);
@@ -154,27 +164,6 @@ public class ListActivity extends FragmentActivity {
             }
         });
 
-        View rootView = findViewById(android.R.id.content);
-
-        rootView.getViewTreeObserver().
-
-                addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                    private int mPreviousHeight = rootView.getHeight();
-
-                    @Override
-                    public void onGlobalLayout() {
-                        int newHeight = rootView.getHeight();
-                        if (newHeight != mPreviousHeight) {
-                            boolean isKeyboardOpen = newHeight < mPreviousHeight;
-                            if (isKeyboardOpen) {
-                                growSearch();
-                            } else {
-                                shrinkSearch();
-                            }
-                            mPreviousHeight = newHeight;
-                        }
-                    }
-                });
     }
 
     private void setupProductRecyclerView() {
@@ -191,19 +180,6 @@ public class ListActivity extends FragmentActivity {
 
     }
 
-    private void shrinkSearch() {
-        LinearLayout topSection = this.findViewById(R.id.search_and_filters);
-        ObjectAnimator animation = ObjectAnimator.ofFloat(topSection, "translationY", -140f);
-        animation.setDuration(200);
-        animation.start();
-    }
-
-    private void growSearch() {
-        LinearLayout topSection = this.findViewById(R.id.search_and_filters);
-        ObjectAnimator animation = ObjectAnimator.ofFloat(topSection, "translationY", 0f);
-        animation.setDuration(200);
-        animation.start();
-    }
 
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
