@@ -11,6 +11,10 @@ public class Category {
         this.frequency = frequency;
     }
 
+    public CategoryName getCategory() {
+        return category;
+    }
+
     public String getName() {
         return category.name();
     }

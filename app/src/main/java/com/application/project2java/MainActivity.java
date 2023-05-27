@@ -44,9 +44,6 @@ public class MainActivity extends FragmentActivity {
         dataProvider.close();
     }
 
-    private void viewCategory(List<CategoryName> categories) {
-
-    }
 
     private void setupCategories() {
         categories = new ArrayList<>();
@@ -69,10 +66,10 @@ public class MainActivity extends FragmentActivity {
         mostViewedAdapter.setItems(mostViewedItems);
     }
 
-    private void setupCategoryRecyclerView(){
+    private void setupCategoryRecyclerView() {
         setupCategories();
         RecyclerView recyclerView = findViewById(R.id.category_recycler_view);
-        CategoryAdapter adapter = new CategoryAdapter(categories);
+        CategoryAdapter adapter = new CategoryAdapter(categories, ListItemUtils::navigateToList);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);

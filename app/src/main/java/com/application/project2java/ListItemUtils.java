@@ -25,6 +25,14 @@ public class ListItemUtils {
         App.getAppContext().startActivity(intent);
     }
 
+    public static void navigateToList(CategoryName category) {
+        Intent intent = new Intent(App.getAppContext(), ListActivity.class);
+        intent.putExtra("category", category);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        App.getAppContext().startActivity(intent);
+
+    }
+
     public static String calculateTotal(List<ItemModel> items) {
         int sum = 0;
         for (ItemModel item : items) {
