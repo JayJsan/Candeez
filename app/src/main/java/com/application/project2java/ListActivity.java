@@ -107,15 +107,20 @@ public class ListActivity extends FragmentActivity {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.filter_bottom_drawer);
 
+
+        MaterialButton closeDialogButton = dialog.findViewById(R.id.button_close_dialog);
         buttonSortName = dialog.findViewById(R.id.button_sort_name);
         buttonSortBestSelling = dialog.findViewById(R.id.button_sort_best_selling);
         buttonSortPrice = dialog.findViewById(R.id.button_sort_price);
         buttonSortMostViewed = dialog.findViewById(R.id.button_sort_most_viewed);
 
+        closeDialogButton.setOnClickListener(l -> dialog.dismiss());
+
         setupFilterButton(buttonSortName, FilterField.FILTER_ALPHABETICALLY);
         setupFilterButton(buttonSortMostViewed, FilterField.FILTER_BY_VIEWS);
         setupFilterButton(buttonSortPrice, FilterField.FILTER_BY_PRICE);
         setupFilterButton(buttonSortBestSelling, FilterField.FILTER_BEST_SELLING);
+
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setGravity(Gravity.BOTTOM);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
