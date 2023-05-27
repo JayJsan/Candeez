@@ -48,9 +48,14 @@ public class ListActivity extends FragmentActivity {
     private TextView resultCount;
     private View noItemsFound;
     private String searchQuery = "";
-    private FilterField filterField;
+    private FilterField filterField = FilterField.FILTER_ALPHABETICALLY;
     private FilterDirection filterDirection = FilterDirection.ASCENDING;
-    private Comparator<ItemModel> comparator;
+    private Comparator<ItemModel> comparator = FilterUtils.getComparator(filterField, filterDirection);
+    private FloatingActionButton buttonSortName;
+    private FloatingActionButton buttonSortBestSelling;
+    private FloatingActionButton buttonSortMostViewed;
+    private FloatingActionButton buttonSortPrice;
+    private Dialog dialog;
 
     private void setupCategories() {
         categories.addAll(Arrays.asList(CategoryName.values()));
@@ -94,6 +99,23 @@ public class ListActivity extends FragmentActivity {
     private void setupFilterDialog() {
         MaterialButton filterButton = findViewById(R.id.button_filter);
         filterButton.setOnClickListener(l -> openFilters());
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.filter_bottom_drawer);
+
+        buttonSortName = dialog.findViewById(R.id.button_sort_name);
+        buttonSortBestSelling = dialog.findViewById(R.id.button_sort_best_selling);
+        buttonSortPrice = dialog.findViewById(R.id.button_sort_price);
+        buttonSortMostViewed = dialog.findViewById(R.id.button_sort_most_viewed);
+
+        setupFilterButton(buttonSortName, FilterField.FILTER_ALPHABETICALLY);
+        setupFilterButton(buttonSortMostViewed, FilterField.FILTER_BY_VIEWS);
+        setupFilterButton(buttonSortPrice, FilterField.FILTER_BY_PRICE);
+        setupFilterButton(buttonSortBestSelling, FilterField.FILTER_BEST_SELLING);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        updateButtons();
     }
 
     private void setupFilterRecyclerView() {
@@ -106,24 +128,41 @@ public class ListActivity extends FragmentActivity {
     }
 
     private void openFilters() {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.filter_bottom_drawer);
-
-        FloatingActionButton buttonSortName = dialog.findViewById(R.id.button_sort_name);
-        FloatingActionButton buttonSortBestSelling = dialog.findViewById(R.id.button_sort_best_selling);
-        FloatingActionButton buttonSortPrice = dialog.findViewById(R.id.button_sort_price);
-        FloatingActionButton buttonSortMostViewed = dialog.findViewById(R.id.button_sort_most_viewed);
-
-        setupFilterButton(buttonSortName, FilterField.FILTER_ALPHABETICALLY);
-        setupFilterButton(buttonSortMostViewed, FilterField.FILTER_BY_VIEWS);
-        setupFilterButton(buttonSortPrice, FilterField.FILTER_BY_PRICE);
-        setupFilterButton(buttonSortBestSelling, FilterField.FILTER_BEST_SELLING);
 
         dialog.show();
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setGravity(Gravity.BOTTOM);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+    }
+
+    private void updateButtons() {
+        switch (filterField) {
+            case FILTER_ALPHABETICALLY:
+                setButtonAppearance(buttonSortName);
+                setButtonsDisabled(buttonSortPrice, buttonSortBestSelling, buttonSortMostViewed);
+                break;
+            case FILTER_BEST_SELLING:
+                setButtonAppearance(buttonSortBestSelling);
+                setButtonsDisabled(buttonSortPrice, buttonSortName, buttonSortMostViewed);
+                break;
+            case FILTER_BY_VIEWS:
+                setButtonAppearance(buttonSortMostViewed);
+                setButtonsDisabled(buttonSortPrice, buttonSortBestSelling, buttonSortName);
+                break;
+            case FILTER_BY_PRICE:
+                setButtonAppearance(buttonSortPrice);
+                setButtonsDisabled(buttonSortName, buttonSortBestSelling, buttonSortMostViewed);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void setButtonAppearance(FloatingActionButton button) {
+        FilterUtils.setAscendingButtonAppearance(button);
+    }
+
+    private void setButtonsDisabled(FloatingActionButton... buttons) {
+        for (FloatingActionButton button : buttons) {
+            FilterUtils.setButtonDisabled(button);
+        }
     }
 
     private void enterFocusMode() {
@@ -232,7 +271,9 @@ public class ListActivity extends FragmentActivity {
     private void setupFilterButton(FloatingActionButton floatingActionButton, FilterField filterField) {
         floatingActionButton.setOnClickListener(l -> {
             this.filterField = filterField;
-            if(filterDirection == FilterDirection.ASCENDING) filterDirection = FilterDirection.DESCENDING;
+            updateButtons();
+            if (filterDirection == FilterDirection.ASCENDING)
+                filterDirection = FilterDirection.DESCENDING;
             else filterDirection = FilterDirection.ASCENDING;
             comparator = FilterUtils.getComparator(filterField, filterDirection);
             if (isDefaultSettings()) {

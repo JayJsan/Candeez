@@ -1,6 +1,6 @@
 package com.application.project2java;
 
-import com.google.android.material.button.MaterialButton;
+import com.example.project2java.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Comparator;
@@ -33,6 +33,14 @@ public class FilterUtils {
         return comparator;
     }
 
+    public static void setButtonDisabled(FloatingActionButton floatingActionButton) {
+        floatingActionButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primaryFixed));
+
+    }
+
+    public static void setAscendingButtonAppearance(FloatingActionButton floatingActionButton) {
+        floatingActionButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primary));
+    }
 
 
 }
