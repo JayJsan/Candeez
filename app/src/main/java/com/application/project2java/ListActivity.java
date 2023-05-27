@@ -2,6 +2,7 @@ package com.application.project2java;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -50,6 +51,13 @@ public class ListActivity extends FragmentActivity {
         setContentView(R.layout.activity_list);
         dataProvider = App.getDataProvider();
 
+        Intent intent = getIntent();
+
+        if (intent.hasExtra("category")) {
+            CategoryName preset = CategoryName.valueOf(intent.getStringExtra("category"));
+            selectedCategories.add(preset);
+        }
+
         noItemsFound = findViewById(R.id.no_search_results);
         noItemsFound.setVisibility(View.GONE);
 
@@ -61,6 +69,7 @@ public class ListActivity extends FragmentActivity {
         setUpSearchBar();
         setupFilterRecyclerView();
         setupProductRecyclerView();
+        updateData();
     }
 
     private void updateResultCount(int count) {
@@ -69,7 +78,7 @@ public class ListActivity extends FragmentActivity {
 
     private void setupFilterRecyclerView() {
         RecyclerView filterRecyclerView = this.findViewById(R.id.filter_recycler_view);
-        filterAdapter = new FilterAdapter(categories, this::updateFilters);
+        filterAdapter = new FilterAdapter(categories, selectedCategories, this::updateFilters);
         filterRecyclerView.setAdapter(filterAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);

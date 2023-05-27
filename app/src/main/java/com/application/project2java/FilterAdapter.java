@@ -15,11 +15,13 @@ import java.util.List;
 
 public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder> {
     private final List<CategoryName> categories;
+    private final List<CategoryName> presets;
     private final OnSelectListener onSelectListener;
 
-    public FilterAdapter(List<CategoryName> categories, OnSelectListener onSelectListener) {
+    public FilterAdapter(List<CategoryName> categories, List<CategoryName> presets, OnSelectListener onSelectListener) {
         this.categories = categories;
         this.onSelectListener = onSelectListener;
+        this.presets = presets;
 
     }
 
@@ -37,15 +39,11 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
         String name = category.toString();
         holder.categoryName = category;
         holder.getFilterButton().setText(name);
+        holder.isSelected = presets.contains(category);
+        holder.updateButtonAppearance();
         holder.filterButton.setOnClickListener(v -> {
             holder.isSelected = !holder.isSelected;
-            if (holder.isSelected) {
-                holder.filterButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primary));
-                holder.filterButton.setTextColor(ResourceUtils.getColorStateList(R.color.md_theme_light_onPrimary));
-            } else {
-                holder.filterButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primaryContainer));
-                holder.filterButton.setTextColor(ResourceUtils.getColorStateList(R.color.md_theme_light_onTertiaryContainer));
-            }
+            holder.updateButtonAppearance();
             onSelectListener.onSelect(holder.categoryName, holder.isSelected);
         });
 
@@ -74,6 +72,17 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
         public MaterialButton getFilterButton() {
             return filterButton;
         }
+
+        public void updateButtonAppearance() {
+            if (isSelected) {
+                filterButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primary));
+                filterButton.setTextColor(ResourceUtils.getColorStateList(R.color.md_theme_light_onPrimary));
+            } else {
+                filterButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primaryContainer));
+                filterButton.setTextColor(ResourceUtils.getColorStateList(R.color.md_theme_light_onTertiaryContainer));
+            }
+        }
+
     }
 
 
