@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
-import android.text.Layout;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -65,7 +63,7 @@ public class ListActivity extends FragmentActivity {
         setupProductRecyclerView();
     }
 
-    private void updateResultCount(int count){
+    private void updateResultCount(int count) {
         resultCount.setText(count + " Results Returned");
     }
 
@@ -98,7 +96,7 @@ public class ListActivity extends FragmentActivity {
         dataProvider.open();
         filteredItems = dataProvider.getItemsFromMultipleCategoriesWithName(selectedCategories, searchQuery);
         dataProvider.close();
-        if(filteredItems.isEmpty()) {
+        if (filteredItems.isEmpty()) {
             noItemsFound.setVisibility(View.VISIBLE);
             productRecyclerView.setVisibility(View.GONE);
             updateResultCount(0);

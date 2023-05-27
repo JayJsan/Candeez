@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import java.util.List;
 
 public class ImagePagerAdapter extends FragmentStatePagerAdapter {
-    private List<String> imageUris;
+    private final List<String> imageUris;
 
     public ImagePagerAdapter(FragmentManager fm, List<String> imageUris) {
         super(fm);

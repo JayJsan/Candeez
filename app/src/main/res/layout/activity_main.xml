@@ -142,10 +142,9 @@
                     app:layout_constraintStart_toStartOf="@+id/categories_heading"
                     app:layout_constraintTop_toBottomOf="@+id/see_all_categories_button">
 
-                    <fragment
+                    <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/category_recycler_view"
-                        android:name="com.application.project2java.CategoryRecyclerView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </androidx.core.widget.NestedScrollView>
 
