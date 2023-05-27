@@ -47,6 +47,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         ItemModel item = items.get(position);
         String name = item.getName();
 
+        holder.viewCount = item.getViewCount();
         holder.textViewPrice.setText("$" + item.getPrice());
         holder.textViewName.setText(name);
         holder.itemName = name;
@@ -83,6 +84,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         MaterialButton buttonIncrease;
         String itemName;
         int quantity;
+        int viewCount;
         TextView textViewName;
         TextView textViewPrice;
         TextView textViewQuantity;
@@ -92,7 +94,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         public ViewHolder(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
-            v.setOnClickListener(v1 -> ListItemUtils.navigateToDetails(itemName));
+            v.setOnClickListener(v1 -> ListItemUtils.navigateToDetails(itemName, viewCount));
             textViewName = v.findViewById(R.id.product_name);
             textViewPrice = v.findViewById(R.id.product_price);
             textViewQuantity = v.findViewById(R.id.product_qty);

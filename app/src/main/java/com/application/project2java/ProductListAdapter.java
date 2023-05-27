@@ -46,6 +46,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         holder.textViewName.setText(name);
         holder.textViewDescription.setText(item.getDescription());
         holder.itemName = name;
+        holder.viewCount = item.getViewCount();
 
         ResourceUtils.getImageBitmapAsync(item.getImageUris().get(0), new ResourceUtils.BitmapCallback() {
 
@@ -72,6 +73,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        int viewCount;
         String itemName;
         TextView textViewName;
         TextView textViewDescription;
@@ -81,7 +83,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         public ViewHolder(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
-            v.setOnClickListener(v1 -> ListItemUtils.navigateToDetails(itemName));
+            v.setOnClickListener(v1 -> ListItemUtils.navigateToDetails(itemName, viewCount));
             textViewName = v.findViewById(R.id.product_name);
             textViewDescription = v.findViewById(R.id.product_description);
             textViewPrice = v.findViewById(R.id.product_price);
