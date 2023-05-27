@@ -20,6 +20,7 @@ public class DetailsActivity extends FragmentActivity {
     private ItemModel item;
     private boolean isInCart;
     private MaterialButton favouriteButton;
+    private MaterialButton cartButton;
     private boolean isFavourite;
     private List<ItemModel> relatedItems;
 
@@ -32,9 +33,11 @@ public class DetailsActivity extends FragmentActivity {
         fetchItemDetails();
         setDetails();
         setupFavouriteButton();
+        setupCartButton();
         fetchRelatedItems();
         setupRelatedItemsRecyclerView();
         updateFavouriteButtonAppearance();
+        updateCartButtonAppearance();
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
     }
@@ -54,6 +57,7 @@ public class DetailsActivity extends FragmentActivity {
         item = dataProvider.getItemWithName(name);
         dataProvider.close();
         isFavourite = item.isFavourite();
+        isInCart = item.getCartQuantity() > 0;
 
     }
 
@@ -73,6 +77,18 @@ public class DetailsActivity extends FragmentActivity {
         title.setText(item.getName());
         details.setText(item.getDescription());
         price.setText("$" + item.getPrice());
+    }
+
+    private void setupCartButton() {
+        cartButton = findViewById(R.id.add_to_cart_button);
+        cartButton.setOnClickListener(l -> {
+            isInCart = !isInCart;
+            dataMutator.open();
+            if (isInCart) dataMutator.updateItemCartStatus(item.getName(), 1);
+            else dataMutator.updateItemCartStatus(item.getName(), 0);
+            dataMutator.close();
+            updateCartButtonAppearance();
+        });
     }
 
     private void setupFavouriteButton() {
@@ -95,6 +111,18 @@ public class DetailsActivity extends FragmentActivity {
             favouriteButton.setIconResource(R.drawable.baseline_favorite_border_24);
             favouriteButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_primaryContainer));
             favouriteButton.setTextColor(ResourceUtils.getColorStateList(R.color.md_theme_light_onTertiaryContainer));
+        }
+    }
+
+    private void updateCartButtonAppearance() {
+        if (isInCart) {
+            cartButton.setIconResource(R.drawable.baseline_remove_shopping_cart_24);
+            cartButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_tertiary));
+            cartButton.setIconTintResource(R.color.md_theme_light_onPrimary);
+        } else {
+            cartButton.setIconResource(R.drawable.baseline_add_shopping_cart_24);
+            cartButton.setBackgroundTintList(ResourceUtils.getColorStateList(R.color.md_theme_light_tertiaryContainer));
+            cartButton.setIconTintResource(R.color.md_theme_light_tertiary);
         }
     }
 
