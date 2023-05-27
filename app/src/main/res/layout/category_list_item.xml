@@ -56,7 +56,7 @@
                     android:fontFamily="sans-serif-light"
                     android:text="TextView"
                     android:textAlignment="center"
-                    android:textColor="@color/md_theme_light_onSecondary"
+                    android:textColor="@color/md_theme_light_primary"
                     android:textSize="11sp"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="76dp"
