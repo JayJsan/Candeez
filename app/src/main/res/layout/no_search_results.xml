@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/no_items_found"
+    android:layout_marginTop="32dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,9 +14,10 @@
             android:id="@+id/icon_no_search_results"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:contentDescription="sad face"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/emoticon_sad_outline"
-            app:tint="@color/md_theme_light_outlineVariant" />
+            android:src="@drawable/emoticon_sad_outline"
+            android:tint="@color/md_theme_light_outlineVariant" />
 
         <TextView
             android:id="@+id/text_no_search_results"
