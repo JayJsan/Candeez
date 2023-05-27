@@ -59,7 +59,7 @@ public class BottomNavigationUtils {
             selectedItemIndex = 2;
         } else if (activity instanceof CartActivity) {
             selectedItemIndex = 3;
-        }else {
+        } else {
             selectedItemIndex = 0;
         }
         bottomNavigationView.getMenu().getItem(selectedItemIndex).setChecked(true);

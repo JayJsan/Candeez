@@ -46,9 +46,6 @@ public class DatabaseInstrumentedTest {
     }
 
 
-
-
-
     @Test
     public void testDeleteData() {
         //TODO add data

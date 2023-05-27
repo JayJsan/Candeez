@@ -63,8 +63,8 @@
                             android:layout_height="72dp"
                             android:layout_marginBottom="36dp"
                             android:background="#00FFFFFF"
-                            android:onClick="goToSearch"
                             android:fontFamily="sans-serif"
+                            android:onClick="goToSearch"
                             android:padding="0dp"
                             android:text="Type Something"
                             android:textAlignment="textStart"
@@ -134,20 +134,19 @@
                     app:layout_constraintTop_toTopOf="@+id/categories_heading" />
 
                 <androidx.core.widget.NestedScrollView
-                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
                     android:scrollbars="none"
                     app:layout_constraintStart_toStartOf="@+id/categories_heading"
                     app:layout_constraintTop_toBottomOf="@+id/see_all_categories_button">
 
                     <fragment
+                        android:id="@+id/category_recycler_view"
                         android:name="com.application.project2java.CategoryRecyclerView"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/category_recycler_view"
-                        />
+                        android:layout_height="wrap_content" />
                 </androidx.core.widget.NestedScrollView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

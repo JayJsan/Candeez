@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class DatabaseMutationInstrumentedTest extends DatabaseInstrumentedTest{
+public class DatabaseMutationInstrumentedTest extends DatabaseInstrumentedTest {
 
     @Test
     public void testUpdateCart() {
@@ -15,6 +15,7 @@ public class DatabaseMutationInstrumentedTest extends DatabaseInstrumentedTest{
         assertTrue(updated > 0);
 
     }
+
     @Test
     public void testAddData() {
         long row = dataMutator.addData(defaultItem);
