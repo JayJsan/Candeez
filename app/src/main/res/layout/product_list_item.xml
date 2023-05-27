@@ -86,12 +86,13 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button4"
             style="@style/Widget.Material3.Button.IconButton"
             android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:enabled="false"
             android:layout_weight="0.1"
             android:contentDescription="next icon"
             app:icon="@drawable/baseline_navigate_next_24"
