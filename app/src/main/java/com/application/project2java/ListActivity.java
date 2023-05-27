@@ -88,6 +88,8 @@ public class ListActivity extends FragmentActivity {
 
     private void updateData() {
         if (selectedCategories.isEmpty() && searchQuery.trim().equals("")) {
+            noItemsFound.setVisibility(View.GONE);
+            productRecyclerView.setVisibility(View.VISIBLE);
             productListAdapter.setItems(items);
             updateResultCount(allItemCount);
             return;
