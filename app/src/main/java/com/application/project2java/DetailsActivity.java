@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.project2java.R;
 import com.google.android.material.button.MaterialButton;
@@ -19,6 +20,7 @@ public class DetailsActivity extends FragmentActivity {
     private DataMutator dataMutator;
     private ItemModel item;
     private boolean isInCart;
+    private ViewPager imageViewPager;
     private MaterialButton favouriteButton;
     private MaterialButton cartButton;
     private boolean isFavourite;
@@ -38,6 +40,10 @@ public class DetailsActivity extends FragmentActivity {
         setupRelatedItemsRecyclerView();
         updateFavouriteButtonAppearance();
         updateCartButtonAppearance();
+        imageViewPager = findViewById(R.id.image_view_pager);
+        ImagePagerAdapter imagePagerAdapter = new ImagePagerAdapter(getSupportFragmentManager(), item.getImageUris());
+        imageViewPager.setAdapter(imagePagerAdapter);
+
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
     }
