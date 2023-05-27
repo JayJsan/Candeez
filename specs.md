@@ -7,7 +7,7 @@
 ### User Stories
 
 - [X]  I want to be able to look at all categories
-- [ ]  I want to be able to select a category of items
+- [X]  I want to be able to select a category of items
 - [X]  I want to be able to search for a specific item
 - [X]  I want to see the best selling items
     - [X] And click on them to view
@@ -32,6 +32,7 @@
 
 -  [ ] I want to be able to view information about the chosen item, which includes:
     - [X] Name
+    - [ ] Category
     - [X] Price
     - [X] Description
 - [ ] I want to be able to add the item to my favourites or cart
