@@ -101,6 +101,28 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_add_to_favourites"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                app:icon="@drawable/baseline_favorite_border_24"
+                app:iconSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_add_to_cart" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_add_to_cart"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                app:icon="@drawable/baseline_add_shopping_cart_24"
+                app:iconSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -109,9 +131,9 @@
             android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:enabled="false"
             android:layout_weight="0.1"
             android:contentDescription="next icon"
+            android:enabled="false"
             app:icon="@drawable/baseline_navigate_next_24"
             app:rippleColor="@null" />
 

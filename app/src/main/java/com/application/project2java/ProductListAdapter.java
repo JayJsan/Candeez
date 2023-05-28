@@ -13,6 +13,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
@@ -40,15 +41,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ProductListAdapter.ViewHolder holder, int position) {
         ItemModel item = items.get(position);
-        String name = item.getName();
+        holder.item = item;
+        holder.setup();
+        holder.updateFavouriteButton();
 
-        holder.textViewPrice.setText("$" + item.getPrice());
-        holder.textViewName.setText(name);
-        holder.textViewDescription.setText(item.getDescription());
-        holder.itemName = name;
-        holder.viewCount = item.getViewCount();
-        holder.textViewCategory.setText(item.getCategory(true));
-        holder.textViewViews.setText(item.getViewCount() + " Views");
 
         ResourceUtils.getImageBitmapAsync(item.getImageUris().get(0), new ResourceUtils.BitmapCallback() {
 
@@ -75,6 +71,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        public ItemModel item;
         int viewCount;
         String itemName;
         TextView textViewName;
@@ -83,10 +80,13 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         TextView textViewCategory;
         TextView textViewViews;
         ShapeableImageView imageView;
+        MaterialButton buttonFavouriteItem;
+        boolean isFavourite;
+        private DataMutator dataMutator;
 
         public ViewHolder(View v) {
             super(v);
-            // Define click listener for the ViewHolder's View.
+            dataMutator = App.getDataMutator();
             v.setOnClickListener(v1 -> ListItemUtils.navigateToDetails(itemName, viewCount));
             textViewName = v.findViewById(R.id.product_name);
             textViewDescription = v.findViewById(R.id.product_description);
@@ -94,7 +94,36 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             imageView = v.findViewById(R.id.product_image);
             textViewCategory = v.findViewById(R.id.product_category);
             textViewViews = v.findViewById(R.id.product_views);
+
+            buttonFavouriteItem = v.findViewById(R.id.button_add_to_favourites);
+            buttonFavouriteItem.setOnClickListener(v1 -> {
+                // change favourites id to the opposite of current state
+                // i.e. ---> isFavourite = 1 => isFavourite = 0
+                //      ---> isFavourite = 0 => isFavourite = 1
+                dataMutator.open();
+                dataMutator.updateItemFavouriteStatus(itemName, !isFavourite);
+                dataMutator.close();
+            });
         }
+
+        public void setup() {
+
+            String name = item.getName();
+
+            textViewPrice.setText("$" + item.getPrice());
+            textViewName.setText(name);
+            textViewDescription.setText(item.getDescription());
+            itemName = name;
+            viewCount = item.getViewCount();
+            textViewCategory.setText(item.getCategory(true));
+            textViewViews.setText(item.getViewCount() + " Views");
+            isFavourite = item.isFavourite();
+        }
+
+        public void updateFavouriteButton() {
+            ListItemUtils.updateFavouriteButtonAppearance(isFavourite, buttonFavouriteItem);
+        }
+
 
     }
 }
