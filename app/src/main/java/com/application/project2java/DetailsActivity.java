@@ -21,6 +21,7 @@ public class DetailsActivity extends FragmentActivity {
     private DataMutator dataMutator;
     private ItemModel item;
     private boolean isInCart;
+    private ProductListAdapter relatedItemsAdapter;
     private ViewPager imageViewPager;
     private MaterialButton favouriteButton;
     private MaterialButton cartButton;
@@ -33,6 +34,11 @@ public class DetailsActivity extends FragmentActivity {
         setContentView(R.layout.activity_details);
         dataProvider = App.getDataProvider();
         dataMutator = App.getDataMutator();
+        dataMutator.addDatabaseWriteListener(() -> {
+            fetchRelatedItems();
+            relatedItemsAdapter.setItems(relatedItems);
+        });
+
         fetchItemDetails();
         setDetails();
         setupFavouriteButton();
@@ -58,7 +64,7 @@ public class DetailsActivity extends FragmentActivity {
 
     private void setupRelatedItemsRecyclerView() {
         RecyclerView relatedItemsRecyclerView = findViewById(R.id.related_items_recycler_view);
-        ProductListAdapter relatedItemsAdapter = new ProductListAdapter(relatedItems);
+        relatedItemsAdapter = new ProductListAdapter(relatedItems);
         relatedItemsRecyclerView.setAdapter(relatedItemsAdapter);
         LinearLayoutManager productLayoutManager = new LinearLayoutManager(this);
         relatedItemsRecyclerView.setLayoutManager(productLayoutManager);
