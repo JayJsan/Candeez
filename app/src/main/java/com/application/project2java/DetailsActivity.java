@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.project2java.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
@@ -40,12 +41,19 @@ public class DetailsActivity extends FragmentActivity {
         setupRelatedItemsRecyclerView();
         updateFavouriteButtonAppearance();
         updateCartButtonAppearance();
-        imageViewPager = findViewById(R.id.image_view_pager);
-        ImagePagerAdapter imagePagerAdapter = new ImagePagerAdapter(getSupportFragmentManager(), item.getImageUris());
-        imageViewPager.setAdapter(imagePagerAdapter);
+        setupImageViewPager();
 
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
+    }
+
+    private void setupImageViewPager() {
+        imageViewPager = findViewById(R.id.image_view_pager);
+        ImagePagerAdapter imagePagerAdapter = new ImagePagerAdapter(getSupportFragmentManager(), item.getImageUris());
+        imageViewPager.setAdapter(imagePagerAdapter);
+        TabLayout imageTabLayout = findViewById(R.id.image_tab_layout);
+        imageTabLayout.setupWithViewPager(imageViewPager, true);
+
     }
 
     private void setupRelatedItemsRecyclerView() {

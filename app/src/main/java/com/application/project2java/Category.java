@@ -1,12 +1,12 @@
 package com.application.project2java;
 
 public class Category {
-    private final String imageUri;
+    private final int imageId;
     private final CategoryName category;
     private final int frequency;
 
-    public Category(String imageUri, CategoryName category, int frequency) {
-        this.imageUri = imageUri;
+    public Category(int imageId, CategoryName category, int frequency) {
+        this.imageId = imageId;
         this.category = category;
         this.frequency = frequency;
     }
@@ -17,6 +17,10 @@ public class Category {
 
     public String getDisplayName() {
         return category.name().replaceAll("_", " ");
+    }
+
+    public int getImageId() {
+        return imageId;
     }
 
     public String getName() {
