@@ -1,7 +1,10 @@
 package com.application.project2java;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
 import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
@@ -25,9 +28,10 @@ public class MainActivity extends FragmentActivity {
     List<ItemModel> mostViewedItems;
     List<Category> categories;
 
+    private int width;
     private boolean isGrid = false;
     private final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-    private final GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+    private GridLayoutManager gridLayoutManager;
     private RecyclerView categoryRecyclerView;
 
     @Override
@@ -36,7 +40,9 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
-
+        getScreenSize();
+        Log.d("DEBUG", width + "");
+        gridLayoutManager = new GridLayoutManager(this, width / 200);
         dataMutator = App.getDataMutator();
         dataMutator.addDatabaseWriteListener(this::updateItems);
         dataProvider = App.getDataProvider();
@@ -50,6 +56,15 @@ public class MainActivity extends FragmentActivity {
         setupCategoryRecyclerView();
         setupButtons();
         dataProvider.close();
+    }
+
+    //https://stackoverflow.com/questions/1016896/how-to-get-screen-dimensions-as-pixels-in-android
+    private void getScreenSize() {
+        float density = App.getAppContext().getResources().getDisplayMetrics().density;
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        width = (int) ((int) size.x / density);
     }
 
     private void setupButtons() {
