@@ -43,6 +43,7 @@ public class BottomNavigationUtils {
     private static void navigateToDestination(FragmentActivity activity, Class<?> destinationClass, int itemId) {
         Intent intent = new Intent(activity, destinationClass);
         activity.startActivity(intent);
+        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         activity.finish();
     }
 
