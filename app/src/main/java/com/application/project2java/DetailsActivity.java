@@ -97,10 +97,7 @@ public class DetailsActivity extends FragmentActivity {
         cartButton = findViewById(R.id.add_to_cart_button);
         cartButton.setOnClickListener(l -> {
             isInCart = !isInCart;
-            dataMutator.open();
-            if (isInCart) dataMutator.updateItemCartStatus(item.getName(), 1);
-            else dataMutator.updateItemCartStatus(item.getName(), 0);
-            dataMutator.close();
+            ListItemUtils.updateCartStatus(isInCart, item.getName());
             updateCartButtonAppearance();
         });
     }

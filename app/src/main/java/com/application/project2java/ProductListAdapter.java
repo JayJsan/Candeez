@@ -44,6 +44,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         holder.item = item;
         holder.setup();
         holder.updateFavouriteButton();
+        holder.updateCartButton();
 
 
         ResourceUtils.getImageBitmapAsync(item.getImageUris().get(0), new ResourceUtils.BitmapCallback() {
@@ -72,16 +73,18 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ItemModel item;
-        int viewCount;
-        String itemName;
-        TextView textViewName;
-        TextView textViewDescription;
-        TextView textViewPrice;
-        TextView textViewCategory;
-        TextView textViewViews;
-        ShapeableImageView imageView;
-        MaterialButton buttonFavouriteItem;
-        boolean isFavourite;
+        private int viewCount;
+        private String itemName;
+        private TextView textViewName;
+        private TextView textViewDescription;
+        private TextView textViewPrice;
+        private TextView textViewCategory;
+        private TextView textViewViews;
+        private ShapeableImageView imageView;
+        private MaterialButton buttonFavouriteItem;
+        private MaterialButton buttonAddCart;
+        private boolean isFavourite;
+        private boolean isInCart;
         private DataMutator dataMutator;
 
         public ViewHolder(View v) {
@@ -104,6 +107,13 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 dataMutator.updateItemFavouriteStatus(itemName, !isFavourite);
                 dataMutator.close();
             });
+            buttonAddCart = v.findViewById(R.id.button_add_to_cart);
+            buttonAddCart.setOnClickListener(v1 -> {
+                isInCart = !isInCart;
+                dataMutator.open();
+                ListItemUtils.updateCartStatus(isInCart, itemName);
+                dataMutator.close();
+            });
         }
 
         public void setup() {
@@ -118,12 +128,16 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             textViewCategory.setText(item.getCategory(true));
             textViewViews.setText(item.getViewCount() + " Views");
             isFavourite = item.isFavourite();
+            isInCart = item.getCartQuantity() > 0;
         }
 
         public void updateFavouriteButton() {
             ListItemUtils.updateFavouriteButtonAppearance(isFavourite, buttonFavouriteItem);
         }
 
+        public void updateCartButton() {
+            ListItemUtils.updateCartButtonAppearance(isInCart, buttonAddCart);
+        }
 
     }
 }
