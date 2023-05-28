@@ -24,7 +24,7 @@
 
 - [ ] I want to to be able to add items to my favorites while scrolling through
 
-- [ ] I want to be able to filter and sort items
+- [X] I want to be able to filter and sort items
 
 ## DetailActivity
 
@@ -35,7 +35,7 @@
     - [ ] Category
     - [X] Price
     - [X] Description
-- [ ] I want to be able to add the item to my favourites or cart
+- [X] I want to be able to add the item to my favourites or cart
 - [X] I want to go back to the screen I came from **DANGER HARD**
 
 ## FavouritesActivity

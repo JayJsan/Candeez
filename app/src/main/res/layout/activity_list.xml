@@ -6,184 +6,211 @@
     android:layout_height="match_parent"
     tools:context="com.application.project2java.ListActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/search_and_filters"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/md_theme_light_surfaceContainerLow"
+        app:layout_constraintBottom_toTopOf="@id/navigation_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintlayout_search_and_filters"
+
+            android:background="#00FFFFFF"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/search_and_filters"
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll|enterAlways">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/top_bar"
+                    android:id="@+id/constraintlayout_search_and_filters"
                     android:layout_width="match_parent"
-                    android:layout_height="213dp"
-                    android:clickable="true"
-                    android:focusableInTouchMode="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="parallax">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/card_search"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/top_bar"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="-35dp"
-                        android:paddingHorizontal="16dp"
-                        app:cardBackgroundColor="@color/md_theme_light_primaryFixedDim"
-                        app:cardCornerRadius="35dp"
-                        app:cardElevation="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_height="213dp"
+                        android:clickable="true"
+                        android:focusableInTouchMode="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintlayout_search_container"
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_search"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:paddingHorizontal="16dp">
+                            android:layout_marginTop="-35dp"
+                            android:paddingHorizontal="16dp"
+                            app:cardBackgroundColor="@color/md_theme_light_primaryFixedDim"
+                            app:cardCornerRadius="35dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
-                            <TextView
-                                android:id="@+id/text_search_header"
-                                android:layout_width="wrap_content"
-                                android:layout_height="26dp"
-                                android:layout_marginStart="4dp"
-                                android:text="Search Items"
-                                android:textColor="@color/md_theme_light_onPrimary"
-                                android:textSize="20sp"
-                                app:layout_constraintBottom_toBottomOf="@+id/ic_search"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/ic_search"
-                                app:layout_constraintVertical_bias="0.59" />
-
-                            <EditText
-                                android:id="@+id/search_area"
-                                style="@style/Widget.Material3.AutoCompleteTextView.FilledBox"
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/constraintlayout_search_container"
                                 android:layout_width="match_parent"
-                                android:layout_height="75dp"
-                                android:layout_marginBottom="36dp"
-                                android:ems="10"
-                                android:fontFamily="sans-serif-medium"
-                                android:hint="Type Something"
-                                android:inputType="text"
-                                android:padding="0dp"
-                                android:paddingStart="0dp"
-                                android:paddingLeft="0dp"
-                                android:paddingTop="0dp"
-                                android:paddingEnd="0dp"
-                                android:paddingRight="0dp"
-                                android:paddingBottom="0dp"
-                                android:textColor="@color/md_theme_light_primaryFixed"
-                                android:textColorHint="@color/md_theme_light_primaryFixed"
-                                android:textSize="40dp"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent" />
+                                android:layout_height="match_parent"
+                                android:paddingHorizontal="16dp">
 
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/ic_search"
-                                style="@style/Widget.Material3.Button.IconButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="-16dp"
-                                android:insetLeft="0dp"
-                                app:icon="@drawable/baseline_search_24"
-                                app:iconTint="@color/md_theme_light_onPrimary"
-                                app:layout_constraintBottom_toTopOf="@+id/search_area"
-                                app:layout_constraintEnd_toEndOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                                <TextView
+                                    android:id="@+id/text_search_header"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="26dp"
+                                    android:layout_marginStart="4dp"
+                                    android:text="Search Items"
+                                    android:textColor="@color/md_theme_light_onPrimary"
+                                    android:textSize="20sp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/ic_search"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/ic_search"
+                                    app:layout_constraintVertical_bias="0.59" />
 
-                    </androidx.cardview.widget.CardView>
+                                <EditText
+                                    android:id="@+id/search_area"
+                                    style="@style/Widget.Material3.AutoCompleteTextView.FilledBox"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="75dp"
+                                    android:layout_marginBottom="36dp"
+                                    android:ems="10"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:hint="Type Something"
+                                    android:inputType="text"
+                                    android:padding="0dp"
+                                    android:paddingStart="0dp"
+                                    android:paddingLeft="0dp"
+                                    android:paddingTop="0dp"
+                                    android:paddingEnd="0dp"
+                                    android:paddingRight="0dp"
+                                    android:paddingBottom="0dp"
+                                    android:textColor="@color/md_theme_light_primaryFixed"
+                                    android:textColorHint="@color/md_theme_light_primaryFixed"
+                                    android:textSize="40dp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/ic_search"
+                                    style="@style/Widget.Material3.Button.IconButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="-16dp"
+                                    android:insetLeft="0dp"
+                                    app:icon="@drawable/baseline_search_24"
+                                    app:iconTint="@color/md_theme_light_onPrimary"
+                                    app:layout_constraintBottom_toTopOf="@+id/search_area"
+                                    app:layout_constraintEnd_toEndOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintlayout_filter"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/top_bar">
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/button_filter"
-                        style="@style/Widget.Material3.Button.IconButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="filters"
-                        app:icon="@drawable/baseline_filter_list_24"
-                        app:iconTint="@color/md_theme_light_onSurfaceVariant"
-                        app:layout_constraintBottom_toBottomOf="@+id/text_filter_header"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/text_filter_header" />
+                        </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/text_filter_header"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:text="Filter by"
-                        android:textColor="@color/md_theme_light_onSurfaceVariant"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/filter_recycler_view"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintlayout_filter"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/text_filter_header" />
+                        app:layout_constraintTop_toBottomOf="@+id/top_bar">
 
-                    <include
-                        layout="@layout/divider"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/filter_recycler_view" />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/button_filter"
+                            style="@style/Widget.Material3.Button.IconButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="filters"
+                            app:icon="@drawable/baseline_filter_list_24"
+                            app:iconTint="@color/md_theme_light_onSurfaceVariant"
+                            app:layout_constraintBottom_toBottomOf="@+id/text_filter_header"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/text_filter_header" />
+
+                        <TextView
+                            android:id="@+id/text_filter_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Filter by"
+                            android:textColor="@color/md_theme_light_onSurfaceVariant"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/filter_recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="1dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/button_filter" />
+
+                        <include
+                            layout="@layout/divider"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/filter_recycler_view" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/results_returned"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Results Returned"
-                android:textColor="@color/md_theme_light_onSurfaceVariant"
-                android:textStyle="bold" />
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/product_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <include
+            android:id="@+id/no_search_results"
+            layout="@layout/no_search_results"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_anchor="@id/appBarLayout"
+            app:layout_anchorGravity="center"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-            <include
-                android:id="@+id/no_search_results"
-                layout="@layout/no_search_results" />
-        </LinearLayout>
-    </ScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/product_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="55dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:layout_editor_absoluteY="464dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <fragment
         android:id="@+id/navigation_fragment"
         android:name="com.application.project2java.Navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

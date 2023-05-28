@@ -1,6 +1,7 @@
 package com.application.project2java;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
@@ -13,7 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartActivity extends FragmentActivity {
-
+    private RecyclerView cartRecyclerView;
+    private View noCartResults;
     private CartAdapter cartAdapter;
     private List<ItemModel> items;
     private DataProvider dataProvider;
@@ -32,6 +34,7 @@ public class CartActivity extends FragmentActivity {
         dataMutator = App.getDataMutator();
         dataMutator.addDatabaseWriteListener(this::updateData);
         setupCartRecyclerView();
+        updateViews();
 
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
@@ -42,12 +45,24 @@ public class CartActivity extends FragmentActivity {
         items = dataProvider.getCartItems();
         cartAdapter.setItems(items);
         dataProvider.close();
+        updateViews();
         totalPriceText.setText("Total: " + ListItemUtils.calculateTotal(items));
 
     }
 
+    private void updateViews() {
+        if (items.isEmpty()) {
+            noCartResults.setVisibility(View.VISIBLE);
+            cartRecyclerView.setVisibility(View.GONE);
+        } else {
+            noCartResults.setVisibility(View.GONE);
+            cartRecyclerView.setVisibility(View.VISIBLE);
+        }
+    }
+
     private void setupCartRecyclerView() {
-        RecyclerView cartRecyclerView = findViewById(R.id.cart_recycler_view);
+        noCartResults = findViewById(R.id.no_cart_results);
+        cartRecyclerView = findViewById(R.id.cart_recycler_view);
         cartAdapter = new CartAdapter(new ArrayList<>());
         updateData();
         cartRecyclerView.setAdapter(cartAdapter);

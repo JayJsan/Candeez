@@ -17,9 +17,31 @@ public class ListItemUtils {
             buttonFavouriteItem.setIconResource(R.drawable.baseline_favorite_border_24);
         }
     }
+    public static void updateCartButtonAppearance(boolean isInCart, MaterialButton buttonAddCart){
 
-    public static void navigateToDetails(String name) {
+        if (isInCart) {
+            buttonAddCart.setIconTintResource(R.color.md_theme_light_tertiary);
+            buttonAddCart.setIconResource(R.drawable.baseline_remove_shopping_cart_24);
+        } else {
+            buttonAddCart.setIconTintResource(R.color.md_theme_light_primary);
+            buttonAddCart.setIconResource(R.drawable.baseline_add_shopping_cart_24);
+        }
+    }
+
+    public static void updateCartStatus(boolean isInCart, String name) {
+        DataMutator dataMutator = App.getDataMutator();
+        dataMutator.open();
+        if (isInCart) dataMutator.updateItemCartStatus(name, 1);
+        else dataMutator.updateItemCartStatus(name, 0);
+        dataMutator.close();
+    }
+
+    public static void navigateToDetails(String name, int viewCount) {
         Intent intent = new Intent(App.getAppContext(), DetailsActivity.class);
+        DataMutator dataMutator = App.getDataMutator();
+        dataMutator.open();
+        dataMutator.updateItemViewCount(name, viewCount);
+        dataMutator.close();
         intent.putExtra("name", name);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         App.getAppContext().startActivity(intent);
@@ -29,6 +51,14 @@ public class ListItemUtils {
     public static void navigateToList(CategoryName category) {
         Intent intent = new Intent(App.getAppContext(), ListActivity.class);
         if (category != null) intent.putExtra("category", category.toString());
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        App.getAppContext().startActivity(intent);
+
+    }
+
+    public static void navigateToList(FilterField filterField) {
+        Intent intent = new Intent(App.getAppContext(), ListActivity.class);
+        intent.putExtra("filter", filterField.toString());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         App.getAppContext().startActivity(intent);
 

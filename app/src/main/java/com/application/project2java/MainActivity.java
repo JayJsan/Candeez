@@ -48,9 +48,18 @@ public class MainActivity extends FragmentActivity {
 
     private void setupButtons() {
         MaterialButton seeAllCategories = findViewById(R.id.see_all_categories_button);
+        MaterialButton seeBestSelling = findViewById(R.id.see_all_best_selling_button);
+        MaterialButton seeMostViewed = findViewById(R.id.see_all_most_viewed_button);
         seeAllCategories.setOnClickListener(l -> {
-            ListItemUtils.navigateToList(null);
+            ListItemUtils.navigateToList((CategoryName) null);
         });
+        seeBestSelling.setOnClickListener(l -> {
+            ListItemUtils.navigateToList(FilterField.FILTER_BEST_SELLING);
+        });
+        seeMostViewed.setOnClickListener(l -> {
+            ListItemUtils.navigateToList(FilterField.FILTER_BY_VIEWS);
+        });
+
     }
 
 
@@ -60,7 +69,7 @@ public class MainActivity extends FragmentActivity {
         dataProvider.open();
         for (CategoryName categoryName : CategoryName.values()) {
             int categoryFrequency = dataProvider.getCategoryItemFrequency(categoryName);
-            categories.add(new Category("", categoryName, categoryFrequency));
+            categories.add(new Category(categoryName.bannerId, categoryName, categoryFrequency));
         }
         dataProvider.close();
 
@@ -105,6 +114,7 @@ public class MainActivity extends FragmentActivity {
 
     public void goToSearch(View view) {
         Intent intent = new Intent(this, ListActivity.class);
+        intent.putExtra("wants_search", Byte.MAX_VALUE);
         this.startActivity(intent);
     }
 }

@@ -13,13 +13,14 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2java.R;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private final List<Category> categories;
 
-    private OnSelectListener onSelectListener;
+    private final OnSelectListener onSelectListener;
 
     public CategoryAdapter(List<Category> categories, OnSelectListener onSelectListener) {
         this.categories = categories;
@@ -44,6 +45,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.cardView.setOnClickListener(l -> {
             onSelectListener.onSelect(category.getCategory());
         });
+        holder.imageView.setImageResource(category.getImageId());
     }
 
     @Override
@@ -57,6 +59,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final CardView cardView;
+        ShapeableImageView imageView;
         TextView textViewName;
         TextView textViewQty;
 
@@ -67,6 +70,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             cardView = v.findViewById(R.id.category_list_item);
             textViewName = v.findViewById(R.id.category_name);
             textViewQty = v.findViewById(R.id.category_qty);
+            imageView = v.findViewById(R.id.category_banner_image);
 
         }
 
