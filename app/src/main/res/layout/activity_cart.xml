@@ -71,6 +71,7 @@
 
             <include
                 layout="@layout/no_cart_results"
+                android:id="@+id/no_cart_results"
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
