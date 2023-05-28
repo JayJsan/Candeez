@@ -47,6 +47,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
+                            android:textStyle="bold"
                             android:text="Cart"
                             android:textColor="@color/md_theme_light_onTertiaryContainer"
                             android:textSize="24sp"

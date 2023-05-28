@@ -50,12 +50,14 @@
 
                     <TextView
                         android:id="@+id/product_header"
-                        android:layout_width="wrap_content"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
                         android:text="TextView"
-                        android:textColor="@color/md_theme_light_onTertiaryContainer"
+                        android:textAlignment="center"
+                        android:textColor="@color/md_theme_light_onPrimaryContainer"
                         android:textSize="24sp"
+                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/button_back"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
