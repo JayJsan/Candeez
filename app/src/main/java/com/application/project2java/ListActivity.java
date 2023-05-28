@@ -104,9 +104,13 @@ public class ListActivity extends FragmentActivity {
         }
 
         if (intent.hasExtra("wants_search")) {
-            searchArea.requestFocus();
-            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            openSearch();
         }
+    }
+
+    private void openSearch() {
+        searchArea.requestFocus();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 
 
@@ -241,6 +245,7 @@ public class ListActivity extends FragmentActivity {
 
 
     private void setUpSearchBar() {
+        MaterialButton searchButton = findViewById(R.id.ic_search);
         searchArea = this.findViewById(R.id.search_area);
         searchArea.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
@@ -249,6 +254,7 @@ public class ListActivity extends FragmentActivity {
         });
 
         handler = new Handler();
+        searchButton.setOnClickListener(l -> openSearch());
 
         searchArea.addTextChangedListener(new TextWatcher() {
             private Runnable runnable;
