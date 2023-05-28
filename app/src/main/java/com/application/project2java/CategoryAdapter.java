@@ -19,7 +19,7 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private final List<Category> categories;
 
-    private OnSelectListener onSelectListener;
+    private final OnSelectListener onSelectListener;
 
     public CategoryAdapter(List<Category> categories, OnSelectListener onSelectListener) {
         this.categories = categories;

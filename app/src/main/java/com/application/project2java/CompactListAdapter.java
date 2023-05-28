@@ -49,6 +49,7 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
         holder.textViewPrice.setText("$" + item.getPrice());
         holder.itemName = name;
         holder.isFavourite = isFavourite;
+        holder.viewCount = item.getViewCount();
 
         holder.updateFavouriteButton();
         Log.d("DEBUG", Boolean.toString(isFavourite));
@@ -86,6 +87,7 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
         MaterialButton buttonFavouriteItem;
         String itemName;
         boolean isFavourite;
+        int viewCount;
 
         public ViewHolder(View v) {
             super(v);
@@ -93,11 +95,11 @@ public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.
             textViewName = v.findViewById(R.id.compact_item_name);
             textViewPrice = v.findViewById(R.id.compact_item_price);
             v.setOnClickListener(v1 -> {
-                ListItemUtils.navigateToDetails(itemName);
+                ListItemUtils.navigateToDetails(itemName, viewCount);
             });
             buttonViewItem = v.findViewById(R.id.compact_button_view_item);
             buttonViewItem.setOnClickListener(v1 -> {
-                ListItemUtils.navigateToDetails(itemName);
+                ListItemUtils.navigateToDetails(itemName, viewCount);
             });
 
             buttonFavouriteItem = v.findViewById(R.id.compact_favourite_button);
