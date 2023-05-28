@@ -242,13 +242,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_related_items_header" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/related_items_recycler_view"
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/line_related_items" />
+                app:layout_constraintTop_toBottomOf="@+id/line_related_items">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/related_items_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/line_related_items" />
+            </androidx.core.widget.NestedScrollView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
