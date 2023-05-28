@@ -90,13 +90,16 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         public ViewHolder(View v) {
             super(v);
             dataMutator = App.getDataMutator();
-            v.setOnClickListener(v1 -> ListItemUtils.navigateToDetails(itemName, viewCount));
+            v.setOnClickListener(v1 -> goToItemDetails());
             textViewName = v.findViewById(R.id.product_name);
             textViewDescription = v.findViewById(R.id.product_description);
             textViewPrice = v.findViewById(R.id.product_price);
             imageView = v.findViewById(R.id.product_image);
             textViewCategory = v.findViewById(R.id.product_category);
             textViewViews = v.findViewById(R.id.product_views);
+
+            MaterialButton buttonItemNavigation = v.findViewById(R.id.button_see_item);
+            buttonItemNavigation.setOnClickListener(v1 -> goToItemDetails());
 
             buttonFavouriteItem = v.findViewById(R.id.button_add_to_favourites);
             buttonFavouriteItem.setOnClickListener(v1 -> {
@@ -129,6 +132,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             textViewViews.setText(item.getViewCount() + " Views");
             isFavourite = item.isFavourite();
             isInCart = item.getCartQuantity() > 0;
+        }
+
+        private void goToItemDetails() {
+            ListItemUtils.navigateToDetails(itemName, viewCount);
         }
 
         public void updateFavouriteButton() {
