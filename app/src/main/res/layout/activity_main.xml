@@ -116,6 +116,17 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/change_layout_button"
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:contentDescription="change layout"
+                    app:icon="@drawable/baseline_grid_view_24"
+                    app:layout_constraintStart_toEndOf="@+id/categories_heading"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/see_all_categories_button"
                     android:layout_width="67dp"
                     android:layout_height="29dp"
@@ -135,17 +146,20 @@
 
                 <androidx.core.widget.NestedScrollView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="16dp"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:scrollbars="none"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/categories_heading"
                     app:layout_constraintTop_toBottomOf="@+id/see_all_categories_button">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/category_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center" />
                 </androidx.core.widget.NestedScrollView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
