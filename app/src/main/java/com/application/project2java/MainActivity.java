@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +24,11 @@ public class MainActivity extends FragmentActivity {
     List<ItemModel> bestSellingItems;
     List<ItemModel> mostViewedItems;
     List<Category> categories;
+
+    private boolean isGrid = false;
+    private final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+    private final GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+    private RecyclerView categoryRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,7 @@ public class MainActivity extends FragmentActivity {
         MaterialButton seeAllCategories = findViewById(R.id.see_all_categories_button);
         MaterialButton seeBestSelling = findViewById(R.id.see_all_best_selling_button);
         MaterialButton seeMostViewed = findViewById(R.id.see_all_most_viewed_button);
+        MaterialButton changeLayout = findViewById(R.id.change_layout_button);
         seeAllCategories.setOnClickListener(l -> {
             ListItemUtils.navigateToList((CategoryName) null);
         });
@@ -58,6 +65,17 @@ public class MainActivity extends FragmentActivity {
         });
         seeMostViewed.setOnClickListener(l -> {
             ListItemUtils.navigateToList(FilterField.FILTER_BY_VIEWS);
+        });
+        changeLayout.setOnClickListener(l -> {
+            if (isGrid) {
+                changeLayout.setIconResource(R.drawable.baseline_grid_view_24);
+                setCategoriesToCompact();
+            } else {
+                changeLayout.setIconResource(R.drawable.baseline_view_column_24);
+                setCategoriesToGrid();
+            }
+            isGrid = !isGrid;
+
         });
 
     }
@@ -86,12 +104,19 @@ public class MainActivity extends FragmentActivity {
 
     private void setupCategoryRecyclerView() {
         setupCategories();
-        RecyclerView recyclerView = findViewById(R.id.category_recycler_view);
+        categoryRecyclerView = findViewById(R.id.category_recycler_view);
         CategoryAdapter adapter = new CategoryAdapter(categories, ListItemUtils::navigateToList);
-        recyclerView.setAdapter(adapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(layoutManager);
+        categoryRecyclerView.setAdapter(adapter);
+        setCategoriesToCompact();
+    }
+
+    private void setCategoriesToCompact() {
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        categoryRecyclerView.setLayoutManager(linearLayoutManager);
+    }
+
+    private void setCategoriesToGrid() {
+        categoryRecyclerView.setLayoutManager(gridLayoutManager);
     }
 
     private void setupBestSellingRecyclerView() {
