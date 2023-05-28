@@ -29,7 +29,13 @@
         <item name="colorOnSurfaceInverse">@color/md_theme_light_inverseOnSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
         <item name="colorControlHighlight">@color/md_theme_dark_onPrimaryContainer</item>
+
+        <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>
     </style>
 
+    <style name="WindowAnimationStyle">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
     <style name="Theme.Project2Java" parent="Base.Theme.Project2Java" />
 </resources>

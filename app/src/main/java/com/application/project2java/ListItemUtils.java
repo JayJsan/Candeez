@@ -44,6 +44,7 @@ public class ListItemUtils {
         dataMutator.close();
         intent.putExtra("name", name);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        App.getAppContext().startActivity(intent);
     }
 
 
