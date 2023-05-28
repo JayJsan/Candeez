@@ -22,6 +22,7 @@ public class ListItemUtils {
         Intent intent = new Intent(App.getAppContext(), DetailsActivity.class);
         DataMutator dataMutator = App.getDataMutator();
         dataMutator.open();
+        dataMutator.updateItemViewCount(name, viewCount);
         dataMutator.close();
         intent.putExtra("name", name);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);

@@ -50,9 +50,9 @@ public class DataMutator extends AbstractDatabase {
 
     }
 
-    public int updateItemViewCount(String name, int newViewCount) {
+    public int updateItemViewCount(String name, int viewCount) {
         ContentValues values = new ContentValues();
-        values.put(ItemContract.ItemEntry.COLUMN_VIEW_COUNT, newViewCount);
+        values.put(ItemContract.ItemEntry.COLUMN_VIEW_COUNT, viewCount + 1);
         notifyDatabaseWrite();
         return updateAtName(name, values);
     }

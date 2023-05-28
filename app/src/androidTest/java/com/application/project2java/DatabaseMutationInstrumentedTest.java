@@ -12,7 +12,7 @@ public class DatabaseMutationInstrumentedTest extends DatabaseInstrumentedTest {
     public void testUpdateCart() {
         dataMutator.addData(defaultItem);
         int updated = dataMutator.updateItemCartStatus("test", 99);
-        System.out.println(Integer.toString(updated) + " rows updated.");
+        System.out.println(updated + " rows updated.");
         assertTrue(updated > 0);
 
     }
@@ -29,6 +29,6 @@ public class DatabaseMutationInstrumentedTest extends DatabaseInstrumentedTest {
         dataMutator.addData(defaultItem);
         dataMutator.updateItemViewCount("test", 20);
         ItemModel result = dataProvider.getItemWithName("test");
-        assertEquals(result.getViewCount(), 20);
+        assertEquals(21, result.getViewCount());
     }
 }
