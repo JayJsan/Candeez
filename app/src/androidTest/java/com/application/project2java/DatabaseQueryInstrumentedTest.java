@@ -105,7 +105,7 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
 
     @Test
     public void testMostViewedQuery() {
-        for (int i = 0; i < 6; ++i){
+        for (int i = 0; i < 6; ++i) {
             dataMutator.addData(defaultItem);
         }
         List<ItemModel> result = dataProvider.getMostViewedItems();
@@ -122,12 +122,12 @@ public class DatabaseQueryInstrumentedTest extends DatabaseInstrumentedTest {
     }
 
     @Test
-    public void testGetWithNameAndCategoryQuery(){
+    public void testGetWithNameAndCategoryQuery() {
         dataMutator.addData(defaultItem);
         List<CategoryName> categories = new ArrayList<>();
         categories.add(CategoryName.Gummies);
         List<ItemModel> result = dataProvider.getItemsFromMultipleCategoriesWithName(categories, "te");
-        for (ItemModel i : result){
+        for (ItemModel i : result) {
             System.out.println(i.toString());
         }
         assertEquals(1, result.size());

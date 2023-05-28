@@ -22,9 +22,9 @@ public class QueryUtilsTest {
     }
 
     @Test
-    public void testFormatArrayQuery(){
-       String result = QueryUtils.formatQueryWithArray(4,QueryProvider.CATEGORY_ITEM_QUERY);
-       assertEquals("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_CATEGORY + " IN (?,?,?,?)", result);
+    public void testFormatArrayQuery() {
+        String result = QueryUtils.formatQueryWithArray(4, QueryProvider.CATEGORY_ITEM_QUERY);
+        assertEquals("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_CATEGORY + " IN (?,?,?,?)", result);
 
     }
 }

@@ -7,20 +7,20 @@
 ### User Stories
 
 - [X]  I want to be able to look at all categories
-- [ ]  I want to be able to select a category of items
+- [X]  I want to be able to select a category of items
 - [X]  I want to be able to search for a specific item
 - [X]  I want to see the best selling items
     - [X] And click on them to view
-    - [ ] And favourite them
+    - [X] And favourite them
 - [X]  I want to see the most viewed items
     - [X] And click on them to view
-    - [ ] And favourite them
+    - [X] And favourite them
     
 ## ListActivity
 
 ### User Stories
 
-- [ ] I want to be able to scroll and click on items to view their details
+- [X] I want to be able to scroll and click on items to view their details
 
 - [ ] I want to to be able to add items to my favorites while scrolling through
 
@@ -32,6 +32,7 @@
 
 -  [ ] I want to be able to view information about the chosen item, which includes:
     - [X] Name
+    - [ ] Category
     - [X] Price
     - [X] Description
 - [ ] I want to be able to add the item to my favourites or cart
@@ -48,7 +49,7 @@
 ## CartActivity
 
 ### User Stories
-- [ ] I want to be able to remove items
-- [ ] I want to be able to change the quantity of items
-- [ ] I want to see the final price
-- [ ] ? I want to be able to view items
+- [X] I want to be able to remove items
+- [X] I want to be able to change the quantity of items
+- [X] I want to see the final price
+- [X] I want to be able to view items

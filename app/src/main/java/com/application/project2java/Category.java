@@ -11,6 +11,14 @@ public class Category {
         this.frequency = frequency;
     }
 
+    public CategoryName getCategory() {
+        return category;
+    }
+
+    public String getDisplayName() {
+        return category.name().replaceAll("_", " ");
+    }
+
     public String getName() {
         return category.name();
     }

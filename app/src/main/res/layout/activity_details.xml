@@ -41,8 +41,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:contentDescription="go back"
-                        app:icon="@drawable/baseline_arrow_back_ios_new_24"
                         android:onClick="goBack"
+                        app:icon="@drawable/baseline_arrow_back_ios_new_24"
                         app:iconTint="@color/md_theme_light_onTertiaryContainer"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -89,14 +89,12 @@
                         android:orientation="vertical"
                         app:layout_constraintStart_toStartOf="parent">
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/item_image"
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/image_view_pager"
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ceiling_fan_test"
-                            android:visibility="visible"
                             app:layout_constraintStart_toStartOf="parent" />
+
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/relativelayout_item_details_container"
@@ -224,14 +222,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_related_items_header" />
 
-            <TextView
-                android:id="@+id/text_related_items"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/line_related_items"
-                app:layout_constraintTop_toBottomOf="@+id/line_related_items" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/related_items_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/line_related_items" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

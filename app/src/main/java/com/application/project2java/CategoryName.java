@@ -4,5 +4,13 @@ public enum CategoryName {
     Gummies,
     Hard_Candy,
     Chocolate,
-    CATEGORY4,
+    Licorice,
+    Sour_Candy,
+    Marshmallow,
+    Nougat,
+    Mints,
+    Jelly_Beans,
+    Lollipops,
+    Bubble_Gum,
+    Savoury
 }

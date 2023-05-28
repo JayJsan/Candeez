@@ -94,6 +94,10 @@ public class DataProvider extends AbstractDatabase {
         return searchData(QueryProvider.CATEGORY_ITEM_QUERY.replaceAll(",,", "?"), new String[]{category.toString()});
     }
 
+    public List<ItemModel> getRelatedItems(String name, CategoryName category) {
+        return searchData(QueryProvider.CATEGORY_ITEM_QUERY.replaceAll(",,", "?") + " AND NOT " + COLUMN_NAME + " = ? LIMIT 5", new String[]{category.toString(), name});
+    }
+
     public List<ItemModel> getItemsFromMultipleCategories(List<CategoryName> categories) {
         String query = QueryUtils.formatQueryWithArray(categories.size(), QueryProvider.CATEGORY_ITEM_QUERY);
         String[] args = QueryUtils.joinCategories(categories);
@@ -103,7 +107,7 @@ public class DataProvider extends AbstractDatabase {
     public List<ItemModel> getItemsFromMultipleCategoriesWithName(List<CategoryName> categories, String name) {
         String query;
         String[] args;
-        String nameClause = name != "" ?  name + "%" : "%";
+        String nameClause = name != "" ? name + "%" : "%";
         if (categories.size() > 0) {
             String[] categoryQueryArgs = QueryUtils.joinCategories(categories);
 
