@@ -76,7 +76,7 @@ public class ListActivity extends FragmentActivity {
         noItemsFound = findViewById(R.id.no_search_results);
         noItemsFound.setVisibility(View.GONE);
 
-        resultCount = findViewById(R.id.results_returned);
+        resultCount = findViewById(R.id.text_search_header);
 
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
@@ -91,7 +91,7 @@ public class ListActivity extends FragmentActivity {
     }
 
     private void updateResultCount(int count) {
-        resultCount.setText(count + " Results Returned");
+        resultCount.setText(count + " Items Found");
     }
 
     private void checkIntents() {

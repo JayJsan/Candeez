@@ -202,15 +202,6 @@
         </androidx.recyclerview.widget.RecyclerView>
 
 
-        <TextView
-            android:id="@+id/results_returned"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Results Returned"
-            android:textColor="@color/md_theme_light_onSurfaceVariant"
-            android:textStyle="bold" />
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <fragment
