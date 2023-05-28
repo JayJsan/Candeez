@@ -12,6 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/md_theme_light_surfaceContainerLow"
+        app:layout_constraintBottom_toTopOf="@id/navigation_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -192,6 +195,7 @@
             android:id="@+id/product_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="55dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:layout_editor_absoluteY="464dp">
 

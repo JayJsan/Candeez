@@ -76,6 +76,7 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        app:cardBackgroundColor="@color/md_theme_light_surfaceContainerLowest"
         app:cardElevation="1dp"
         app:layout_constraintBottom_toTopOf="@+id/navigation_fragment"
         app:layout_constraintEnd_toEndOf="parent"
