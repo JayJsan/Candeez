@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_theme_light_surfaceContainerLow"
     tools:context="com.application.project2java.MainActivity">
 
-    <ScrollView
-        android:id="@+id/scroll_details"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            style="@style/scrollview_navbar_clearance"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="@color/md_theme_light_surfaceContainerLow"
+            android:elevation="0dp"
+            app:layout_scrollFlags="scroll">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/top_bar"
                 android:layout_width="match_parent"
                 android:layout_height="213dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:background="@android:color/transparent">
+
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_search"
@@ -45,6 +44,7 @@
                         android:id="@+id/constraintlayout_search_container"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
                         android:paddingHorizontal="16dp">
 
                         <TextView
@@ -89,6 +89,24 @@
                 </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/md_theme_light_surfaceContainerLow"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            style="@style/scrollview_navbar_clearance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/categories_layout"
@@ -280,13 +298,14 @@
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
-    </ScrollView>
+
+    </androidx.core.widget.NestedScrollView>
 
     <fragment
         android:id="@+id/navigation_fragment"
         android:name="com.application.project2java.Navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/scroll_details" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_anchor="@id/scroll_details"
+        app:layout_anchorGravity="bottom" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
