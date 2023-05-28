@@ -47,6 +47,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         holder.textViewDescription.setText(item.getDescription());
         holder.itemName = name;
         holder.viewCount = item.getViewCount();
+        holder.textViewCategory.setText(item.getCategory(true));
+        holder.textViewViews.setText(item.getViewCount() + " Views");
 
         ResourceUtils.getImageBitmapAsync(item.getImageUris().get(0), new ResourceUtils.BitmapCallback() {
 
@@ -78,6 +80,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         TextView textViewName;
         TextView textViewDescription;
         TextView textViewPrice;
+        TextView textViewCategory;
+        TextView textViewViews;
         ShapeableImageView imageView;
 
         public ViewHolder(View v) {
@@ -88,6 +92,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             textViewDescription = v.findViewById(R.id.product_description);
             textViewPrice = v.findViewById(R.id.product_price);
             imageView = v.findViewById(R.id.product_image);
+            textViewCategory = v.findViewById(R.id.product_category);
+            textViewViews = v.findViewById(R.id.product_views);
         }
 
     }

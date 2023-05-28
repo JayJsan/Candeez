@@ -40,6 +40,7 @@ public class ListActivity extends FragmentActivity {
     private int allItemCount;
     private Handler handler;
     private DataProvider dataProvider;
+    private DataMutator dataMutator;
     private List<ItemModel> items;
     private List<ItemModel> filteredItems;
     private FilterAdapter filterAdapter;
@@ -68,6 +69,9 @@ public class ListActivity extends FragmentActivity {
         setupCategories();
         setContentView(R.layout.activity_list);
         dataProvider = App.getDataProvider();
+        dataMutator = App.getDataMutator();
+
+        dataMutator.addDatabaseWriteListener(this::updateData);
 
         noItemsFound = findViewById(R.id.no_search_results);
         noItemsFound.setVisibility(View.GONE);
@@ -225,6 +229,9 @@ public class ListActivity extends FragmentActivity {
 
     private void updateData() {
         if (isDefaultSettings()) {
+            dataProvider.open();
+            items = dataProvider.getAllItems();
+            dataProvider.close();
             displayDefaultItems();
             return;
         }
