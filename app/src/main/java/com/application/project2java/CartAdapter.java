@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,6 +46,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.ViewHolder holder, int position) {
+        Animation animation = AnimationUtils.loadAnimation(holder.getConstraintLayout().getContext()
+            , R.anim.slide_in_right);
         ItemModel item = items.get(position);
         String name = item.getName();
 
@@ -71,6 +75,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 Log.d("DEBUG", e.getLocalizedMessage());
             }
         });
+
+        if (!holder.isInitialised) {
+            holder.constraintLayout.startAnimation(animation);
+            holder.isInitialised = true;
+        }
     }
 
     @Override
@@ -85,11 +94,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         String itemName;
         int quantity;
         int viewCount;
+
         TextView textViewName;
         TextView textViewPrice;
         TextView textViewQuantity;
         ShapeableImageView imageView;
         DataMutator dataMutator = App.getDataMutator();
+        androidx.constraintlayout.widget.ConstraintLayout constraintLayout;
+
+        boolean isInitialised = false;
 
         public ViewHolder(View v) {
             super(v);
@@ -102,7 +115,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             buttonRemoveItem = v.findViewById(R.id.button_remove_item);
             buttonDecrease = v.findViewById(R.id.decrease_qty_button);
             buttonIncrease = v.findViewById(R.id.increase_qty_button);
-
+            constraintLayout = v.findViewById(R.id.constraintlayout_cart_list_item);
             setupOnClicks();
 
         }
@@ -125,6 +138,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 if (quantity > MIN_ITEMS) {
                     quantity = quantity - 1;
                     dataMutator.open();
+                    isInitialised = true;
                     dataMutator.updateItemCartStatus(itemName, quantity);
                     dataMutator.close();
                     updateQuantity();
@@ -135,13 +149,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 if (quantity < MAX_ITEMS) {
                     quantity = quantity + 1;
                     dataMutator.open();
+                    isInitialised = true;
                     dataMutator.updateItemCartStatus(itemName, quantity);
                     dataMutator.close();
                     updateQuantity();
                 }
             });
         }
+        private androidx.constraintlayout.widget.ConstraintLayout getConstraintLayout() { return constraintLayout; }
 
     }
-
 }
