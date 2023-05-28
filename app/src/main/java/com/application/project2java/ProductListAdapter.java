@@ -22,7 +22,6 @@ import java.util.List;
 
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder> {
     private List<ItemModel> items;
-
     public ProductListAdapter(List<ItemModel> items) {
         this.items = items;
     }
@@ -49,7 +48,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         holder.updateFavouriteButton();
         holder.updateCartButton();
 
-
         ResourceUtils.getImageBitmapAsync(item.getImageUris().get(0), new ResourceUtils.BitmapCallback() {
 
             @Override
@@ -67,7 +65,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 Log.d("DEBUG", e.getLocalizedMessage());
             }
         });
-        holder.constraintLayout.startAnimation(animation);
+        if (!holder.isInitialised) {
+            holder.constraintLayout.startAnimation(animation);
+            holder.isInitialised = true;
+        }
     }
 
     @Override
@@ -84,6 +85,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         private TextView textViewPrice;
         private TextView textViewCategory;
         private TextView textViewViews;
+        private boolean isInitialised = false;
 
         private androidx.constraintlayout.widget.ConstraintLayout constraintLayout;
         private ShapeableImageView imageView;
@@ -113,6 +115,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 // i.e. ---> isFavourite = 1 => isFavourite = 0
                 //      ---> isFavourite = 0 => isFavourite = 1
                 dataMutator.open();
+                isInitialised = true;
                 dataMutator.updateItemFavouriteStatus(itemName, !isFavourite);
                 dataMutator.close();
             });
@@ -126,7 +129,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         }
 
         public void setup() {
-
             String name = item.getName();
 
             textViewPrice.setText("$" + item.getPrice());
