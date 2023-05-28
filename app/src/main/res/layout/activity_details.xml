@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintlayout_details_activity"
@@ -8,26 +8,23 @@
     android:background="@color/md_theme_light_surfaceContainerLow"
     tools:context="com.application.project2java.DetailsActivity">
 
-    <ScrollView
-        android:id="@+id/scroll_details"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/navigation_fragment"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintlayout_favourites_container"
-            style="@style/scrollview_navbar_clearance"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="55dp">
+            app:layout_scrollFlags="scroll|enterAlways">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_header"
                 style="@style/heading_card_default"
                 android:layout_width="match_parent"
                 app:cardBackgroundColor="@color/md_theme_light_secondaryContainer"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_collapseMode="pin">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintlayout_header"
@@ -65,155 +62,181 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:paddingBottom="55dp"
+        app:layout_anchor="@id/appBarLayout"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintlayout_item_details"
+                android:id="@+id/constraintlayout_favourites_container"
+                style="@style/scrollview_navbar_clearance"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/card_header">
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_item_details"
-                    style="@style/display_card_default"
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintlayout_item_details"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <LinearLayout
-                        android:id="@+id/linearlayout_item_details"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_item_details"
+                        style="@style/display_card_default"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        app:layout_constraintStart_toStartOf="parent">
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <FrameLayout
+                        <LinearLayout
+                            android:id="@+id/linearlayout_item_details"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            app:layout_constraintStart_toStartOf="parent">
 
-                            <androidx.viewpager.widget.ViewPager
-                                android:id="@+id/image_view_pager"
+                            <FrameLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="200dp"
-                                app:layout_constraintStart_toStartOf="parent">
+                                android:layout_height="wrap_content">
 
-                            </androidx.viewpager.widget.ViewPager>
+                                <androidx.viewpager.widget.ViewPager
+                                    android:id="@+id/image_view_pager"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="200dp"
+                                    app:layout_constraintStart_toStartOf="parent">
 
-                            <com.google.android.material.tabs.TabLayout
-                                android:id="@+id/image_tab_layout"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom"
-                                android:background="@android:color/transparent"
-                                app:tabBackground="@drawable/dot_selector"
-                                app:tabGravity="center"
-                                app:tabIndicatorGravity="center"
-                                app:tabIndicatorHeight="0dp" />
-                        </FrameLayout>
+                                </androidx.viewpager.widget.ViewPager>
 
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/relativelayout_item_details_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="16dp"
-                            android:paddingHorizontal="16dp"
-                            app:layout_constraintStart_toStartOf="@+id/item_image"
-                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+                                <com.google.android.material.tabs.TabLayout
+                                    android:id="@+id/image_tab_layout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:background="@android:color/transparent"
+                                    app:tabBackground="@drawable/dot_selector"
+                                    app:tabGravity="center"
+                                    app:tabIndicatorGravity="center"
+                                    app:tabIndicatorHeight="0dp" />
+                            </FrameLayout>
 
 
-                            <TextView
-                                android:id="@+id/item_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Item Title"
-                                android:textColor="@color/md_theme_light_onSurfaceVariant"
-                                android:textSize="34sp"
-                                android:textStyle="bold"
-                                app:layout_constraintStart_toStartOf="@+id/item_description"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/item_price"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginBottom="16dp"
-                                android:text="$10.00"
-                                android:textColor="@color/md_theme_light_onSurfaceVariant"
-                                android:textSize="28sp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="@+id/item_description"
-                                app:layout_constraintTop_toBottomOf="@+id/item_description" />
-
-                            <TextView
-                                android:id="@+id/item_description"
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/relativelayout_item_details_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="11dp"
-                                android:fontFamily="sans-serif-medium"
-                                android:text="@string/lorem500"
-                                android:textAlignment="textStart"
-                                android:textColor="@color/md_theme_light_onSurfaceVariant"
-                                android:textSize="16sp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/item_title" />
+                                android:layout_marginHorizontal="16dp"
+                                android:paddingHorizontal="16dp"
+                                app:layout_constraintStart_toStartOf="@+id/item_image"
+                                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
 
-                            <!-- Favourite Button -->
+                                <TextView
+                                    android:id="@+id/item_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Item Title"
+                                    android:textColor="@color/md_theme_light_onSurfaceVariant"
+                                    android:textSize="34sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintStart_toStartOf="@+id/item_description"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
-                            <!-- Add to Cart Button -->
+                                <TextView
+                                    android:id="@+id/item_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:text="$10.00"
+                                    android:textColor="@color/md_theme_light_onSurfaceVariant"
+                                    android:textSize="28sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/item_description"
+                                    app:layout_constraintTop_toBottomOf="@+id/item_description" />
 
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/favourite_button"
-                                style="@style/Widget.Material3.Button.IconButton"
-                                android:layout_width="70dp"
-                                android:layout_height="42dp"
-                                android:layout_marginTop="3dp"
-                                android:layout_marginEnd="4dp"
-                                android:backgroundTint="@color/md_theme_light_secondaryContainer"
-                                android:contentDescription="Add to Favourites"
-                                android:insetTop="0dp"
-                                app:cornerRadius="7dp"
-                                app:icon="@drawable/baseline_favorite_border_24"
-                                app:iconGravity="textStart"
-                                app:iconPadding="0dp"
-                                app:iconTint="@color/md_theme_light_onSecondary"
-                                app:layout_constraintBottom_toBottomOf="@+id/add_to_cart_button"
-                                app:layout_constraintEnd_toStartOf="@+id/add_to_cart_button"
-                                app:layout_constraintHorizontal_bias="1.0"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/add_to_cart_button"
-                                app:layout_constraintVertical_bias="1.0" />
-
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/add_to_cart_button"
-                                style="@style/Widget.Material3.Button.IconButton"
-                                android:layout_width="70dp"
-                                android:layout_height="42dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginBottom="16dp"
-                                android:backgroundTint="@color/md_theme_light_tertiaryContainer"
-                                android:contentDescription="Add to cart"
-                                android:insetTop="0dp"
-                                app:cornerRadius="7dp"
-                                app:icon="@drawable/baseline_add_shopping_cart_24"
-                                app:iconGravity="textStart"
-                                app:iconPadding="0dp"
-                                app:iconTint="@color/md_theme_light_onTertiaryContainer"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="@+id/item_description"
-                                app:layout_constraintTop_toBottomOf="@+id/item_description" />
+                                <TextView
+                                    android:id="@+id/item_description"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="11dp"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:text="@string/lorem500"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/md_theme_light_onSurfaceVariant"
+                                    android:textSize="16sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/item_title" />
 
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </LinearLayout>
+                                <!-- Favourite Button -->
 
-                </androidx.cardview.widget.CardView>
+                                <!-- Add to Cart Button -->
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/favourite_button"
+                                    style="@style/Widget.Material3.Button.IconButton"
+                                    android:layout_width="70dp"
+                                    android:layout_height="42dp"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginEnd="4dp"
+                                    android:backgroundTint="@color/md_theme_light_secondaryContainer"
+                                    android:contentDescription="Add to Favourites"
+                                    android:insetTop="0dp"
+                                    app:cornerRadius="7dp"
+                                    app:icon="@drawable/baseline_favorite_border_24"
+                                    app:iconGravity="textStart"
+                                    app:iconPadding="0dp"
+                                    app:iconTint="@color/md_theme_light_onSecondary"
+                                    app:layout_constraintBottom_toBottomOf="@+id/add_to_cart_button"
+                                    app:layout_constraintEnd_toStartOf="@+id/add_to_cart_button"
+                                    app:layout_constraintHorizontal_bias="1.0"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/add_to_cart_button"
+                                    app:layout_constraintVertical_bias="1.0" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/add_to_cart_button"
+                                    style="@style/Widget.Material3.Button.IconButton"
+                                    android:layout_width="70dp"
+                                    android:layout_height="42dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:backgroundTint="@color/md_theme_light_tertiaryContainer"
+                                    android:contentDescription="Add to cart"
+                                    android:insetTop="0dp"
+                                    app:cornerRadius="7dp"
+                                    app:icon="@drawable/baseline_add_shopping_cart_24"
+                                    app:iconGravity="textStart"
+                                    app:iconPadding="0dp"
+                                    app:iconTint="@color/md_theme_light_onTertiaryContainer"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="@+id/item_description"
+                                    app:layout_constraintTop_toBottomOf="@+id/item_description" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
@@ -221,13 +244,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Related Items"
                 android:textAlignment="textStart"
                 android:textColor="@color/md_theme_light_onSurfaceVariant"
-                app:layout_constraintStart_toStartOf="@+id/constraintlayout_item_details"
-                app:layout_constraintTop_toBottomOf="@+id/constraintlayout_item_details" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintlayout_favourites_container" />
 
             <View
                 android:id="@+id/line_related_items"
@@ -243,10 +265,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/text_related_items_header" />
 
             <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/line_related_items">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -258,17 +279,15 @@
                     app:layout_constraintTop_toTopOf="@id/line_related_items" />
             </androidx.core.widget.NestedScrollView>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+
+    </androidx.core.widget.NestedScrollView>
 
     <fragment
         android:id="@+id/navigation_fragment"
         android:name="com.application.project2java.Navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/scroll_details" />
+        android:layout_gravity="bottom" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
