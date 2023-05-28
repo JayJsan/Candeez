@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +42,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ProductListAdapter.ViewHolder holder, int position) {
+        Animation animation = AnimationUtils.loadAnimation(holder.getConstraintLayout().getContext(), R.anim.slide_in_right);
         ItemModel item = items.get(position);
         holder.item = item;
         holder.setup();
@@ -64,6 +67,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 Log.d("DEBUG", e.getLocalizedMessage());
             }
         });
+        holder.constraintLayout.startAnimation(animation);
     }
 
     @Override
@@ -80,6 +84,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         private TextView textViewPrice;
         private TextView textViewCategory;
         private TextView textViewViews;
+
+        private androidx.constraintlayout.widget.ConstraintLayout constraintLayout;
         private ShapeableImageView imageView;
         private MaterialButton buttonFavouriteItem;
         private MaterialButton buttonAddCart;
@@ -97,7 +103,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             imageView = v.findViewById(R.id.product_image);
             textViewCategory = v.findViewById(R.id.product_category);
             textViewViews = v.findViewById(R.id.product_views);
-
+            constraintLayout = v.findViewById(R.id.constarintlayout_product_list_item);
             MaterialButton buttonItemNavigation = v.findViewById(R.id.button_see_item);
             buttonItemNavigation.setOnClickListener(v1 -> goToItemDetails());
 
@@ -146,5 +152,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             ListItemUtils.updateCartButtonAppearance(isInCart, buttonAddCart);
         }
 
+        private androidx.constraintlayout.widget.ConstraintLayout getConstraintLayout() { return constraintLayout; }
     }
 }
