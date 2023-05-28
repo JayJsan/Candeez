@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +39,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
+        Animation animation = AnimationUtils.loadAnimation(holder.getCardView().getContext(), R.anim.slide_in_up);
         Category category = categories.get(position);
         String name = category.getDisplayName();
         String qty = String.valueOf(category.getFrequency());
@@ -46,6 +49,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             onSelectListener.onSelect(category.getCategory());
         });
         holder.imageView.setImageResource(category.getImageId());
+        holder.getCardView().startAnimation(animation);
     }
 
     @Override

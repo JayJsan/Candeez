@@ -156,5 +156,6 @@ public class MainActivity extends FragmentActivity {
         Intent intent = new Intent(this, ListActivity.class);
         intent.putExtra("wants_search", Byte.MAX_VALUE);
         this.startActivity(intent);
+        this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

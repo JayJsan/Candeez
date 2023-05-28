@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +22,6 @@ import java.util.List;
 
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder> {
     private List<ItemModel> items;
-
     public ProductListAdapter(List<ItemModel> items) {
         this.items = items;
     }
@@ -40,12 +41,12 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ProductListAdapter.ViewHolder holder, int position) {
+        Animation animation = AnimationUtils.loadAnimation(holder.getConstraintLayout().getContext(), R.anim.slide_in_right);
         ItemModel item = items.get(position);
         holder.item = item;
         holder.setup();
         holder.updateFavouriteButton();
         holder.updateCartButton();
-
 
         ResourceUtils.getImageBitmapAsync(item.getImageUris().get(0), new ResourceUtils.BitmapCallback() {
 
@@ -64,6 +65,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 Log.d("DEBUG", e.getLocalizedMessage());
             }
         });
+        if (!holder.isInitialised) {
+            holder.constraintLayout.startAnimation(animation);
+            holder.isInitialised = true;
+        }
     }
 
     @Override
@@ -80,6 +85,9 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         private TextView textViewPrice;
         private TextView textViewCategory;
         private TextView textViewViews;
+        private boolean isInitialised = false;
+
+        private androidx.constraintlayout.widget.ConstraintLayout constraintLayout;
         private ShapeableImageView imageView;
         private MaterialButton buttonFavouriteItem;
         private MaterialButton buttonAddCart;
@@ -97,7 +105,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             imageView = v.findViewById(R.id.product_image);
             textViewCategory = v.findViewById(R.id.product_category);
             textViewViews = v.findViewById(R.id.product_views);
-
+            constraintLayout = v.findViewById(R.id.constarintlayout_product_list_item);
             MaterialButton buttonItemNavigation = v.findViewById(R.id.button_see_item);
             buttonItemNavigation.setOnClickListener(v1 -> goToItemDetails());
 
@@ -107,6 +115,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 // i.e. ---> isFavourite = 1 => isFavourite = 0
                 //      ---> isFavourite = 0 => isFavourite = 1
                 dataMutator.open();
+                isInitialised = true;
                 dataMutator.updateItemFavouriteStatus(itemName, !isFavourite);
                 dataMutator.close();
             });
@@ -120,7 +129,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         }
 
         public void setup() {
-
             String name = item.getName();
 
             textViewPrice.setText("$" + item.getPrice());
@@ -146,5 +154,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             ListItemUtils.updateCartButtonAppearance(isInCart, buttonAddCart);
         }
 
+        private androidx.constraintlayout.widget.ConstraintLayout getConstraintLayout() { return constraintLayout; }
     }
 }

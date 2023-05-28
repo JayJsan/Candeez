@@ -4,6 +4,8 @@ package com.application.project2java;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +37,7 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Animation animation = AnimationUtils.loadAnimation(holder.getFilterButton().getContext(), R.anim.slide_in_up);
         CategoryName category = categories.get(position);
         String name = category.toString();
         holder.categoryName = category;
@@ -46,7 +49,7 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
             holder.updateButtonAppearance();
             onSelectListener.onSelect(holder.categoryName, holder.isSelected);
         });
-
+        holder.getFilterButton().startAnimation(animation);
     }
 
     @Override
