@@ -50,6 +50,7 @@ public class ItemModel {
         return name;
     }
 
+
     public int getId() {
         return id;
     }
@@ -60,6 +61,10 @@ public class ItemModel {
 
     public String getCategory() {
         return category.toString();
+    }
+
+    public String getCategory(boolean isDisplay) {
+        return category.toString().replaceAll("_", " ");
     }
 
     @NonNull

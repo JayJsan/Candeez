@@ -114,6 +114,7 @@ public class MainActivity extends FragmentActivity {
 
     public void goToSearch(View view) {
         Intent intent = new Intent(this, ListActivity.class);
+        intent.putExtra("wants_search", Byte.MAX_VALUE);
         this.startActivity(intent);
     }
 }

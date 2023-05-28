@@ -17,6 +17,24 @@ public class ListItemUtils {
             buttonFavouriteItem.setIconResource(R.drawable.baseline_favorite_border_24);
         }
     }
+    public static void updateCartButtonAppearance(boolean isInCart, MaterialButton buttonAddCart){
+
+        if (isInCart) {
+            buttonAddCart.setIconTintResource(R.color.md_theme_light_tertiary);
+            buttonAddCart.setIconResource(R.drawable.baseline_remove_shopping_cart_24);
+        } else {
+            buttonAddCart.setIconTintResource(R.color.md_theme_light_primary);
+            buttonAddCart.setIconResource(R.drawable.baseline_add_shopping_cart_24);
+        }
+    }
+
+    public static void updateCartStatus(boolean isInCart, String name) {
+        DataMutator dataMutator = App.getDataMutator();
+        dataMutator.open();
+        if (isInCart) dataMutator.updateItemCartStatus(name, 1);
+        else dataMutator.updateItemCartStatus(name, 0);
+        dataMutator.close();
+    }
 
     public static void navigateToDetails(String name, int viewCount) {
         Intent intent = new Intent(App.getAppContext(), DetailsActivity.class);

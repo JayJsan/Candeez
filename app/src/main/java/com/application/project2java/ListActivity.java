@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ public class ListActivity extends FragmentActivity {
     private int allItemCount;
     private Handler handler;
     private DataProvider dataProvider;
+    private DataMutator dataMutator;
     private List<ItemModel> items;
     private List<ItemModel> filteredItems;
     private FilterAdapter filterAdapter;
@@ -55,6 +57,7 @@ public class ListActivity extends FragmentActivity {
     private FloatingActionButton buttonSortBestSelling;
     private FloatingActionButton buttonSortMostViewed;
     private FloatingActionButton buttonSortPrice;
+    private EditText searchArea;
     private Dialog dialog;
 
     private void setupCategories() {
@@ -66,7 +69,32 @@ public class ListActivity extends FragmentActivity {
         setupCategories();
         setContentView(R.layout.activity_list);
         dataProvider = App.getDataProvider();
+        dataMutator = App.getDataMutator();
 
+        dataMutator.addDatabaseWriteListener(this::updateData);
+
+        noItemsFound = findViewById(R.id.no_search_results);
+        noItemsFound.setVisibility(View.GONE);
+
+        resultCount = findViewById(R.id.text_search_header);
+
+        BottomNavigationUtils.setupBottomNavigationView(this);
+        BottomNavigationUtils.setCurrentItem(this);
+
+
+        setUpSearchBar();
+        checkIntents();
+        setupFilterRecyclerView();
+        setupProductRecyclerView();
+        setupFilterDialog();
+        updateData();
+    }
+
+    private void updateResultCount(int count) {
+        resultCount.setText(count + " Items Found");
+    }
+
+    private void checkIntents() {
 
         Intent intent = getIntent();
 
@@ -79,24 +107,14 @@ public class ListActivity extends FragmentActivity {
             filterDirection = FilterDirection.DESCENDING;
         }
 
-        noItemsFound = findViewById(R.id.no_search_results);
-        noItemsFound.setVisibility(View.GONE);
-
-        resultCount = findViewById(R.id.results_returned);
-
-        BottomNavigationUtils.setupBottomNavigationView(this);
-        BottomNavigationUtils.setCurrentItem(this);
-
-
-        setUpSearchBar();
-        setupFilterRecyclerView();
-        setupProductRecyclerView();
-        setupFilterDialog();
-        updateData();
+        if (intent.hasExtra("wants_search")) {
+            openSearch();
+        }
     }
 
-    private void updateResultCount(int count) {
-        resultCount.setText(count + " Results Returned");
+    private void openSearch() {
+        searchArea.requestFocus();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 
 
@@ -211,6 +229,9 @@ public class ListActivity extends FragmentActivity {
 
     private void updateData() {
         if (isDefaultSettings()) {
+            dataProvider.open();
+            items = dataProvider.getAllItems();
+            dataProvider.close();
             displayDefaultItems();
             return;
         }
@@ -231,7 +252,8 @@ public class ListActivity extends FragmentActivity {
 
 
     private void setUpSearchBar() {
-        EditText searchArea = this.findViewById(R.id.search_area);
+        MaterialButton searchButton = findViewById(R.id.ic_search);
+        searchArea = this.findViewById(R.id.search_area);
         searchArea.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
                 hideKeyboard(v);
@@ -239,6 +261,7 @@ public class ListActivity extends FragmentActivity {
         });
 
         handler = new Handler();
+        searchButton.setOnClickListener(l -> openSearch());
 
         searchArea.addTextChangedListener(new TextWatcher() {
             private Runnable runnable;
