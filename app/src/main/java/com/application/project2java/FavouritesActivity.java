@@ -1,6 +1,7 @@
 package com.application.project2java;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,8 +12,10 @@ import com.example.project2java.R;
 import java.util.List;
 
 public class FavouritesActivity extends FragmentActivity {
+    private RecyclerView favouritesRecyclerView;
     DataProvider dataProvider;
     DataMutator dataMutator;
+    private View noFavourites;
     List<ItemModel> favouriteItems;
     CompactListAdapter favouritesAdapter;
 
@@ -23,10 +26,11 @@ public class FavouritesActivity extends FragmentActivity {
         BottomNavigationUtils.setupBottomNavigationView(this);
         BottomNavigationUtils.setCurrentItem(this);
         setup();
-
+        updateViews();
     }
 
     private void setup() {
+        noFavourites = findViewById(R.id.no_favourites);
 
         dataProvider = App.getDataProvider();
         dataMutator = App.getDataMutator();
@@ -37,17 +41,29 @@ public class FavouritesActivity extends FragmentActivity {
         dataProvider.close();
     }
 
+    private void updateViews() {
+        if (favouriteItems.isEmpty()) {
+            noFavourites.setVisibility(View.VISIBLE);
+            favouritesRecyclerView.setVisibility(View.GONE);
+        } else {
+            noFavourites.setVisibility(View.GONE);
+            favouritesRecyclerView.setVisibility(View.VISIBLE);
+        }
+    }
+
+
 
     private void updateItems() {
         dataProvider.open();
         favouriteItems = dataProvider.getFavouriteItems();
         dataProvider.close();
-        favouritesAdapter.setItems(favouriteItems);
+        updateViews();
 
+        favouritesAdapter.setItems(favouriteItems);
     }
 
     private void setupFavouritesRecyclerView() {
-        RecyclerView favouritesRecyclerView = this.findViewById(R.id.recycler_view_favourites);
+        favouritesRecyclerView = this.findViewById(R.id.recycler_view_favourites);
         favouriteItems = dataProvider.getFavouriteItems();
         favouritesAdapter = new CompactListAdapter(favouriteItems);
         favouritesRecyclerView.setAdapter(favouritesAdapter);
