@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -55,6 +56,7 @@ public class ListActivity extends FragmentActivity {
     private FloatingActionButton buttonSortBestSelling;
     private FloatingActionButton buttonSortMostViewed;
     private FloatingActionButton buttonSortPrice;
+    private EditText searchArea;
     private Dialog dialog;
 
     private void setupCategories() {
@@ -67,6 +69,28 @@ public class ListActivity extends FragmentActivity {
         setContentView(R.layout.activity_list);
         dataProvider = App.getDataProvider();
 
+        noItemsFound = findViewById(R.id.no_search_results);
+        noItemsFound.setVisibility(View.GONE);
+
+        resultCount = findViewById(R.id.results_returned);
+
+        BottomNavigationUtils.setupBottomNavigationView(this);
+        BottomNavigationUtils.setCurrentItem(this);
+
+
+        setUpSearchBar();
+        checkIntents();
+        setupFilterRecyclerView();
+        setupProductRecyclerView();
+        setupFilterDialog();
+        updateData();
+    }
+
+    private void updateResultCount(int count) {
+        resultCount.setText(count + " Results Returned");
+    }
+
+    private void checkIntents() {
 
         Intent intent = getIntent();
 
@@ -79,24 +103,10 @@ public class ListActivity extends FragmentActivity {
             filterDirection = FilterDirection.DESCENDING;
         }
 
-        noItemsFound = findViewById(R.id.no_search_results);
-        noItemsFound.setVisibility(View.GONE);
-
-        resultCount = findViewById(R.id.results_returned);
-
-        BottomNavigationUtils.setupBottomNavigationView(this);
-        BottomNavigationUtils.setCurrentItem(this);
-
-
-        setUpSearchBar();
-        setupFilterRecyclerView();
-        setupProductRecyclerView();
-        setupFilterDialog();
-        updateData();
-    }
-
-    private void updateResultCount(int count) {
-        resultCount.setText(count + " Results Returned");
+        if (intent.hasExtra("wants_search")) {
+            searchArea.requestFocus();
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
     }
 
 
@@ -231,7 +241,7 @@ public class ListActivity extends FragmentActivity {
 
 
     private void setUpSearchBar() {
-        EditText searchArea = this.findViewById(R.id.search_area);
+        searchArea = this.findViewById(R.id.search_area);
         searchArea.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
                 hideKeyboard(v);
