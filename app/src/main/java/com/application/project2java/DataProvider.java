@@ -40,7 +40,7 @@ public class DataProvider extends AbstractDatabase {
                 boolean isFavourite = cursor.getInt(cursor.getColumnIndex(COLUMN_IS_FAVOURITE)) == 1;
                 int cartQty = cursor.getInt(cursor.getColumnIndex(COLUMN_CART_QUANTITY));
                 int viewCount = cursor.getInt(cursor.getColumnIndex(COLUMN_VIEW_COUNT));
-                int price = cursor.getInt(cursor.getColumnIndex(COLUMN_PRICE));
+                float price = cursor.getFloat(cursor.getColumnIndex(COLUMN_PRICE));
                 //TODO add data to the list of data
                 ItemModel item = new ItemModel(name, description, price, category, imageUriArray, viewCount, isFavourite, cartQty);
                 dataList.add(item);

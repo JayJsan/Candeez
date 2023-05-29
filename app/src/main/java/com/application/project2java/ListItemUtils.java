@@ -5,6 +5,7 @@ import android.content.Intent;
 import com.example.project2java.R;
 import com.google.android.material.button.MaterialButton;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class ListItemUtils {
@@ -65,10 +66,11 @@ public class ListItemUtils {
     }
 
     public static String calculateTotal(List<ItemModel> items) {
-        int sum = 0;
+        DecimalFormat df = new DecimalFormat("0.00");
+        float sum = 0;
         for (ItemModel item : items) {
             sum += item.getPrice() * item.getCartQuantity();
         }
-        return "$" + sum;
+        return "$" + df.format(sum);
     }
 }
