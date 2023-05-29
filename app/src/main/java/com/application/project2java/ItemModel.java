@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ItemModel {
     private final List<String> imageUris;
-    private final int price;
+    private final float price;
     private final int viewCount;
     private final CategoryName category;
     private final boolean isFavourite;
@@ -15,7 +15,7 @@ public class ItemModel {
     private final String name;
     private int id;
 
-    public ItemModel(String name, String description, int price, CategoryName category, List<String> imageUris, int viewCount, boolean isFavourite, int cartQuantity) {
+    public ItemModel(String name, String description, float price, CategoryName category, List<String> imageUris, int viewCount, boolean isFavourite, int cartQuantity) {
         this.price = price;
         this.viewCount = viewCount;
         this.isFavourite = isFavourite;
@@ -26,7 +26,7 @@ public class ItemModel {
         this.imageUris = imageUris;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 

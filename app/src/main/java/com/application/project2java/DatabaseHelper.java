@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_CATEGORY + " TEXT, "
             + COLUMN_IMAGE_URIS + " TEXT, "
             + COLUMN_DESCRIPTION + " TEXT, "
-            + COLUMN_PRICE + " SMALLINT, "
+            + COLUMN_PRICE + " REAL, "
             + COLUMN_IS_FAVOURITE + " SMALLINT, "
             + COLUMN_CART_QUANTITY + " SMALLINT, "
             + COLUMN_VIEW_COUNT + " SMALLINT)";
