@@ -42,7 +42,7 @@ public class MainActivity extends FragmentActivity {
         BottomNavigationUtils.setCurrentItem(this);
         getScreenSize();
         Log.d("DEBUG", width + "");
-        gridLayoutManager = new GridLayoutManager(this, width / 200);
+        gridLayoutManager = new GridLayoutManager(this, width / 170);
         dataMutator = App.getDataMutator();
         dataMutator.addDatabaseWriteListener(this::updateItems);
         dataProvider = App.getDataProvider();
