@@ -3,6 +3,10 @@ package com.application.project2java;
 import android.app.Application;
 import android.content.Context;
 
+import com.application.project2java.database.DataMutator;
+import com.application.project2java.database.DataProvider;
+import com.application.project2java.database.DatabaseHelper;
+
 public class App extends Application {
     private static Context context;
     private static DataProvider dataProvider;

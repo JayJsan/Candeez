@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
+import com.application.project2java.models.ItemModel;
+
 import org.junit.Test;
 
 public class DatabaseMutationInstrumentedTest extends DatabaseInstrumentedTest {

@@ -6,6 +6,9 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import com.application.project2java.constants.CategoryName;
+import com.application.project2java.models.ItemModel;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
