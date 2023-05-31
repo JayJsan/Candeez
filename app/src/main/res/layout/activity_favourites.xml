@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_theme_light_surfaceContainerLow"
-    tools:context="com.application.project2java.FavouritesActivity">
+    tools:context="com.application.project2java.activities.FavouritesActivity">
 
     <ScrollView
         android:id="@+id/scroll_details"
@@ -83,7 +83,7 @@
 
     <fragment
         android:id="@+id/navigation_fragment"
-        android:name="com.application.project2java.Navigation"
+        android:name="com.application.project2java.fragments.NavigationFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

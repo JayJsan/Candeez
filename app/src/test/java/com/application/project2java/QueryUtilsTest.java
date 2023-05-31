@@ -1,9 +1,13 @@
 package com.application.project2java;
 
-import static com.application.project2java.ItemContract.ItemEntry.COLUMN_CATEGORY;
-import static com.application.project2java.ItemContract.ItemTable.TABLE_NAME;
+import static com.application.project2java.constants.ItemContract.ItemEntry.COLUMN_CATEGORY;
+import static com.application.project2java.constants.ItemContract.ItemTable.TABLE_NAME;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+
+import com.application.project2java.constants.CategoryName;
+import com.application.project2java.constants.QueryProvider;
+import com.application.project2java.utils.QueryUtils;
 
 import org.junit.Test;
 

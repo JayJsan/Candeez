@@ -7,7 +7,7 @@
 ### User Stories
 
 - [X]  I want to be able to look at all categories
-- [X]  I want to be able to select a category of items
+- [X]  I want to be able to select a categoryModel of items
 - [X]  I want to be able to search for a specific item
 - [X]  I want to see the best selling items
     - [X] And click on them to view

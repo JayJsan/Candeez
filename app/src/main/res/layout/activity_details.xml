@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_theme_light_surfaceContainerLow"
-    tools:context="com.application.project2java.DetailsActivity">
+    tools:context="com.application.project2java.activities.DetailsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -285,7 +285,7 @@
 
     <fragment
         android:id="@+id/navigation_fragment"
-        android:name="com.application.project2java.Navigation"
+        android:name="com.application.project2java.fragments.NavigationFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom" />

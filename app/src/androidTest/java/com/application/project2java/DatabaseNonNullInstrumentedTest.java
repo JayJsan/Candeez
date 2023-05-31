@@ -6,6 +6,8 @@ import static org.junit.Assert.fail;
 
 import android.database.Cursor;
 
+import com.application.project2java.constants.ItemContract;
+
 import org.junit.Test;
 
 public class DatabaseNonNullInstrumentedTest extends DatabaseInstrumentedTest {
