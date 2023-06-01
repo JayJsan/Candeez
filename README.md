@@ -30,8 +30,10 @@ You are also able to see the 3 best selling items as well as the 3 most viewed i
 At the bottom is the navigation bar where you navigate to the ListActivity, FavouritesActivity, and CartActivity.
 
 <br/>
-<img src="readme-resources/MainActivity_V2.jpg" width="270" height="600">
-<img src="readme-resources/MainActivity_GridCategory.jpg" width="270" height="600">
+<p float="left">
+    <img src="readme-resources/MainActivity_V2.jpg" width="270" height="600">
+    <img src="readme-resources/MainActivity_GridCategory.jpg" width="270" height="600">
+</p>
 
 ### Browse Items
 
@@ -40,8 +42,10 @@ This is the ListActivity where you are able to browse through several items depe
 Clicking on any item will take you to the DetailsActivity that will show more details on the corresponding product.
 
 <br/>
-<img src="readme-resources/ListActivity_v2.jpg" width="270" height="600">
-<img src="readme-resources/ListActivity_Sort.jpg" width="270" height="600">
+<p float="left">
+    <img src="readme-resources/ListActivity_v2.jpg" width="270" height="600">
+    <img src="readme-resources/ListActivity_Sort.jpg" width="270" height="600">
+</p>
 
 ### Item Details
 
@@ -57,22 +61,29 @@ Scrolling down below will show a list of related items.
 Clicking on the heart in the navigation bar will lead you to the FavouritesActivity. Here you will see your favourited items. Clicking on the item will bring you to the details page.
 
 <br/>
-<img src="readme-resources/Favourites_Filled_V2.jpg" width="270" height="600">
-<img src="readme-resources/Favourites_Empty.jpg" width="270" height="600">
+<p float="left">
+    <img src="readme-resources/Favourites_Filled_V2.jpg" width="270" height="600">
+    <img src="readme-resources/Favourites_Empty.jpg" width="270" height="600">
+</p>
 
 ### Cart
 
 Clicking on the cart in the navigation bar will bring you to the cart activity. Here you will be able to see the items you have added to your cart and can either increase or decrease the amount of each item. Tapping on the "X" will remove the item from the cart.
 
 <br/>
+
+<p float="left">
 <img src="readme-resources/Cart_Filled_V2.jpg" width="270" height="600">
 <img src="readme-resources/Cart_Empty.jpg" width="270" height="600">
+</p>
 
 ## Animations and Transitions
 
-<img src="readme-resources/Activity_Switching_AdobeExpress.gif" width="202" height="450">
-<img src="readme-resources/Category_Swipe_AdobeExpress.gif" width="202" height="450">
-<img src="readme-resources/Filter_Swipe_AdobeExpress.gif" width="202" height="450">
+<p float="left">
+    <img src="readme-resources/Activity_Switching_AdobeExpress.gif" width="202" height="450">
+    <img src="readme-resources/Category_Swipe_AdobeExpress.gif" width="202" height="450">
+    <img src="readme-resources/Filter_Swipe_AdobeExpress.gif" width="202" height="450">
+</p>
 
 ## Technologies Used
 
