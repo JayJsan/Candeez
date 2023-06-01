@@ -4,16 +4,16 @@
 
 ## ![Candeez Logo](/readme-resources/Candeez_Logo.PNG "Candeez Logo")
 
-#### Candeez is an Android Application made on Android Studio using Java. It is an application created to showcase and sell sweets or snacks. The items on Candeez were implemented using SQLite.
+> Candeez is an Android Application made on Android Studio using Java. It is an application created to showcase and sell sweets or snacks. The items on Candeez were implemented using SQLite.
 
-#### This was a University Project for COMPSYS 302 where we had to design an application to showcase a product type of our own choosing according to a set of specifications and requirements.
+> This was a University Project for COMPSYS 302 where we had to design an application to showcase a product type of our own choosing according to a set of specifications and requirements.
 
-#### Developed by `Benson Cho` and `Josef Santos`
+**Developed by [Benson Cho](https://github.com/bcho892) and [Josef Santos](https://github.com/JayJsan)**
 
-Initial Design Document:
+**Initial Design Document:**
 https://docs.google.com/document/d/1Fg8QJMB5KvNC1VupsUTpzmRiNFF9sdRBnZac55ALOE4/edit?usp=sharing
 
-Wireframe Prototype:  
+**Wireframe Prototype:  **
 https://www.figma.com/proto/zfG2Bn3AtoYYxg2nj4IXZv/302-Java-App-Project-2?type=design&node-id=167-243&scaling=min-zoom&page-id=167%3A243&starting-point-node-id=167%3A244
 
 ---
@@ -91,5 +91,6 @@ Clicking on the cart icon in the navigation bar will bring you to the cart activ
 
 - `Android Studio` : Used to handle compiling, designing, emulating and among many other things.
 - `Java` : The language used to code the application.
-- `SQLite` : Used to handle the database for Candeez
+- `JUnit` : Used to perform instrumented and unit tests
+- `SQLite` : Used to handle data for Candeez
 - `Python` : Used to generate the database for Candeez (Item specifications, Images).
