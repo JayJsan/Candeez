@@ -22,7 +22,7 @@
 
 - [X] I want to be able to scroll and click on items to view their details
 
-- [ ] I want to to be able to add items to my favorites while scrolling through
+- [X] I want to to be able to add items to my favorites while scrolling through
 
 - [X] I want to be able to filter and sort items
 
