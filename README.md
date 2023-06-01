@@ -4,9 +4,9 @@
 
 ## ![Candeez Logo](/readme-resources/Candeez_Logo.PNG "Candeez Logo")
 
-#### Candeez is an Android Application made on Android Studio using Java for. It is an application created to showcase and sell sweets or snacks. The items on Candeez were implemented using SQLite.
+#### Candeez is an Android Application made on Android Studio using Java. It is an application created to showcase and sell sweets or snacks. The items on Candeez were implemented using SQLite.
 
-#### This was a University Project for COMPSYS 302 where we were had to design an application to showcase a product type of our own choosing according to a set of specifications and requirements.
+#### This was a University Project for COMPSYS 302 where we had to design an application to showcase a product type of our own choosing according to a set of specifications and requirements.
 
 #### Developed by `Benson Cho` and `Josef Santos`
 
@@ -20,15 +20,15 @@ https://www.figma.com/proto/zfG2Bn3AtoYYxg2nj4IXZv/302-Java-App-Project-2?type=d
 
 ## Installation
 
-To run the application, use Android Studio to either emulate the app or run onto your android device.
+To run the application, use Android Studio to emulate it or use debugging mode on your phone to run it on your Android device.
 
 ## Features
 
 ### Main Homepage
 
-This is the main landing page of Candeez. Here you are able to view 13 categories of snacks and goodies. Clicking a category will take you into the ListActivity where you can browse items. You also can view the categories in grid form.
+This is the main landing page of Candeez. Here you can view 13 categories of snacks and goodies. Clicking a category will take you to the ListActivity where you can browse items. You also can view the categories in grid form.
 
-You are also able to see the 3 best selling items as well as the 3 most viewed items in this page. If there is an item that interests you, press the heart button to save it to your favourites list.
+You can also see the three best-selling items and the three most viewed items on this page. If an item interests you, press the heart button to save it to your favourites list.
 
 At the bottom is the navigation bar where you navigate to the ListActivity, FavouritesActivity, and CartActivity.
 
@@ -40,9 +40,9 @@ At the bottom is the navigation bar where you navigate to the ListActivity, Favo
 
 ### Browse Items
 
-This is the ListActivity where you are able to browse through several items depending on your filters and are able to sort through the list using the sort button. At the top is the search card where you are able to search for a specific item. You may add an item to the cart as well as favourite an item in this page.
+This is the ListActivity, where you can browse through several items depending on your filters and sort through the list using the sort button. At the top is the search card, where you can search for a specific item. You may add an item to the cart and favourite an item on this page.
 
-Clicking on any item will take you to the DetailsActivity that will show more details on the corresponding product.
+Clicking on any item will take you to the DetailsActivity, showing more details on the related product.
 
 <br/>
 <p float="left">
@@ -52,7 +52,7 @@ Clicking on any item will take you to the DetailsActivity that will show more de
 
 ### Item Details
 
-Once an item is clicked, it will take you to the DetailsActivity where it will display more information of the product. You may view different pictures in this view, favourite the item, or add to the cart.
+Once an item is clicked, it will take you to the DetailsActivity, which will display more product information. You may view different pictures in this view, favourite the item, or add to the cart.
 
 Scrolling down below will show a list of related items.
 
@@ -61,7 +61,7 @@ Scrolling down below will show a list of related items.
 
 ### Favourites
 
-Clicking on the heart in the navigation bar will lead you to the FavouritesActivity. Here you will see your favourited items. Clicking on the item will bring you to the details page.
+Clicking on the heart icon in the navigation bar will lead you to the FavouritesActivity. Here you will see your favourited items. Clicking on the item will bring you to the details page.
 
 <br/>
 <p float="left">
@@ -71,8 +71,7 @@ Clicking on the heart in the navigation bar will lead you to the FavouritesActiv
 
 ### Cart
 
-Clicking on the cart in the navigation bar will bring you to the cart activity. Here you will be able to see the items you have added to your cart and can either increase or decrease the amount of each item. Tapping on the "X" will remove the item from the cart.
-
+Clicking on the cart icon in the navigation bar will bring you to the cart activity. Here you will be able to see the items you have added to your cart and can either increase or decrease the amount of each item. Tapping on the "X" will remove the item from the cart.
 <br/>
 
 <p float="left">
