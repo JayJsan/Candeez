@@ -43,7 +43,7 @@ Clicking on any item will take you to the DetailsActivity that will show more de
 
 <br/>
 <p float="left">
-    <img src="readme-resources/ListActivity_v2.jpg" width="270" height="600">
+    <img src="readme-resources/ListActivity_V2.jpg" width="270" height="600">
     <img src="readme-resources/ListActivity_Sort.jpg" width="270" height="600">
 </p>
 
