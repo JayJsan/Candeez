@@ -12,7 +12,8 @@
 
 Initial Design Document:
 https://docs.google.com/document/d/1Fg8QJMB5KvNC1VupsUTpzmRiNFF9sdRBnZac55ALOE4/edit?usp=sharing
-
+Wireframe Prototype:
+https://www.figma.com/proto/zfG2Bn3AtoYYxg2nj4IXZv/302-Java-App-Project-2?type=design&node-id=167-243&scaling=min-zoom&page-id=167%3A243&starting-point-node-id=167%3A244
 ---
 
 ## Installation
