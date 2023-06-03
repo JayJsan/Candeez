@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The DataProvider class provides methods that returns specific data from the database.
+ */
 public class DataProvider extends AbstractDatabase {
 
     public DataProvider(Context context) {

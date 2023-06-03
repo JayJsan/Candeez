@@ -26,7 +26,10 @@ import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 
-
+/**
+ * CartAdapter represents a custom Adapter used to display the list of items added to a cart. This
+ * handles data binding, adds button functionality, loads the respective image.
+ */
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     private static final int MAX_ITEMS = 99;
     private static final int MIN_ITEMS = 1;

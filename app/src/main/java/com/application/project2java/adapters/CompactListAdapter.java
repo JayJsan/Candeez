@@ -25,7 +25,10 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
-
+/**
+ * CompactListAdapter represents a custom Adapter used to display a set of items. This
+ * handles data binding, adds button functionality, loads the respective image.
+ */
 public class CompactListAdapter extends RecyclerView.Adapter<CompactListAdapter.ViewHolder> {
 
 

@@ -9,6 +9,9 @@ import com.application.project2java.models.ItemModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The DataMutator class provides methods that modify the database.
+ */
 public class DataMutator extends AbstractDatabase {
 
     private final List<DatabaseWriteListener> writeListeners = new ArrayList<>();

@@ -17,6 +17,9 @@ import com.example.project2java.R;
 
 import java.util.List;
 
+/**
+ * FavouritesActivity displays a list of items that have been favourited by the user.
+ */
 public class FavouritesActivity extends FragmentActivity {
     DataProvider dataProvider;
     DataMutator dataMutator;

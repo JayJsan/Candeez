@@ -11,6 +11,10 @@ import com.application.project2java.fragments.ImageObjectFragment;
 
 import java.util.List;
 
+/**
+ * ImagePagerAdapter provides data to the ImagePager and is responsible for managing the content
+ * and behavior of the ImagePager.
+ */
 public class ImagePagerAdapter extends FragmentStatePagerAdapter {
     private final List<String> imageUris;
 

@@ -29,6 +29,10 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * MainActivity is the main homepage of Candeez. It displays the categories, best selling items,
+ * most viewed items, and a search bar.
+ */
 public class MainActivity extends FragmentActivity {
 
     private final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
