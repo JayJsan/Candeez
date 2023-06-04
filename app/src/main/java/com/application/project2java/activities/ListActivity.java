@@ -44,6 +44,10 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * ListActivity displays a list of items depending on the filters and categories chosen. It also has
+ * a search functionality that shows the list of items closest to the search terms.
+ */
 public class ListActivity extends FragmentActivity {
 
     private final List<CategoryName> categories = new ArrayList<>();

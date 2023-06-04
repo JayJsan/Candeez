@@ -14,6 +14,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashMap;
 
+/**
+ * BottomNavigationUtils is a helper class that provides helper methods to make sure the right
+ * activity clicked from the respective icon is showing.
+ */
 public class BottomNavigationUtils {
     private static final HashMap<Integer, Class<?>> destinationMap = new HashMap<>();
 
@@ -24,9 +28,15 @@ public class BottomNavigationUtils {
         destinationMap.put(R.id.cart, CartActivity.class);
     }
 
+    /**
+     * This sets up the bottom navigation view in the current activity
+     * @param activity The current activity displayed.
+     */
     public static void setupBottomNavigationView(FragmentActivity activity) {
         BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
 
+        // Makes sure the icon clicked navigates the user to the correct activity the icon
+        // represents.
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Class<?> destinationClass = getDestinationClass(activity, item.getItemId());
             if (destinationClass != null) {
@@ -37,6 +47,12 @@ public class BottomNavigationUtils {
         });
     }
 
+    /**
+     * Returns the respective class activity according to the item id.
+     * @param activity the current activity displayed.
+     * @param itemId the itemID of the desired class activity.
+     * @return The class activity based on the item ID.
+     */
     private static Class<?> getDestinationClass(FragmentActivity activity, int itemId) {
         Class<?> destinationClass = destinationMap.get(itemId);
         if (destinationClass != null && !activity.getClass().equals(destinationClass)) {
@@ -45,6 +61,12 @@ public class BottomNavigationUtils {
         return null;
     }
 
+    /**
+     * Displays the new activity based on the given destination class.
+     * @param activity the current activity.
+     * @param destinationClass the new activity class.
+     * @param itemId the item id of the activity.
+     */
     private static void navigateToDestination(FragmentActivity activity, Class<?> destinationClass, int itemId) {
         Intent intent = new Intent(activity, destinationClass);
         activity.startActivity(intent);
@@ -52,9 +74,13 @@ public class BottomNavigationUtils {
         activity.finish();
     }
 
+    /**
+     * Sets the highlighted icon to be the icon that represents the current activity shown.
+     * @param activity the current activity.
+     */
     public static void setCurrentItem(FragmentActivity activity) {
-
         BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
+
         if (bottomNavigationView == null) return;
         int selectedItemIndex;
         if (activity instanceof MainActivity) {

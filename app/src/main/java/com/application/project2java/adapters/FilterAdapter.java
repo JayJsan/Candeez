@@ -16,7 +16,10 @@ import com.example.project2java.R;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
-
+/**
+ * FilterAdapter represents a custom Adapter used to display a list of filters and also adds
+ * button functionality.
+ */
 public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder> {
     private final List<CategoryName> categories;
     private final List<CategoryName> presets;

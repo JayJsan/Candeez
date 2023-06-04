@@ -21,6 +21,9 @@ import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 
+/**
+ * CategoryAdapter represents a custom Adapter used to display the list of categories.
+ */
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private final List<CategoryModel> categories;
 

@@ -20,6 +20,9 @@ import com.example.project2java.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CartActivity displays the list of items that have been added to a cart.
+ */
 public class CartActivity extends FragmentActivity {
     private RecyclerView cartRecyclerView;
     private View noCartResults;

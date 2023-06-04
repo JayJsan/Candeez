@@ -16,8 +16,17 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * ResourceUtils is a helper class that provides methods to modify any resource related elements.
+ */
 public class ResourceUtils {
     //https://stackoverflow.com/questions/3870638/how-to-use-setimageuri-on-android/
+
+    /**
+     * Loads the image according to the link
+     * @param url The link to the image
+     * @param callback Bitmap interface for retrieving results
+     */
     public static void getImageBitmapAsync(String url, final BitmapCallback callback) {
         Handler handler = new Handler(Looper.getMainLooper());
         Thread thread = new Thread(() -> {
@@ -42,11 +51,18 @@ public class ResourceUtils {
         thread.start();
     }
 
+    /**
+     * Returns the current color state list of the specified resource.
+     * @param resourceId The id of the resource.
+     * @return The color state list of the resource passed in.
+     */
     public static ColorStateList getColorStateList(int resourceId) {
         return ContextCompat.getColorStateList(App.getAppContext(), resourceId);
     }
 
-    // Define an interface to handle the bitmap retrieval result
+    /**
+     * An interface to hande the bitmap retrieval result.
+     */
     public interface BitmapCallback {
         void onBitmapLoaded(Bitmap bitmap);
 

@@ -23,6 +23,9 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * DatabaseHelper is a helper class that provides methods that manages the database.
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "candeez_data";
     private static final int DATABASE_VERSION = 1;

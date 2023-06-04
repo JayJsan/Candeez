@@ -25,7 +25,10 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
-
+/**
+ * DetailsActivity displays more information about the item chosen by the user as well as show
+ * related items.
+ */
 public class DetailsActivity extends FragmentActivity {
     private DataProvider dataProvider;
     private DataMutator dataMutator;
